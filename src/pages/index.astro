@@ -3,27 +3,56 @@ import '../styles/global.css';
 
 export const prerender = true;
 
-const site = Astro.site;
-const canonical = site ? new URL('/', site).toString() : undefined;
-const ogImage = site ? new URL('/images/og-pingtung-park.jpg', site).toString() : undefined;
+const site = Astro.site ?? new URL('https://pingtungpark.com');
+const canonical = new URL('/', site).toString();
+const ogImage = new URL('/images/og-pingtung-park.jpg', site).toString();
+const ogImageAlt = '屏東公園（Pingtung Park）— 屏東市百年城市公園主景';
 
-const mapUrl = 'https://www.google.com/maps?q=22.6746753,120.4923113&hl=zh-TW&z=16&output=embed';
+/* ===== 單景點 SEO 實體綁定配置（Entity Binding） ===== */
+const DOMAIN_NAME = 'pingtungpark.com';
+const ATTRACTION_FULL_NAME = '屏東公園';
+const ATTRACTION_SHORT_NAME = '屏東公園';
+const ATTRACTION_EN_NAME = 'Pingtung Park';
+const CITY_NAME = '屏東市';
+const STATE_PROVINCE = '屏東縣';
+const COUNTRY_NAME = '臺灣';
+const COUNTRY_CODE_2LETTER = 'TW';
+const POSTAL_CODE = '900';
+const STREET_ADDRESS = '公園路';
+const LATITUDE = 22.6746753;
+const LONGITUDE = 120.4923113;
+const MAPS_SHARE_URL = 'https://maps.app.goo.gl/EDkUSZQMdvhaWmhK6';
+const MAPS_EMBED_SRC = 'https://www.google.com/maps?q=22.6746753,120.4923113&hl=zh-TW&z=16&output=embed';
+const NEARBY_LANDMARK_1 = '屏東演武場';
+const NEARBY_LANDMARK_2 = '勝利星村創意生活園區';
+const GOVT_TOURISM_URL = 'https://www.i-pingtung.com';
+const GOVT_URL = 'https://www.pingtung.gov.tw';
+const TELEPHONE = '+886 8 732 0415';
+const PLUS_CODE = 'MFFR+VW 屏東市 台灣屏東縣';
+
+/* ===== Google 地圖評價（僅頁面展示，不寫入 JSON-LD） ===== */
+const GOOGLE_RATING = '4.4';
+const GOOGLE_REVIEW_COUNT = '14,004';
+const RATING_SYNC_TIME = '2026 年 9 月';
+const RATING_SOURCE_LINE = `評分與評價數同步自 Google 地圖（Google Maps）使用者評價 · ${RATING_SYNC_TIME}`;
+const REVIEW_SOURCE_NOTE = `同步自 Google 地圖使用者評價，同步時間 ${RATING_SYNC_TIME}；版權歸原作者與 Google 地圖所有`;
+
 const directionsUrl = 'https://www.google.com/maps/dir/?api=1&destination=22.6746753,120.4923113&hl=zh-TW';
 
 const photos = [
   {
     src: 'https://upload.wikimedia.org/wikipedia/commons/d/d0/Pingtung_Park%2C_Jan_2025_%281%29.jpg',
-    alt: '屏東公園池畔紅瓦涼亭與拱橋',
+    alt: '屏東公園（Pingtung Park）— 屏東市公園內池畔紅瓦涼亭與拱橋主景',
     caption: '水池、拱橋與紅瓦亭，保留老公園的南國節奏。'
   },
   {
     src: 'https://upload.wikimedia.org/wikipedia/commons/1/19/Pingtung_Park%2C_Jan_2025_%282%29.jpg',
-    alt: '屏東公園高聳棕櫚樹與園路',
+    alt: '屏東公園（Pingtung Park）— 園內高聳棕櫚樹與林蔭園路',
     caption: '成列棕櫚與大樹樹蔭，是屏東公園最鮮明的城市綠意。'
   },
   {
     src: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Pingtung_Park%2C_Jan_2025_%283%29.jpg',
-    alt: '屏東公園噴水池與林蔭廣場',
+    alt: '屏東公園（Pingtung Park）— 噴水池與林蔭廣場',
     caption: '開闊廣場、水景與成熟樹木，適合慢走與短暫休息。'
   }
 ];
@@ -33,30 +62,48 @@ const faqs = [
   { q: '屏東公園適合安排多久？', a: '若以散步、看水景與歷史遺構為主，建議約 45–90 分鐘；若再串聯屏東演武場、屏東美術館或勝利星村，可安排半日。' },
   { q: '什麼時段比較舒服？', a: '屏東日照強，較推薦清晨或傍晚。中午前後可優先走樹蔭較多的園路，並準備飲水、防曬與防蚊用品。' },
   { q: '從屏東車站怎麼去？', a: '可步行、騎 YouBike 或搭市區公車前往；若步行，建議由站前往中山路、公園路方向前進，實際路線請依即時導航。' },
-  { q: '開車有地方停嗎？', a: '公園周邊有路外停車場與路邊停車格，例如屏東公園中華路外停車場；假日或活動期間建議提早抵達。' }
+  { q: '開車有地方停嗎？', a: '公園周邊有路外停車場與路邊停車格，例如屏東公園中華路外停車場；假日或活動期間建議提早抵達。' },
+  { q: '屏東公園的開放時間是？', a: '屏東公園屬都市公園，園區全天開放；園內個別館舍、展演空間的開放時間以其主管單位公告為準。' },
+  { q: '屏東公園的地址與聯絡電話？', a: '地址為 900 屏東縣屏東市公園路，電話 +886 8 732 0415，Plus Code 為 MFFR+VW；可直接以 Google 地圖導航「屏東公園」。' },
+  { q: '屏東公園附近還有哪些景點？', a: '步行或短程車程內可串聯屏東演武場、屏東美術館與勝利星村創意生活園區，很適合安排成屏東市中心的半日散步路線。' }
 ];
 
 const attractionSchema = {
   '@context': 'https://schema.org',
   '@type': ['TouristAttraction', 'Park'],
-  name: '屏東公園',
-  alternateName: ['阿猴公園', '中山公園'],
-  description: '位於屏東市中心、創設於 1902 年的歷史都市公園，園內可見水景、老樹與阿猴城門等地方文化線索。',
+  '@id': `${canonical}#attraction`,
+  name: ATTRACTION_FULL_NAME,
+  alternateName: [ATTRACTION_SHORT_NAME, `${CITY_NAME}${ATTRACTION_FULL_NAME}`, ATTRACTION_EN_NAME, '阿猴公園', '中山公園'],
+  description: `${ATTRACTION_FULL_NAME}（${ATTRACTION_EN_NAME}）位於${COUNTRY_NAME}${STATE_PROVINCE}${CITY_NAME}公園路，是創設於 1902 年的歷史都市公園，園內可見水景、老樹與阿猴城門等地方文化線索。本站為屏東公園的完整參觀指南。`,
+  url: canonical,
+  image: [ogImage],
+  isAccessibleForFree: true,
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '公園路',
-    addressLocality: '屏東市',
-    addressRegion: '屏東縣',
-    postalCode: '900',
-    addressCountry: 'TW'
+    streetAddress: STREET_ADDRESS,
+    addressLocality: CITY_NAME,
+    addressRegion: STATE_PROVINCE,
+    postalCode: POSTAL_CODE,
+    addressCountry: COUNTRY_CODE_2LETTER
   },
-  geo: { '@type': 'GeoCoordinates', latitude: 22.6746753, longitude: 120.4923113 },
-  telephone: '+886-8-732-0415',
-  isAccessibleForFree: true,
-  openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], opens: '00:00', closes: '23:59' }],
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.4', reviewCount: '14004', bestRating: '5', worstRating: '1' },
-  ...(canonical ? { url: canonical } : {})
+  geo: { '@type': 'GeoCoordinates', latitude: LATITUDE, longitude: LONGITUDE },
+  telephone: TELEPHONE,
+  hasMap: MAPS_SHARE_URL,
+  sameAs: [MAPS_SHARE_URL, GOVT_TOURISM_URL, GOVT_URL],
+  openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], opens: '00:00', closes: '23:59' }]
 };
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: COUNTRY_NAME },
+    { '@type': 'ListItem', position: 2, name: STATE_PROVINCE },
+    { '@type': 'ListItem', position: 3, name: CITY_NAME },
+    { '@type': 'ListItem', position: 4, name: ATTRACTION_FULL_NAME, item: canonical }
+  ]
+};
+
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -68,20 +115,34 @@ const faqSchema = {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
-  <title>屏東公園｜老樹、水景與阿猴城記憶的城市綠洲</title>
-  <meta name="description" content="屏東公園單頁旅遊指南：歷史亮點、交通、停車、費用、最佳時段、周邊美食與景點，以及 Google 地圖導航。" />
+  <title>{ATTRACTION_FULL_NAME}（{CITY_NAME}）｜Pingtung Park 百年城市公園旅遊指南</title>
+  <meta name="description" content={`屏東公園（Pingtung Park）旅遊指南：屏東市公園路百年都市公園的門票、開放時間、交通、停車與最佳時段，以及屏東演武場、勝利星村等周邊景點，附 Google 地圖位置與導航。`} />
+  <meta name="keywords" content={`屏東公園, Pingtung Park, 屏東市景點, 屏東縣公園, 阿猴公園, 中山公園, 屏東公園交通, 屏東公園停車`} />
+  <meta name="theme-color" content="#173226" />
   {canonical && <link rel="canonical" href={canonical} />}
+  <link rel="manifest" href="/manifest.webmanifest" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="屏東公園｜老樹、水景與阿猴城記憶的城市綠洲" />
-  <meta property="og:description" content="走進屏東市中心的百年公園，從老樹、水景到阿猴城門，安排一段有歷史感的城市散步。" />
+  <meta property="og:site_name" content={ATTRACTION_FULL_NAME} />
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:title" content={`${ATTRACTION_FULL_NAME} - ${CITY_NAME}旅遊指南｜屏東公園位置、交通與參觀資訊`} />
+  <meta property="og:description" content={`${ATTRACTION_FULL_NAME}（${CITY_NAME}）官方旅遊指南：位置地圖、開放與交通資訊、周邊景點與旅遊建議。`} />
   {canonical && <meta property="og:url" content={canonical} />}
   {ogImage && <meta property="og:image" content={ogImage} />}
+  {ogImage && <meta property="og:image:alt" content={ogImageAlt} />}
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={`${ATTRACTION_FULL_NAME}（${CITY_NAME}）｜Pingtung Park 旅遊指南`} />
+  <meta name="twitter:description" content={`屏東公園位置、交通、停車與周邊景點的完整參觀指南。`} />
+  {ogImage && <meta name="twitter:image" content={ogImage} />}
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content={ATTRACTION_FULL_NAME} />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="mobile-web-app-capable" content="yes" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" />
   <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" />
   <link rel="apple-touch-icon" href="/icons/favicon-180.png" sizes="180x180" />
   <script type="application/ld+json" set:html={JSON.stringify(attractionSchema)}></script>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP"></script>
   <script is:inline>
@@ -94,9 +155,9 @@ const faqSchema = {
 <body class="noise">
   <header class="sticky top-0 z-50 border-b border-[#173226]/10 bg-[#fffdf7]/90 backdrop-blur-xl">
     <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-3 lg:px-8">
-      <a href="#top" aria-label="回到頁首"><img src="/logo.svg" alt="屏東公園" class="h-12 w-auto" /></a>
+      <a href="#top" aria-label="回到頁首"><img src="/logo.svg" alt="屏東公園（Pingtung Park）網站標誌" class="h-12 w-auto" /></a>
       <nav class="hidden gap-5 text-sm font-semibold md:flex">
-        <a href="#story" class="hover:text-[#b6533d]">公園故事</a><a href="#visit" class="hover:text-[#b6533d]">遊覽資訊</a><a href="#around" class="hover:text-[#b6533d]">周邊探索</a><a href="#faq" class="hover:text-[#b6533d]">FAQ</a>
+        <a href="#about" class="hover:text-[#b6533d]">公園簡介</a><a href="#story" class="hover:text-[#b6533d]">公園故事</a><a href="#visit" class="hover:text-[#b6533d]">遊覽資訊</a><a href="#around" class="hover:text-[#b6533d]">周邊探索</a><a href="#reviews" class="hover:text-[#b6533d]">評價</a><a href="#faq" class="hover:text-[#b6533d]">FAQ</a>
       </nav>
       <a href={directionsUrl} target="_blank" rel="noreferrer" class="rounded-full bg-[#173226] px-4 py-2 text-sm font-bold text-white transition hover:-translate-y-0.5">開啟導航 ↗</a>
     </div>
@@ -106,18 +167,27 @@ const faqSchema = {
     <section class="relative overflow-hidden">
       <div class="mx-auto grid min-h-[78vh] max-w-7xl items-center gap-10 px-5 py-12 lg:grid-cols-[.9fr_1.1fr] lg:px-8 lg:py-20">
         <div class="relative z-10">
+          <nav aria-label="地理層級" class="mb-4 text-xs font-semibold text-[#173226]/55">
+            <a href={canonical} class="hover:text-[#b6533d]">首頁</a>
+            <span class="mx-1">→</span><span>{COUNTRY_NAME}</span>
+            <span class="mx-1">→</span><span>{STATE_PROVINCE}</span>
+            <span class="mx-1">→</span><span>{CITY_NAME}</span>
+            <span class="mx-1">→</span><span class="text-[#b6533d]">{ATTRACTION_FULL_NAME}</span>
+          </nav>
           <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#b6533d]/20 bg-white/70 px-4 py-2 text-xs font-bold tracking-[.18em] text-[#b6533d]">屏東市中心 · 百年城市綠地</div>
-          <h1 class="serif text-5xl font-black leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">在老樹與水光之間，<br/><span class="text-[#b6533d]">讀一座城市的時間。</span></h1>
-          <p class="mt-7 max-w-xl text-lg leading-8 text-[#173226]/75">屏東公園創設於 1902 年，是南臺灣早期都市公園的重要代表。今天來到這裡，不只散步看綠意，也能在阿猴城門、老樹、水池與園路之間，感受屏東城市記憶的層次。</p>
+          <h1 class="serif text-5xl font-black leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">{ATTRACTION_FULL_NAME}（{CITY_NAME}）<br/><span class="text-[#b6533d]">在老樹與水光之間，讀一座城市的時間。</span></h1>
+          <p class="mt-7 max-w-xl text-lg leading-8 text-[#173226]/75">歡迎來到<strong>屏東公園</strong>（{ATTRACTION_EN_NAME}）——屏東市最具代表性的中心公園。它位於<strong>臺灣屏東縣屏東市</strong>公園路，創設於 1902 年，是造訪屏東市區的旅人最重要的城市綠色地標與散步據點。</p>
+          <p class="mt-4 max-w-xl text-base leading-8 text-[#173226]/70">今天來到這裡，不只散步看綠意，也能在阿猴城門、老樹、水池與園路之間，感受屏東城市記憶的層次。</p>
           <div class="mt-8 flex flex-wrap gap-3">
             <a href="#visit" class="rounded-full bg-[#b6533d] px-6 py-3 font-bold text-white shadow-lg shadow-[#b6533d]/20">規劃這趟散步</a>
             <a href="#map" class="rounded-full border border-[#173226]/20 bg-white/60 px-6 py-3 font-bold">查看地圖</a>
           </div>
           <dl class="mt-10 grid grid-cols-3 gap-4 border-t border-[#173226]/15 pt-6 text-sm">
-            <div><dt class="text-[#173226]/55">Google 評分</dt><dd class="mt-1 text-2xl font-black">4.4</dd></div>
+            <div><dt class="text-[#173226]/55">Google 評分</dt><dd class="mt-1 text-2xl font-black">{GOOGLE_RATING}</dd></div>
             <div><dt class="text-[#173226]/55">入園費用</dt><dd class="mt-1 text-2xl font-black">免費</dd></div>
             <div><dt class="text-[#173226]/55">建議停留</dt><dd class="mt-1 text-2xl font-black">45–90 分</dd></div>
           </dl>
+          <p class="mt-3 text-xs leading-5 text-[#173226]/50">{RATING_SOURCE_LINE} · <a href={MAPS_SHARE_URL} target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-[#b6533d]">查看 Google 地圖全部評價↗</a></p>
         </div>
         <div class="relative">
           <div class="absolute -left-6 -top-8 h-44 w-44 rounded-full bg-[#d7a948]/25 blur-3xl"></div>
@@ -129,17 +199,25 @@ const faqSchema = {
       </div>
     </section>
 
-    <section id="story" class="bg-[#173226] text-[#fffdf7]">
-      <div class="mx-auto grid max-w-7xl gap-10 px-5 py-16 lg:grid-cols-[1fr_1.1fr] lg:px-8 lg:py-24">
+    <section id="about" class="mx-auto max-w-7xl px-5 pb-4 lg:px-8">
+      <div class="grid gap-10 rounded-[2.5rem] border border-[#173226]/10 bg-white/70 p-7 lg:grid-cols-[1.1fr_.9fr] lg:p-10">
         <div>
-          <p class="text-xs font-bold tracking-[.24em] text-[#d7a948]">1902 → TODAY</p>
-          <h2 class="serif mt-3 text-4xl font-black sm:text-5xl">一座公園，疊著阿猴到屏東的城市記憶</h2>
+          <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">ABOUT {ATTRACTION_EN_NAME}</p>
+          <h2 class="section-title serif mt-2 text-4xl font-black">屏東公園是什麼樣的地方？</h2>
+          <p class="mt-6 leading-8 text-[#173226]/75">屏東公園（Pingtung Park），舊稱「阿猴公園」「中山公園」，是屏東市中心最具代表性的<strong>都市公園</strong>。整個園區位於<strong>臺灣</strong>→<strong>屏東縣</strong>→<strong>屏東市</strong>的地理層級中心， 地址為 900 屏東縣屏東市公園路，緊鄰屏東車站與市中心商圈。</p>
+          <p class="mt-4 leading-8 text-[#173226]/75">造訪屏東公園時，可以輕鬆串聯周邊的歷史地標與景點，包括<strong>屏東演武場</strong>與<strong>勝利星村創意生活園區</strong>；不論是半日市區散步，或作為屏東旅行的第一站，都是非常合適的據點。</p>
         </div>
-        <div class="space-y-5 text-base leading-8 text-white/78">
-          <p>屏東公園的創設可追溯到日治時期明治 35 年（1902），初期與城市衛生、公共空間建設密切相關。後續腹地逐步擴張，水池、亭榭、運動與紀念設施等元素陸續出現，形成今日老公園的基礎。</p>
-          <p>戰後一度改稱「中山公園」，2016 年恢復「屏東公園」原名。園內及周邊仍可連結阿猴城門、神社遺構、防空洞等文化線索，因此比一般城市公園多了一層「走讀」的樂趣。</p>
-          <div class="rounded-2xl border border-white/15 bg-white/5 p-5 text-sm">小提醒：歷史建物、展演空間與活動開放狀態可能調整，若你專程為某處而來，建議出發前再查官方最新公告。</div>
-        </div>
+        <aside class="rounded-[2rem] bg-[#fffdf7] p-6 text-sm leading-7 leaf-card">
+          <h3 class="serif text-xl font-black">屏東公園基本資料</h3>
+          <dl class="mt-4 space-y-3 text-[#173226]/75">
+            <div><dt class="font-black text-[#173226]">類別</dt><dd>公園（都市公園／歷史公園）</dd></div>
+            <div><dt class="font-black text-[#173226]">地址</dt><dd>{POSTAL_CODE} {COUNTRY_NAME}{STATE_PROVINCE}{CITY_NAME}{STREET_ADDRESS}</dd></div>
+            <div><dt class="font-black text-[#173226]">電話</dt><dd><a href="tel:+88687320415" class="underline decoration-dotted">{TELEPHONE}</a></dd></div>
+            <div><dt class="font-black text-[#173226]">Plus Code</dt><dd>{PLUS_CODE}</dd></div>
+            <div><dt class="font-black text-[#173226]">座標</dt><dd>{LATITUDE}, {LONGITUDE}</dd></div>
+            <div><dt class="font-black text-[#173226]">位置</dt><dd><a href={MAPS_SHARE_URL} target="_blank" rel="noopener noreferrer" class="underline decoration-dotted">Google 地圖：屏東公園↗</a></dd></div>
+          </dl>
+        </aside>
       </div>
     </section>
 
@@ -155,8 +233,22 @@ const faqSchema = {
       <p class="mt-4 text-xs text-[#173226]/50">照片：Ralff Nestor Nacor / Wikimedia Commons，CC BY-SA 4.0。網站僅作景點資訊整理與導覽展示。</p>
     </section>
 
-    <section id="visit" class="mx-auto max-w-7xl px-5 pb-20 lg:px-8">
-      <div class="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">PLAN YOUR WALK</p><h2 class="section-title serif mt-2 text-4xl font-black">遊覽資訊，一次看懂</h2></div><p class="max-w-md text-sm leading-6 text-[#173226]/65">屏東公園屬都市公園，最適合用「慢走＋順遊」安排，不必把行程塞得太滿。</p></div>
+    <section id="story" class="bg-[#173226] text-[#fffdf7]">
+      <div class="mx-auto grid max-w-7xl gap-10 px-5 py-16 lg:grid-cols-[1fr_1.1fr] lg:px-8 lg:py-24">
+        <div>
+          <p class="text-xs font-bold tracking-[.24em] text-[#d7a948]">1902 → TODAY</p>
+          <h2 class="serif mt-3 text-4xl font-black sm:text-5xl">屏東公園的歷史與意義：一座公園，疊著阿猴到屏東的城市記憶</h2>
+        </div>
+        <div class="space-y-5 text-base leading-8 text-white/78">
+          <p>屏東公園的創設可追溯到日治時期明治 35 年（1902），初期與城市衛生、公共空間建設密切相關。後續腹地逐步擴張，水池、亭榭、運動與紀念設施等元素陸續出現，形成今日老公園的基礎。</p>
+          <p>戰後一度改稱「中山公園」，2016 年恢復「屏東公園」原名。園內及周邊仍可連結阿猴城門、神社遺構、防空洞等文化線索，因此比一般城市公園多了一層「走讀」的樂趣。</p>
+          <div class="rounded-2xl border border-white/15 bg-white/5 p-5 text-sm">小提醒：歷史建物、展演空間與活動開放狀態可能調整，若你專程為某處而來，建議出發前再查官方最新公告。</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="visit" class="mx-auto max-w-7xl px-5 pb-20 pt-16 lg:px-8">
+      <div class="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">PLAN YOUR WALK</p><h2 class="section-title serif mt-2 text-4xl font-black">屏東公園遊覽資訊，一次看懂</h2></div><p class="max-w-md text-sm leading-6 text-[#173226]/65">屏東公園屬都市公園，最適合用「慢走＋順遊」安排，不必把行程塞得太滿。</p></div>
       <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {[
           ['門票 / 費用','公園本體通常免費開放。若遇主題活動、展演或周邊館舍特展，費用依現場或官方公告。','免費入園'],
@@ -174,15 +266,15 @@ const faqSchema = {
     <section class="bg-[#eef2e8]">
       <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-24">
         <div class="grid gap-8 lg:grid-cols-2">
-          <article class="rounded-[2rem] bg-[#fffdf7] p-7 lg:p-9"><p class="text-xs font-bold tracking-[.2em] text-[#6c7f4d]">GETTING HERE</p><h2 class="serif mt-3 text-3xl font-black">詳細交通</h2><div class="mt-6 space-y-5 text-sm leading-7 text-[#173226]/72"><p><strong>台鐵｜</strong>以屏東車站為主要門戶，可步行、YouBike 或轉搭市區公車前往。由車站步行至公園約為市中心短程移動，請依即時導航選擇較舒適路線。</p><p><strong>公車｜</strong>可留意「屏東公園」「屏東體育館」或周邊站點；常見市區路線包含 505、509、516 系列，實際班次請以當日客運資訊為準。</p><p><strong>自行車｜</strong>市中心有 YouBike 站點，可把屏東公園與勝利星村、屏東總圖或其他市區景點串成短距離騎行。</p><p><strong>開車｜</strong>導航至屏東市公園路，抵達後依即時車位選擇公園中華路外停車場或市中心周邊停車設施。</p></div></article>
-          <article class="rounded-[2rem] bg-[#173226] p-7 text-white lg:p-9"><p class="text-xs font-bold tracking-[.2em] text-[#d7a948]">PARKING NOTE</p><h2 class="serif mt-3 text-3xl font-black">停車資訊</h2><ul class="mt-6 space-y-4 text-sm leading-7 text-white/75"><li>• 屏東公園中華路外停車場：靠近市中心公園範圍，適合作為首選搜尋點。</li><li>• 中華路一帶另有立體停車場與民營停車設施，可視即時車位彈性改停。</li><li>• 周末、節慶與大型活動期間，公園周邊車流會明顯增加；若住在市區，步行或騎 YouBike 通常更省時間。</li></ul><a href={directionsUrl} target="_blank" rel="noreferrer" class="mt-8 inline-flex rounded-full bg-white px-5 py-3 text-sm font-black text-[#173226]">開啟 Google 導航 ↗</a></article>
+          <article class="rounded-[2rem] bg-[#fffdf7] p-7 lg:p-9"><p class="text-xs font-bold tracking-[.2em] text-[#6c7f4d]">LOCATION &amp; HOW TO VISIT</p><h2 class="serif mt-3 text-3xl font-black">屏東公園位置與交通指南</h2><div class="mt-6 space-y-5 text-sm leading-7 text-[#173226]/72"><p><strong>台鐵｜</strong>以屏東車站為主要門戶，可步行、YouBike 或轉搭市區公車前往。由車站步行至公園約為市中心短程移動，請依即時導航選擇較舒適路線。</p><p><strong>公車｜</strong>可留意「屏東公園」「屏東體育館」或周邊站點；常見市區路線包含 505、509、516 系列，實際班次請以當日客運資訊為準。</p><p><strong>自行車｜</strong>市中心有 YouBike 站點，可把屏東公園與勝利星村、屏東總圖或其他市區景點串成短距離騎行。</p><p><strong>開車｜</strong>導航至屏東市公園路，抵達後依即時車位選擇公園中華路外停車場或市中心周邊停車設施。</p></div></article>
+          <article class="rounded-[2rem] bg-[#173226] p-7 text-white lg:p-9"><p class="text-xs font-bold tracking-[.2em] text-[#d7a948]">PARKING NOTE</p><h2 class="serif mt-3 text-3xl font-black">屏東公園停車資訊</h2><ul class="mt-6 space-y-4 text-sm leading-7 text-white/75"><li>• 屏東公園中華路外停車場：靠近市中心公園範圍，適合作為首選搜尋點。</li><li>• 中華路一帶另有立體停車場與民營停車設施，可視即時車位彈性改停。</li><li>• 周末、節慶與大型活動期間，公園周邊車流會明顯增加；若住在市區，步行或騎 YouBike 通常更省時間。</li></ul><a href={directionsUrl} target="_blank" rel="noreferrer" class="mt-8 inline-flex rounded-full bg-white px-5 py-3 text-sm font-black text-[#173226]">開啟 Google 導航 ↗</a></article>
         </div>
       </div>
     </section>
 
     <section id="around" class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-24">
       <div class="grid gap-12 xl:grid-cols-[.95fr_1.05fr]">
-        <div><p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">AROUND THE PARK</p><h2 class="section-title serif mt-2 text-4xl font-black">周邊景點</h2><div class="mt-7 space-y-4">
+        <div><p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">AROUND THE PARK</p><h2 class="section-title serif mt-2 text-4xl font-black">屏東公園周邊地標與景點</h2><div class="mt-7 space-y-4">
           {[
             ['屏東演武場','就在公園路周邊的日治時期歷史建築，修復後作為藝文展演空間，適合與公園一起走讀。'],
             ['勝利星村創意生活園區','保存大量日式宿舍群，加入餐飲、選物與文化內容，從公園前往相當適合安排成市中心半日線。'],
@@ -190,7 +282,7 @@ const faqSchema = {
             ['屏東縣立圖書館總館／千禧公園','若還想繼續看城市綠地與當代公共建築，可再前往總圖與千禧公園。']
           ].map(([name, text], i) => <div class="grid grid-cols-[3rem_1fr] gap-4 rounded-2xl border border-[#173226]/10 p-5"><div class="serif text-2xl font-black text-[#d7a948]">0{i+1}</div><div><h3 class="font-black">{name}</h3><p class="mt-1 text-sm leading-6 text-[#173226]/65">{text}</p></div></div>)}
         </div></div>
-        <div><p class="text-xs font-bold tracking-[.2em] text-[#6c7f4d]">LOCAL BITES</p><h2 class="section-title serif mt-2 text-4xl font-black">周邊美食</h2><div class="mt-7 grid gap-4 sm:grid-cols-2">
+        <div><p class="text-xs font-bold tracking-[.2em] text-[#6c7f4d]">LOCAL BITES</p><h2 class="section-title serif mt-2 text-4xl font-black">屏東公園周邊美食</h2><div class="mt-7 grid gap-4 sm:grid-cols-2">
           {[
             ['公園路咖啡與早午餐','公園路與中華路一帶有咖啡、早午餐選擇，適合早晨散步後休息。'],
             ['屏東在地小吃','市中心可找到肉燥飯、麵食、豆花與各式台灣小吃，價格帶普遍親民。'],
@@ -202,15 +294,40 @@ const faqSchema = {
     </section>
 
     <section id="map" class="bg-[#b6533d] text-white">
-      <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20"><div class="mb-7 grid gap-4 lg:grid-cols-2 lg:items-end"><div><p class="text-xs font-bold tracking-[.2em] text-[#ffe5a9]">MAP</p><h2 class="serif mt-2 text-4xl font-black">屏東公園在哪裡？</h2></div><p class="text-sm leading-6 text-white/75">地址：900 台灣屏東縣屏東市公園路<br/>電話：+886 8 732 0415 · Plus Code：MFFR+VW</p></div><div class="map-frame overflow-hidden rounded-[2rem] border-8 border-white/15 bg-white"><iframe src={mapUrl} title="屏東公園 Google 地圖" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div></div>
+      <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20"><div class="mb-7 grid gap-4 lg:grid-cols-2 lg:items-end"><div><p class="text-xs font-bold tracking-[.2em] text-[#ffe5a9]">MAP</p><h2 class="serif mt-2 text-4xl font-black">屏東公園在哪裡？</h2></div><p class="text-sm leading-6 text-white/80">地址：{POSTAL_CODE} {COUNTRY_NAME}{STATE_PROVINCE}{CITY_NAME}{STREET_ADDRESS}<br/>電話：{TELEPHONE} · Plus Code：{PLUS_CODE}</p></div><div class="map-frame overflow-hidden rounded-[2rem] border-8 border-white/15 bg-white"><iframe src={MAPS_EMBED_SRC} title="屏東公園 Google 地圖" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div><div class="mt-6 flex flex-wrap gap-3 text-sm font-bold"><a href={directionsUrl} target="_blank" rel="noopener noreferrer" class="rounded-full bg-white px-5 py-3 text-[#173226]">開啟 Google 導航 ↗</a><a href={MAPS_SHARE_URL} target="_blank" rel="noopener noreferrer" class="rounded-full border border-white/50 px-5 py-3 text-white hover:bg-white/10">在 Google 地圖開啟屏東公園 ↗</a></div><p class="mt-6 text-sm leading-7 text-white/80">如需屏東縣官方觀光與旅遊資訊，可前往<a href={GOVT_TOURISM_URL} target="_blank" rel="noopener noreferrer" class="mx-1 underline">屏東旅遊網（屏東縣政府觀光旅遊網）↗</a>或<a href={GOVT_URL} target="_blank" rel="noopener noreferrer" class="mx-1 underline">屏東縣政府官方網站↗</a>。</p></div>
     </section>
 
-    <section id="faq" class="mx-auto max-w-4xl px-5 py-16 lg:py-24"><p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FAQ</p><h2 class="section-title serif mt-2 text-4xl font-black">常見問答</h2><div class="mt-8 space-y-3">{faqs.map((item, i) => <details class="group rounded-2xl border border-[#173226]/10 bg-white/75 p-5" open={i===0}><summary class="cursor-pointer list-none pr-8 font-black">{item.q}<span class="float-right text-[#b6533d] group-open:rotate-45">＋</span></summary><p class="mt-4 text-sm leading-7 text-[#173226]/68">{item.a}</p></details>)}</div></section>
+    <section id="reviews" class="mx-auto max-w-5xl px-5 py-16 lg:py-24">
+      <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">GOOGLE MAPS REVIEWS</p>
+      <h2 class="section-title serif mt-2 text-4xl font-black">屏東公園的 Google 地圖評價</h2>
+      <div class="mt-8 grid gap-7 rounded-[2rem] border border-[#173226]/10 bg-white/80 p-7 leaf-card md:grid-cols-[auto_1fr] md:items-center md:p-9">
+        <div class="text-center md:pr-7 md:text-left">
+          <div class="serif text-6xl font-black leading-none">{GOOGLE_RATING}</div>
+          <div class="mt-2 text-2xl tracking-[.15em] text-[#d7a948]" aria-hidden="true">★★★★☆</div>
+          <div class="mt-2 text-sm font-semibold text-[#173226]/70">共 {GOOGLE_REVIEW_COUNT} 則評價</div>
+          <div class="mt-1 text-xs text-[#173226]/50">評價來自 Google 地圖使用者</div>
+        </div>
+        <div>
+          <p class="text-sm leading-7 text-[#173226]/75">屏東公園目前在 Google 地圖上獲得 <strong>{GOOGLE_RATING}</strong> 星評分，累積超過 <strong>{GOOGLE_REVIEW_COUNT}</strong> 則使用者評價，是屏東市區評價數最多的公共空間之一。多數評價提到園內老樹與水景帶來的散步氛圍，以及市中心位置的便利性。</p>
+          <p class="mt-3 text-xs leading-6 text-[#173226]/55">評分與評價數同步自 Google 地圖（Google Maps）使用者評價 · {RATING_SYNC_TIME} · <a href={MAPS_SHARE_URL} target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-[#b6533d]">查看 Google 地圖全部評價↗</a></p>
+          <p class="mt-2 text-xs leading-6 text-[#173226]/45">{REVIEW_SOURCE_NOTE}</p>
+          <a href={MAPS_SHARE_URL} target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex rounded-full bg-[#173226] px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5">在 Google 地圖查看全部評價 ↗</a>
+        </div>
+      </div>
+    </section>
 
-    <section class="border-y border-[#173226]/10 bg-[#fff8eb]"><div class="mx-auto max-w-5xl px-5 py-12 text-sm leading-7 text-[#173226]/65"><h2 class="serif text-2xl font-black text-[#173226]">資料與照片來源說明</h2><p class="mt-3">景點歷史與文化脈絡參考屏東縣政府相關文獻、國家文化記憶庫及公開旅遊資料；交通與周邊資訊依公開觀光資料與地圖資訊整理。實景照片使用 Wikimedia Commons「Pingtung Park, Jan 2025」系列，作者 Ralff Nestor Nacor，採 CC BY-SA 4.0 授權。</p><p class="mt-3">此頁避免寫入容易過期的活動日期、票價或店家固定時段；行前請以官方與現場公告為準。</p></div></section>
+    <section id="faq" class="mx-auto max-w-4xl px-5 py-16 lg:py-24"><p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FAQ</p><h2 class="section-title serif mt-2 text-4xl font-black">屏東公園常見問答</h2><div class="mt-8 space-y-3">{faqs.map((item, i) => <details class="group rounded-2xl border border-[#173226]/10 bg-white/75 p-5" open={i===0}><summary class="cursor-pointer list-none pr-8 font-black">{item.q}<span class="float-right text-[#b6533d] group-open:rotate-45">＋</span></summary><p class="mt-4 text-sm leading-7 text-[#173226]/68">{item.a}</p></details>)}</div></section>
+
+    <section id="sources" class="border-y border-[#173226]/10 bg-[#fff8eb]"><div class="mx-auto max-w-5xl px-5 py-12 text-sm leading-7 text-[#173226]/65"><h2 class="serif text-2xl font-black text-[#173226]">資料來源與版權說明</h2><ul class="mt-4 space-y-3">
+      <li>• <strong>景點資訊</strong>：屏東公園歷史與文化脈絡參考屏東縣政府相關文獻、國家文化記憶庫及公開旅遊資料；交通與周邊資訊依公開觀光資料與地圖資訊整理。</li>
+      <li>• <strong>評分與評價</strong>：同步自 Google 地圖使用者評價，同步時間 {RATING_SYNC_TIME}；版權歸原作者與 Google 地圖所有（<a href={MAPS_SHARE_URL} target="_blank" rel="noopener noreferrer" class="underline decoration-dotted">在 Google 地圖查看全部評價↗</a>）。</li>
+      <li>• <strong>地圖與位置</strong>：Google 地圖嵌入與導航連結（<a href={MAPS_SHARE_URL} target="_blank" rel="noopener noreferrer" class="underline decoration-dotted">屏東公園位置↗</a>）。</li>
+      <li>• <strong>官方觀光資訊</strong>：<a href={GOVT_TOURISM_URL} target="_blank" rel="noopener noreferrer" class="underline decoration-dotted">屏東旅遊網（屏東縣政府觀光旅遊網）↗</a>、<a href={GOVT_URL} target="_blank" rel="noopener noreferrer" class="underline decoration-dotted">屏東縣政府↗</a>。</li>
+      <li>• <strong>照片</strong>：實景照片使用 Wikimedia Commons「Pingtung Park, Jan 2025」系列，作者 Ralff Nestor Nacor，採 CC BY-SA 4.0 授權。</li>
+    </ul><p class="mt-4">此頁避免寫入容易過期的活動日期、票價或店家固定時段；行前請以官方與現場公告為準。</p></div></section>
   </main>
 
-  <footer class="bg-[#10251b] text-white/65"><div class="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-10 lg:flex-row lg:items-end lg:justify-between lg:px-8"><div><img src="/logo.svg" alt="屏東公園" class="h-12 w-auto brightness-0 invert"/><p class="mt-4 max-w-xl text-xs leading-6">非官方景點資訊網站；內容僅供旅遊規劃參考，實際開放、交通、活動與設施狀況請以主管機關及現場公告為準。</p></div><div class="flex gap-5 text-xs"><a href="#top">回到頁首</a><a href="#faq">FAQ</a><a href="#" id="cookie-settings">Cookie 設定</a></div></div></footer>
+  <footer class="bg-[#10251b] text-white/65"><div class="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-10 lg:flex-row lg:items-end lg:justify-between lg:px-8"><div><img src="/logo.svg" alt="屏東公園（Pingtung Park）網站標誌" class="h-12 w-auto brightness-0 invert"/><p class="mt-4 max-w-xl text-xs leading-6">非官方景點資訊網站（{DOMAIN_NAME}）；內容僅供旅遊規劃參考，實際開放、交通、活動與設施狀況請以主管機關及現場公告為準。</p></div><div class="flex flex-wrap gap-5 text-xs"><a href="#top">回到頁首</a><a href="#reviews">評價</a><a href="#sources">資料來源</a><a href="#faq">FAQ</a><a href="#" id="cookie-settings">Cookie 設定</a></div></div></footer>
 
   <div id="cookie-panel" class="fixed bottom-4 left-4 right-4 z-[60] hidden max-w-lg rounded-2xl border border-[#173226]/15 bg-white p-5 shadow-2xl sm:left-auto sm:w-[420px]" role="dialog" aria-label="Cookie 設定"><h2 class="font-black">Cookie 與分析設定</h2><p class="mt-2 text-sm leading-6 text-[#173226]/65">本站使用 GA4 了解匿名化的整體瀏覽情況。你可以在瀏覽器隱私設定中限制第三方 Cookie；本網站不提供帳號登入或個人資料庫。</p><button id="cookie-close" class="mt-4 rounded-full bg-[#173226] px-4 py-2 text-sm font-bold text-white">知道了</button></div>
 
@@ -220,6 +337,12 @@ const faqSchema = {
     const closeCookie = document.getElementById('cookie-close');
     openCookie?.addEventListener('click', (e) => { e.preventDefault(); panel?.classList.remove('hidden'); });
     closeCookie?.addEventListener('click', () => panel?.classList.add('hidden'));
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+      });
+    }
   </script>
 </body>
 </html>
