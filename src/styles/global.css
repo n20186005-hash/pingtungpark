@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #173226;
+  --pine: #234c38;
+  --moss: #6c7f4d;
+  --cream: #f7f1e3;
+  --paper: #fffdf7;
+  --brick: #b6533d;
+  --gold: #d7a948;
+  --sky: #9fc6d4;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 10% 8%, rgba(159,198,212,.25), transparent 32rem),
+    linear-gradient(180deg, #f8f4e8 0%, #fffdf8 52%, #f3efe4 100%);
+  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+}
+
+::selection { background: #d7a94866; }
+a { color: inherit; }
+
+.serif { font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif; }
+.noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+}
+.leaf-card { box-shadow: 0 20px 60px rgba(23,50,38,.08); }
+.section-title::before {
+  content: "";
+  display: block;
+  width: 3.5rem;
+  height: .28rem;
+  margin-bottom: .8rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--brick), var(--gold));
+}
+.map-frame iframe { border: 0; width: 100%; min-height: 430px; }
+@media (max-width: 640px) { .map-frame iframe { min-height: 360px; } }

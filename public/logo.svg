@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 100" role="img" aria-labelledby="t d">
+  <title id="t">屏東公園</title><desc id="d">以老樹、水波與紅瓦亭為靈感的屏東公園標誌</desc>
+  <g transform="translate(8 8)">
+    <circle cx="42" cy="42" r="40" fill="#173226"/>
+    <path d="M42 15c-15 12-18 22-18 33 0 13 9 22 18 26 9-4 18-13 18-26 0-11-3-21-18-33Z" fill="#6c7f4d"/>
+    <path d="M42 18v46M31 40l11 10 12-12" stroke="#f7f1e3" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <path d="M18 68c12-5 36-5 48 0" stroke="#9fc6d4" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M22 25h40l-8-8H30Z" fill="#b6533d"/>
+  </g>
+  <text x="105" y="49" font-family="Noto Serif TC, serif" font-weight="700" font-size="35" fill="#173226">屏東公園</text>
+  <text x="108" y="75" font-family="Arial, sans-serif" letter-spacing="3" font-size="13" fill="#6c7f4d">PINGTUNG PARK</text>
+</svg>
