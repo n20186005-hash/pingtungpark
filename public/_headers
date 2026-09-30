@@ -1,0 +1,11 @@
+# HSTS 與基本安全標頭
+/
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+# Service Worker 不快取，確保更新即時生效
+/sw.js
+  Cache-Control: no-cache

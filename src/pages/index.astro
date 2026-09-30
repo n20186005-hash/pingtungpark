@@ -32,7 +32,7 @@ const PLUS_CODE = 'MFFR+VW 屏東市 台灣屏東縣';
 
 /* ===== Google 地圖評價（僅頁面展示，不寫入 JSON-LD） ===== */
 const GOOGLE_RATING = '4.4';
-const GOOGLE_REVIEW_COUNT = '14,004';
+const GOOGLE_REVIEW_COUNT = '14,011';
 const RATING_SYNC_TIME = '2026 年 9 月';
 const RATING_SOURCE_LINE = `評分與評價數同步自 Google 地圖（Google Maps）使用者評價 · ${RATING_SYNC_TIME}`;
 const REVIEW_SOURCE_NOTE = `同步自 Google 地圖使用者評價，同步時間 ${RATING_SYNC_TIME}；版權歸原作者與 Google 地圖所有`;
@@ -116,8 +116,8 @@ const faqSchema = {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
   <title>{ATTRACTION_FULL_NAME}（{CITY_NAME}）｜Pingtung Park 百年城市公園旅遊指南</title>
-  <meta name="description" content={`屏東公園（Pingtung Park）旅遊指南：屏東市公園路百年都市公園的門票、開放時間、交通、停車與最佳時段，以及屏東演武場、勝利星村等周邊景點，附 Google 地圖位置與導航。`} />
-  <meta name="keywords" content={`屏東公園, Pingtung Park, 屏東市景點, 屏東縣公園, 阿猴公園, 中山公園, 屏東公園交通, 屏東公園停車`} />
+  <meta name="description" content={`屏東公園（Pingtung Park）旅遊指南：屏東市公園路百年都市公園的門票、開放時間、交通、停車與最佳時段；收錄屏東聖誕節點燈、季節燈會與親子共融遊戲場亮點，串聯屏東演武場、勝利星村等周邊景點，附 Google 地圖與導航。`} />
+  <meta name="keywords" content={`屏東公園, Pingtung Park, 屏東市景點, 屏東縣公園, 阿猴公園, 中山公園, 屏東公園交通, 屏東公園停車, 屏東公園開放時間, 屏東公園地圖, 屏東公園停車場, 屏東聖誕節, 屏東公園燈會, 屏東公園活動, 屏東公園共融遊戲場, 屏東公園兒童遊具, 阿猴城門`} />
   <meta name="theme-color" content="#173226" />
   {canonical && <link rel="canonical" href={canonical} />}
   <link rel="manifest" href="/manifest.webmanifest" />
@@ -248,14 +248,14 @@ const faqSchema = {
     </section>
 
     <section id="visit" class="mx-auto max-w-7xl px-5 pb-20 pt-16 lg:px-8">
-      <div class="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">PLAN YOUR WALK</p><h2 class="section-title serif mt-2 text-4xl font-black">屏東公園遊覽資訊，一次看懂</h2></div><p class="max-w-md text-sm leading-6 text-[#173226]/65">屏東公園屬都市公園，最適合用「慢走＋順遊」安排，不必把行程塞得太滿。</p></div>
+      <div class="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">PLAN YOUR WALK</p><h2 class="section-title serif mt-2 text-4xl font-black">屏東公園遊覽資訊，一次看懂</h2></div><p class="max-w-md text-sm leading-6 text-[#173226]/65">屏東公園屬都市公園，最適合用「慢走＋順遊」安排，不必把行程塞得太滿。園區也會配合節慶舉辦季節活動（如年末屏東聖誕節點燈、季節燈會等），出發前可關注屏東縣政府與現場公告，把散步與活動安排在同一趟。</p></div>
       <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {[
           ['門票 / 費用','公園本體通常免費開放。若遇主題活動、展演或周邊館舍特展，費用依現場或官方公告。','免費入園'],
           ['最佳遊覽時段','南臺灣日照強，推薦清晨或傍晚；樹蔭下體感較舒適。冬季或節慶燈飾期間，夜間也有不同氛圍。','清晨 / 傍晚'],
           ['建議停留時長','單純公園散步抓 45–90 分鐘；若順遊演武場、美術館、勝利星村，建議拉長為半日。','45–90 分鐘'],
           ['停車資訊','可優先查看屏東公園中華路外停車場及周邊公有、民營停車場。假日或大型活動時段建議提早到。','周邊多處停車'],
-          ['步行與親子','園路平緩、樹蔭多，適合散步與親子短停。雨後水岸、樹根與鋪面可能較滑，推車與長輩行走請留意。','慢走友善'],
+          ['步行與親子','園路平緩、樹蔭多，設有共融遊戲場與兒童遊具，適合散步與親子短停。雨後水岸、樹根與鋪面可能較滑，推車與長輩行走請留意。','親子友善'],
           ['天氣準備','屏東常見高溫與強日照，建議備水、防曬、帽子與防蚊用品；午後對流旺盛時留意短時強降雨。','水＋防曬']
         ].map(([title, body, tag]) => (
           <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card"><span class="text-xs font-black tracking-[.15em] text-[#b6533d]">{tag}</span><h3 class="serif mt-3 text-2xl font-black">{title}</h3><p class="mt-3 text-sm leading-7 text-[#173226]/68">{body}</p></article>
