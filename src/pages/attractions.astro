@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const site = Astro.site ?? new URL('https://pingtungpark.com');
+const canonical = new URL('/attractions', site).toString();
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '屏東公園', item: new URL('/', site).toString() },
+    { '@type': 'ListItem', position: 2, name: '附近景點', item: canonical }
+  ]
+};
+
+const faqs = [
+  { q: '屏東公園附近有什麼景點？', a: '以屏東公園為中心，可順遊屏東演武場、勝利星村創意生活園區、屏東美術館與屏東總圖等市區文化場館，步行或短程移動即可串成一日路線。' },
+  { q: '屏東演武場是什麼？', a: '屏東演武場是具代表性的日式武德殿建築，見證屏東的武道文化與城市記憶，常與屏東公園併入同一趟市中心文化散步。' },
+  { q: '勝利星村是什麼？', a: '勝利星村創意生活園區以大量日式宿舍群為主體，加入文創選物、餐飲與展覽，很適合在公園散步後接續慢遊。' },
+  { q: '屏東美術館怎麼安排？', a: '屏東美術館是市區的展覽場館，適合作為文化行程的一站；展覽與開放時間變動頻繁，建議出發前查官方最新公告。' },
+  { q: '怎麼規劃屏東公園一日遊路線？', a: '可先逛屏東公園與阿猴城門等古蹟，再到屏東演武場，午後轉往勝利星村用餐與選物，最後視體力安排屏東美術館或總圖；交通請見「交通停車」專區。' }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } }))
+};
+---
+<BaseLayout
+  title="屏東公園附近景點｜屏東演武場、勝利星村與屏東美術館一日遊 — Pingtung Park"
+  description="屏東公園（Pingtung Park）周邊景點指南：順遊屏東演武場、勝利星村創意生活園區、屏東美術館等市區文化景點，規劃一日散步路線。"
+  keywords="屏東公園附近景點, 屏東演武場, 勝利星村, 屏東美術館, 屏東公園周邊, 屏東市區景點, 屏東公園一日遊, 屏東演武場歷史"
+  canonicalPath="/attractions"
+  ogImageAlt="屏東公園（Pingtung Park）— 周邊景點：演武場、勝利星村、美術館"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+  </Fragment>
+
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
+      <nav aria-label="地理層級" class="mb-4 text-xs font-semibold text-[#173226]/55">
+        <a href="/" class="hover:text-[#b6533d]">首頁</a>
+        <span class="mx-1">→</span><span class="text-[#b6533d]">附近景點</span>
+      </nav>
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#b6533d]/20 bg-white/70 px-4 py-2 text-xs font-bold tracking-[.18em] text-[#b6533d]">NEARBY</div>
+      <h1 class="serif text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">屏東公園<span class="text-[#b6533d]">附近景點</span></h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-[#173226]/75">逛完屏東公園別急著走——市區還有<strong>屏東演武場</strong>、<strong>勝利星村</strong>、<strong>屏東美術館</strong>等文化場館，步行或短程移動就能串成充實的一日遊。本專區整理周邊可順遊的景點與動線。</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 pb-4 lg:px-8">
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#b6533d]">MARTIAL HALL</p>
+        <h2 class="serif mt-3 text-2xl font-black">屏東演武場</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">具代表性的日式武德殿建築，見證屏東的武道文化與城市記憶，常與屏東公園併入同一趟市中心文化散步。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">VILLAGE</p>
+        <h2 class="serif mt-3 text-2xl font-black">勝利星村</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">勝利星村創意生活園區以日式宿舍群為主體，結合文創選物、餐飲與展覽，適合在公園散步後接續慢遊。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#9fc6d4]">ART MUSEUM</p>
+        <h2 class="serif mt-3 text-2xl font-black">屏東美術館</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">市區的展覽場館，適合作為文化行程一站；展覽與開放時間變動頻繁，建議出發前查官方最新公告。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#d7a948]">LIBRARY</p>
+        <h2 class="serif mt-3 text-2xl font-black">屏東總圖</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">屏東縣立圖書館等市區文化設施距離不遠，適合親子休憩、吹冷氣與安排室內備案。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#b6533d]">OLD TOWN</p>
+        <h2 class="serif mt-3 text-2xl font-black">市區老街與商圈</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">公園周邊的公園路、中華路一帶有咖啡、小吃與百貨商圈，可把用餐與散步自然銜接。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">TRANSIT HUB</p>
+        <h2 class="serif mt-3 text-2xl font-black">屏東車站轉運</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">以屏東車站為起點與返程樞紐，串接公園、演武場與勝利星村，大眾運輸就能完成一日遊；詳見「交通停車」專區。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="bg-[#eef2e8]">
+    <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+      <p class="text-xs font-bold tracking-[.2em] text-[#6c7f4d]">DAY TRIP</p>
+      <h2 class="section-title serif mt-2 text-4xl font-black">一日遊散步動線</h2>
+      <div class="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          ['01', '屏東公園', '先走公園與阿猴城門等古蹟，喚醒一天的好精神。'],
+          ['02', '屏東演武場', '步行可達的日式武德殿，接續文化散步。'],
+          ['03', '勝利星村', '午後到日式宿舍群用餐、選物與看展。'],
+          ['04', '美術館／總圖', '視體力安排展覽或圖書館，做為室內收尾。']
+        ].map(([no, title, body]) => (
+          <div class="rounded-2xl bg-[#fffdf7] p-6 leaf-card">
+            <div class="serif text-2xl font-black text-[#d7a948]">{no}</div>
+            <h3 class="mt-2 font-black">{title}</h3>
+            <p class="mt-2 text-sm leading-7 text-[#173226]/70">{body}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mt-6 text-xs leading-5 text-[#173226]/45">各場館開放與休館日不同，本頁不硬編固定營業資訊；出發前請以官方最新公告或地圖即時資訊為準。</p>
+    </div>
+  </section>
+
+  <section id="faq" class="mx-auto max-w-4xl px-5 py-16 lg:py-24">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FAQ</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">屏東公園附近景點常見問答</h2>
+    <div class="mt-8 space-y-3">
+      {faqs.map((item, i) => (
+        <details class="group rounded-2xl border border-[#173226]/10 bg-white/75 p-5" open={i === 0}>
+          <summary class="cursor-pointer list-none pr-8 font-black">{item.q}<span class="float-right text-[#b6533d] group-open:rotate-45">＋</span></summary>
+          <p class="mt-4 text-sm leading-7 text-[#173226]/68">{item.a}</p>
+        </details>
+      ))}
+    </div>
+    <p class="mt-8 text-sm leading-7 text-[#173226]/60">想安排用餐，請前往<a href="/food" class="underline decoration-dotted hover:text-[#b6533d]">「周邊美食」專區</a>；交通與停車請見<a href="/transport" class="underline decoration-dotted hover:text-[#b6533d]">「交通停車」專區</a>。</p>
+  </section>
+</BaseLayout>

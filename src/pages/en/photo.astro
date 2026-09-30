@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const site = Astro.site ?? new URL('https://pingtungpark.com');
+const canonical = new URL('/en/photo', site).toString();
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Pingtung Park', item: new URL('/en/', site).toString() },
+    { '@type': 'ListItem', position: 2, name: 'Photography & Best Times', item: canonical }
+  ]
+};
+
+const faqs = [
+  { q: 'When is best to photograph Pingtung Park?', a: 'Morning and forenoon have soft light and fewer visitors, good for shaded paths and the calm lake; afternoon has more shade; golden hour gives warm silhouettes of the gate and water; around year-end Christmas or lantern festivals, night lights are most photogenic.' },
+  { q: 'What are recommended photo spots?', a: 'Prioritize: light and shadow on the shaded path, reflections at the lake, the historical composition of A-kau Gate, the texture of shrine remains and shelter, and night scenes at the seasonal lights area.' },
+  { q: 'Is Pingtung Park good for sunset?', a: 'As an open downtown green space, golden hour often brings warm side light, ideal with the gate, lake and trees as foreground; actual conditions vary with weather and season, so adjust flexibly on the day.' },
+  { q: 'Can I photograph night views?', a: 'On ordinary nights the park has basic lighting; during Christmas lights, seasonal festivals or events, the lights and environment are richer, a great time for night scenes and portraits.' },
+  { q: 'Tips for shooting with kids or elderly?', a: 'Include the inclusive playground and flat paths for casual portraits; in summer mind sun protection and hydration, and as afternoon thunderstorms are more likely, keep an indoor or arcade backup.' }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } }))
+};
+---
+<BaseLayout
+  title="Photography & Best Times at Pingtung Park | Morning, Golden Hour & Night Lights — Pingtung Park"
+  description="Pingtung Park (Pingtung Park) photography and best-time guide: shooting tips for morning, afternoon shade, golden hour and night lights, recommended spots and light/season notes for casual strolls and family portraits."
+  keywords="Pingtung Park photography, Pingtung Park photos, best time Pingtung Park, when to visit Pingtung Park, Pingtung Park sunset, Pingtung Park light, Pingtung Park Instagram, Pingtung Park night"
+  canonicalPath="/en/photo"
+  locale="en"
+  ogImageAlt="Pingtung Park (Pingtung Park) — shaded paths and seasonal lights"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+  </Fragment>
+
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
+      <nav aria-label="Breadcrumb" class="mb-4 text-xs font-semibold text-[#173226]/55">
+        <a href="/en/" class="hover:text-[#b6533d]">Home</a>
+        <span class="mx-1">→</span><span class="text-[#b6533d]">Photography & Best Times</span>
+      </nav>
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#b6533d]/20 bg-white/70 px-4 py-2 text-xs font-bold tracking-[.18em] text-[#b6533d]">PHOTO GUIDE</div>
+      <h1 class="serif text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">Pingtung Park <span class="text-[#b6533d]">Photography & Best Times</span></h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-[#173226]/75">You don’t need pro gear to make this century-old park look good. Follow the <strong>light and time of day</strong>: the shaded greenery in the morning, warm light at golden hour, and <strong>seasonal lights</strong> at night all add depth to a casual stroll. This section compiles recommended spots and shooting tips.</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 pb-4 lg:px-8">
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#b6533d]">MORNING</p>
+        <h2 class="serif mt-3 text-xl font-black">Morning & forenoon</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">Soft light and fewer visitors, good for light-and-shadow on shaded paths and the calm lake; best for casual and family portraits.</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">AFTERNOON</p>
+        <h2 class="serif mt-3 text-xl font-black">Afternoon shade</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">The park has plenty of shade and is comfortable for slow framing; in summer watch for afternoon thunderstorms and keep an arcade or indoor backup.</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#d7a948]">GOLDEN</p>
+        <h2 class="serif mt-3 text-xl font-black">Golden hour</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">Warm side light is great with A-kau Gate, the lake and trees as foreground for atmospheric silhouettes and portraits.</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#9fc6d4]">NIGHT</p>
+        <h2 class="serif mt-3 text-xl font-black">Night lights</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">During year-end Christmas or lantern festivals, seasonal lights make night scenes richest — a popular time for night shots and check-ins.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">SPOTS</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">Recommended photo spots</h2>
+    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {[
+        ['Shaded path', 'Green shades and light interweave, good for slow shots and candid portraits.'],
+        ['Lake pond', 'Calm water gives reflections, especially at golden hour.'],
+        ['A-kau Gate', 'A historical landmark, great for silhouettes and symmetry in composition.'],
+        ['Shrine remains & shelter', 'Rich textures, suited to black-and-white or low-saturation styles.'],
+        ['Seasonal lights area', 'During year-end lighting and lantern festivals, night and portraits pop.'],
+        ['Lawn & pavilion', 'Open foreground suits group photos and candid kid action shots.']
+      ].map(([title, body]) => (
+        <div class="rounded-2xl border border-[#173226]/10 bg-white/75 p-6">
+          <h3 class="font-black">{title}</h3>
+          <p class="mt-2 text-sm leading-7 text-[#173226]/70">{body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-[#173226] text-[#fffdf7]">
+    <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+      <p class="text-xs font-bold tracking-[.24em] text-[#d7a948]">LIGHT & SEASON</p>
+      <h2 class="serif mt-3 text-4xl font-black sm:text-5xl">Light & season tips</h2>
+      <div class="mt-8 space-y-4 text-base leading-8 text-white/80">
+        <p>Summer afternoons often bring thunderstorms; schedule shooting in the morning or watch the weather. Winter under the northeast monsoon is drier, good for longer strolls and framing.</p>
+        <p>Year-end Christmas lights and seasonal lantern festivals are the richest time for night scenes; see the <a href="/en/events" class="mx-1 underline decoration-dotted text-[#ffe5a9]">Events</a> page for updates. Actual lights and lighting dates are subject to official announcements.</p>
+      </div>
+      <div class="mt-8 flex flex-wrap gap-3 text-sm font-bold">
+        <a href="/en/events" class="rounded-full bg-white px-5 py-3 text-[#173226]">Seasonal events</a>
+        <a href="/en/history" class="rounded-full border border-white/50 px-5 py-3 text-white hover:bg-white/10">History & Heritage</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="mx-auto max-w-4xl px-5 py-16 lg:py-24">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FAQ</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">Pingtung Park Photography FAQ</h2>
+    <div class="mt-8 space-y-3">
+      {faqs.map((item, i) => (
+        <details class="group rounded-2xl border border-[#173226]/10 bg-white/75 p-5" open={i === 0}>
+          <summary class="cursor-pointer list-none pr-8 font-black">{item.q}<span class="float-right text-[#b6533d] group-open:rotate-45">＋</span></summary>
+          <p class="mt-4 text-sm leading-7 text-[#173226]/68">{item.a}</p>
+        </details>
+      ))}
+    </div>
+    <p class="mt-8 text-sm leading-7 text-[#173226]/60">To plan a walking route, go to the <a href="/en/attractions" class="underline decoration-dotted hover:text-[#b6533d]">Nearby Attractions</a> page; for transport and parking see the <a href="/en/transport" class="underline decoration-dotted hover:text-[#b6533d]">Transport & Parking</a> page.</p>
+  </section>
+</BaseLayout>

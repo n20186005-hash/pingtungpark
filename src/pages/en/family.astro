@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const site = Astro.site ?? new URL('https://pingtungpark.com');
+const canonical = new URL('/en/family', site).toString();
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Pingtung Park', item: new URL('/en/', site).toString() },
+    { '@type': 'ListItem', position: 2, name: 'Family-Friendly Facilities', item: canonical }
+  ]
+};
+
+const faqs = [
+  { q: 'Is Pingtung Park good for kids?', a: 'The park has mostly flat paths, seating and shade, good for family strolls and letting kids burn energy; for specific children’s play facilities follow on-site info, and confirm before departure.' },
+  { q: 'Does Pingtung Park have a children’s playground or slide?', a: 'Many urban parks have children’s play areas / inclusive playgrounds; whether Pingtung Park actually has them and what they include is subject to on-site and authority announcements. If present, prioritize them in your route.' },
+  { q: 'Is it easy with a stroller?', a: 'The park is mostly flat, strollers move relatively smoothly; only a few stairs or terrain sections need detours, so avoid steep slopes and stair routes.' },
+  { q: 'Are there nursing rooms or diaper changing?', a: 'The park generally has public restrooms, some with accessible / family toilets; whether a nursing room is provided follows on-site info, so bring diapers and basic supplies.' },
+  { q: 'Is there shade? Will it be too hot in summer?', a: 'Plenty of shade and seating, but summer is still hot; avoid noon, bring sun protection and water, and watch for afternoon thunderstorms.' },
+  { q: 'Is it friendly for elderly companions?', a: 'Flat paths, seating and accessible toilets suit slow walks for the elderly; plan a short route with more rest.' }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } }))
+};
+---
+<BaseLayout
+  title="Pingtung Park Family-Friendly Facilities | Strollers, Playground, Shade & Accessibility — Pingtung Park"
+  description="Pingtung Park (Pingtung Park) family-friendly facilities guide: flat paths and stroller routes, shaded seating, children’s play areas and inclusive playground, public / accessible toilets, plus tips for visiting with kids and elderly."
+  keywords="Pingtung Park family, Pingtung Park inclusive playground, Pingtung Park children's play area, Pingtung Park slide, Pingtung Park stroller, Pingtung Park family facilities, Pingtung Park accessibility, Pingtung Park with kids"
+  canonicalPath="/en/family"
+  locale="en"
+  ogImageAlt="Pingtung Park (Pingtung Park) — family-friendly facilities and playground"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+  </Fragment>
+
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
+      <nav aria-label="Breadcrumb" class="mb-4 text-xs font-semibold text-[#173226]/55">
+        <a href="/en/" class="hover:text-[#b6533d]">Home</a>
+        <span class="mx-1">→</span><span class="text-[#b6533d]">Family-Friendly Facilities</span>
+      </nav>
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#b6533d]/20 bg-white/70 px-4 py-2 text-xs font-bold tracking-[.18em] text-[#b6533d]">FAMILY FRIENDLY</div>
+      <h1 class="serif text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">Pingtung Park <span class="text-[#b6533d]">Family-Friendly Facilities</span></h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-[#173226]/75">For a trip with kids or elderly, <strong>flat paths, ample shade and seating</strong> are key. This section compiles family-friendly routes and facility tips, plus visiting pointers.</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 pb-4 lg:px-8">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">PATH</p>
+        <h2 class="serif mt-3 text-lg font-black">Flat paths & stroller routes</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">The park is mostly flat, strollers and wheelchairs move relatively smoothly; only a few stairs or terrain sections need detours, so avoid steep routes.</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#d7a948]">SHADE</p>
+        <h2 class="serif mt-3 text-lg font-black">Shade & rest seating</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">Plenty of shade and seating for mid-route rest and a picnic-mat break; still avoid noon in summer and bring sun protection.</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#b6533d]">PLAY</p>
+        <h2 class="serif mt-3 text-lg font-black">Children’s play area</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">If there is a children’s play area / inclusive playground, it is the energy-burn highlight; actual facilities and opening follow on-site and authority announcements.</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#9fc6d4]">TOILET</p>
+        <h2 class="serif mt-3 text-lg font-black">Public & accessible toilets</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">The park generally has public restrooms, some with accessible / family toilets; whether a nursing room is provided follows on-site info, so bring supplies.</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">ACCESS</p>
+        <h2 class="serif mt-3 text-lg font-black">Accessibility & elderly</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">Flat paths, seating and accessible toilets suit slow walks for the elderly; plan a short route with more rest.</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#b6533d]">HYDRATE</p>
+        <h2 class="serif mt-3 text-lg font-black">Water & supplies</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">Bring your own water and snacks; nearby downtown snacks and drink shops can resupply, see the Food Nearby page.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="bg-[#eef2e8]">
+    <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+      <p class="text-xs font-bold tracking-[.2em] text-[#6c7f4d]">TIPS</p>
+      <h2 class="section-title serif mt-2 text-4xl font-black">Family visiting tips</h2>
+      <ul class="mt-7 grid gap-4 sm:grid-cols-2">
+        {[
+          'Avoid the midday heat; go early morning or late afternoon for comfort.',
+          'Bring sun protection, hats, water and basic medicine; watch for afternoon thunderstorms.',
+          'Put the children’s play area in the middle, warm up and cool down with flat walks.',
+          'Stroller users prefer stair-free paths and detour when needed.',
+          'With elderly companions, slow the pace and use seating for分段 rest.',
+          'For an indoor backup, connect to the exhibition venues or library in Nearby Attractions.'
+        ].map(tip => (
+          <li class="flex gap-3 rounded-2xl bg-[#fffdf7] p-5 text-sm leading-7 text-[#173226]/75"><span class="font-black text-[#b6533d]">✓</span><span>{tip}</span></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="faq" class="mx-auto max-w-4xl px-5 py-16 lg:py-24">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FAQ</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">Pingtung Park Family FAQ</h2>
+    <div class="mt-8 space-y-3">
+      {faqs.map((item, i) => (
+        <details class="group rounded-2xl border border-[#173226]/10 bg-white/75 p-5" open={i === 0}>
+          <summary class="cursor-pointer list-none pr-8 font-black">{item.q}<span class="float-right text-[#b6533d] group-open:rotate-45">＋</span></summary>
+          <p class="mt-4 text-sm leading-7 text-[#173226]/68">{item.a}</p>
+        </details>
+      ))}
+    </div>
+    <p class="mt-8 text-sm leading-7 text-[#173226]/60">To confirm opening and facility rules, see the <a href="/en/faq" class="underline decoration-dotted hover:text-[#b6533d]">FAQ</a>; for nearby dining refer to the <a href="/en/food" class="underline decoration-dotted hover:text-[#b6533d]">Food Nearby</a> page.</p>
+  </section>
+</BaseLayout>

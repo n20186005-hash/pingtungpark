@@ -1,0 +1,147 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const site = Astro.site ?? new URL('https://pingtungpark.com');
+const canonical = new URL('/transport', site).toString();
+const LATITUDE = 22.6746753;
+const LONGITUDE = 120.4923113;
+const MAPS_EMBED_SRC = 'https://www.google.com/maps?q=22.6746753,120.4923113&hl=zh-TW&z=16&output=embed';
+const MAPS_SHARE_URL = 'https://maps.app.goo.gl/EDkUSZQMdvhaWmhK6';
+const directionsUrl = 'https://www.google.com/maps/dir/?api=1&destination=22.6746753,120.4923113&hl=zh-TW';
+const POSTAL_CODE = '900';
+const COUNTRY_NAME = '臺灣';
+const STATE_PROVINCE = '屏東縣';
+const CITY_NAME = '屏東市';
+const STREET_ADDRESS = '公園路';
+const PLUS_CODE = 'MFFR+VW 屏東市 台灣屏東縣';
+const TELEPHONE = '+886 8 732 0415';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '屏東公園', item: new URL('/', site).toString() },
+    { '@type': 'ListItem', position: 2, name: '交通停車', item: canonical }
+  ]
+};
+
+const faqs = [
+  { q: '從屏東車站怎麼去屏東公園？', a: '可自屏東車站步行、騎 YouBike 或轉搭市區公車前往；由車站往中山路、公園路方向前進即達市中心公園範圍，實際路線請依即時導航。' },
+  { q: '屏東公園附近有公車嗎？', a: '周邊可留意「屏東公園」「屏東體育館」或鄰近站點，常見市區路線包含 505、509、516 系列，實際班次請以當日客運資訊為準。' },
+  { q: '屏東公園哪裡可以停車？', a: '可優先查看屏東公園中華路外停車場，中華路一帶另有立體停車場與民營停車設施；週末、節慶與大型活動期間車流較多，建議提早抵達或改以大眾運輸前往。' },
+  { q: '屏東公園有 YouBike 或自行車道嗎？', a: '屏東市中心設有 YouBike 站點，可把屏東公園與勝利星村、屏東總圖等市區景點串成短距離騎行路線。' },
+  { q: '屏東公園的確切地址與地圖？', a: `地址為 ${POSTAL_CODE} ${COUNTRY_NAME}${STATE_PROVINCE}${CITY_NAME}${STREET_ADDRESS}，電話 ${TELEPHONE}，Plus Code 為 ${PLUS_CODE}；本頁下方提供 Google 地圖位置與一鍵導航。` },
+  { q: '帶長輩或推車方便嗎？', a: '園路大致平緩、樹蔭多，適合慢走；雨後水岸、樹根與鋪面可能較滑，推車與長輩行走請留意。如需無障礙路線細節，建議出發前向主管機關確認。' }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } }))
+};
+---
+<BaseLayout
+  title="屏東公園交通與停車｜從屏東車站怎麼去、停車場與地圖 — Pingtung Park"
+  description="屏東公園（Pingtung Park）交通停車完整指南：從屏東車站步行、市區公車、YouBike 怎麼去，周邊停車場、Google 地圖位置與無障礙資訊一次看懂。"
+  keywords="屏東公園交通, 屏東公園怎麼去, 屏東車站 屏東公園, 屏東公園公車, 屏東公園停車場, 屏東公園地圖, 屏東公園YouBike, 屏東公園無障礙"
+  canonicalPath="/transport"
+  ogImageAlt="屏東公園（Pingtung Park）— Google 地圖位置與交通資訊"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+  </Fragment>
+
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
+      <nav aria-label="地理層級" class="mb-4 text-xs font-semibold text-[#173226]/55">
+        <a href="/" class="hover:text-[#b6533d]">首頁</a>
+        <span class="mx-1">→</span><span class="text-[#b6533d]">交通停車</span>
+      </nav>
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#b6533d]/20 bg-white/70 px-4 py-2 text-xs font-bold tracking-[.18em] text-[#b6533d]">GETTING HERE</div>
+      <h1 class="serif text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">屏東公園<span class="text-[#b6533d]">交通與停車</span></h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-[#173226]/75">無論你從<strong>屏東車站</strong>步行而來、搭市區公車，還是騎 <strong>YouBike</strong>、自行開車，屏東公園都位在屏東市中心，交通相當方便。本專區整理各種抵達方式、周邊<strong>停車場</strong>與 Google 地圖位置，幫你一次規劃好。</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href={directionsUrl} target="_blank" rel="noreferrer" class="rounded-full bg-[#173226] px-6 py-3 font-bold text-white transition hover:-translate-y-0.5">開啟 Google 導航 ↗</a>
+        <a href="#map" class="rounded-full border border-[#173226]/20 bg-white/60 px-6 py-3 font-bold">查看地圖</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 pb-4 lg:px-8">
+    <div class="grid gap-6 md:grid-cols-2">
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#b6533d]">TRAINS</p>
+        <h2 class="serif mt-3 text-2xl font-black">台鐵｜從屏東車站出發</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">以屏東車站為主要門戶，可步行、騎 YouBike 或轉搭市區公車前往。由車站往中山路、公園路方向前進，即進入市中心公園範圍；實際路線請依即時導航選擇較舒適的路線。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#b6533d]">BUS</p>
+        <h2 class="serif mt-3 text-2xl font-black">市區公車</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">可留意「屏東公園」「屏東體育館」或周邊站點；常見市區路線包含 505、509、516 系列，實際班次與站位請以當日客運資訊為準。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">BIKE</p>
+        <h2 class="serif mt-3 text-2xl font-black">YouBike 與自行車</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">屏東市中心設有 YouBike 站點，可把屏東公園與勝利星村、屏東總圖或其他市區景點串成短距離騎行，適合天氣舒適的時段。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">DRIVE</p>
+        <h2 class="serif mt-3 text-2xl font-black">開車與停車場</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">導航至屏東市公園路，可優先查看<strong>屏東公園中華路外停車場</strong>；中華路一帶另有立體停車場與民營停車設施。週末、節慶與大型活動期間車流較多，建議提早抵達或改以大眾運輸。</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="map" class="bg-[#b6533d] text-white">
+    <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+      <div class="mb-7 grid gap-4 lg:grid-cols-2 lg:items-end">
+        <div>
+          <p class="text-xs font-bold tracking-[.2em] text-[#ffe5a9]">MAP</p>
+          <h2 class="serif mt-2 text-4xl font-black">屏東公園在哪裡？</h2>
+        </div>
+        <p class="text-sm leading-6 text-white/80">地址：{POSTAL_CODE} {COUNTRY_NAME}{STATE_PROVINCE}{CITY_NAME}{STREET_ADDRESS}<br/>電話：{TELEPHONE} · Plus Code：{PLUS_CODE}</p>
+      </div>
+      <div class="map-frame overflow-hidden rounded-[2rem] border-8 border-white/15 bg-white">
+        <iframe src={MAPS_EMBED_SRC} title="屏東公園 Google 地圖" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+      <div class="mt-6 flex flex-wrap gap-3 text-sm font-bold">
+        <a href={directionsUrl} target="_blank" rel="noopener noreferrer" class="rounded-full bg-white px-5 py-3 text-[#173226]">開啟 Google 導航 ↗</a>
+        <a href={MAPS_SHARE_URL} target="_blank" rel="noopener noreferrer" class="rounded-full border border-white/50 px-5 py-3 text-white hover:bg-white/10">在 Google 地圖開啟屏東公園 ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#eef2e8]">
+    <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+      <p class="text-xs font-bold tracking-[.2em] text-[#6c7f4d]">ACCESSIBILITY</p>
+      <h2 class="section-title serif mt-2 text-4xl font-black">無障礙與貼心提醒</h2>
+      <div class="mt-7 grid gap-6 md:grid-cols-2">
+        <div class="rounded-2xl bg-[#fffdf7] p-6 text-sm leading-7 text-[#173226]/75">
+          <h3 class="serif text-xl font-black">園路與推車</h3>
+          <p class="mt-3">園路大致平緩、樹蔭多，適合慢走與親子短停；雨後水岸、樹根與鋪面可能較滑，推車與長輩行走請留意腳步。</p>
+        </div>
+        <div class="rounded-2xl bg-[#fffdf7] p-6 text-sm leading-7 text-[#173226]/75">
+          <h3 class="serif text-xl font-black">規劃建議</h3>
+          <p class="mt-3">若需無障礙坡道、輪椅動線或特定設施位置，建議出發前向主管機關或現場服務台確認最新狀態，讓行程更順暢。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="mx-auto max-w-4xl px-5 py-16 lg:py-24">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FAQ</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">屏東公園交通常見問答</h2>
+    <div class="mt-8 space-y-3">
+      {faqs.map((item, i) => (
+        <details class="group rounded-2xl border border-[#173226]/10 bg-white/75 p-5" open={i === 0}>
+          <summary class="cursor-pointer list-none pr-8 font-black">{item.q}<span class="float-right text-[#b6533d] group-open:rotate-45">＋</span></summary>
+          <p class="mt-4 text-sm leading-7 text-[#173226]/68">{item.a}</p>
+        </details>
+      ))}
+    </div>
+    <p class="mt-8 text-sm leading-7 text-[#173226]/60">想看活動與季節亮點，請前往<a href="/events" class="underline decoration-dotted hover:text-[#b6533d]">「活動專區」</a>；園區基本資料與評價可回到<a href="/" class="underline decoration-dotted hover:text-[#b6533d]">首頁</a>。</p>
+  </section>
+</BaseLayout>

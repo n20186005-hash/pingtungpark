@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const site = Astro.site ?? new URL('https://pingtungpark.com');
+const canonical = new URL('/photo', site).toString();
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '屏東公園', item: new URL('/', site).toString() },
+    { '@type': 'ListItem', position: 2, name: '拍照與最佳時段', item: canonical }
+  ]
+};
+
+const faqs = [
+  { q: '屏東公園什麼時候去最適合拍照？', a: '清晨與上午光線柔和、遊客較少，適合拍綠蔭步道與湖畔；午後樹蔭多、遮陽舒服；黃昏暖光適合城門與水面的剪影；年末聖誕節或燈會期間，夜間燈飾最出片。' },
+  { q: '屏東公園有哪些推薦拍照點？', a: '可優先安排：樹蔭步道的光影、湖畔水池的倒影、阿猴城門的歷史感構圖、神社遺構與防空洞的質感紋理，以及季節燈飾區的夜景。' },
+  { q: '屏東公園適合拍夕陽嗎？', a: '公園為開闊的市中心綠地，黃昏時段常有溫暖側光，適合以城門、湖畔與林蔭為前景取景；實際光況會受天氣與季節影響，建議當日靈活調整。' },
+  { q: '屏東公園有夜景可以拍嗎？', a: '平日夜間有基本園區照明；若遇上聖誕節點燈、季節燈會或節慶活動，燈飾與光環境更豐富，是拍夜景與人像的好時機。' },
+  { q: '帶小孩或長輩拍攝有什麼建議？', a: '可把共融遊戲場、平坦園路納入動線，人物隨拍即可；夏季請留意防曬與補水，午後雷陣雨機率較高，建議預留室內或騎樓備案。' }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } }))
+};
+---
+<BaseLayout
+  title="屏東公園拍照與最佳時段｜清晨、黃昏與夜間燈飾取景指南 — Pingtung Park"
+  description="屏東公園（Pingtung Park）拍照與最佳時段指南：整理清晨、午後樹蔭、黃昏與夜間燈飾的拍攝建議、推薦構圖點與光線季節提示，適合散步隨拍與親子人像。"
+  keywords="屏東公園拍照, 屏東公園攝影, 屏東公園最佳時段, 屏東公園幾點去, 屏東公園夕陽, 屏東公園光線, 屏東公園打卡, 屏東公園夜景, 屏東公園IG"
+  canonicalPath="/photo"
+  ogImageAlt="屏東公園（Pingtung Park）— 樹蔭步道與季節燈飾拍照"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+  </Fragment>
+
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
+      <nav aria-label="地理層級" class="mb-4 text-xs font-semibold text-[#173226]/55">
+        <a href="/" class="hover:text-[#b6533d]">首頁</a>
+        <span class="mx-1">→</span><span class="text-[#b6533d]">拍照與最佳時段</span>
+      </nav>
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#b6533d]/20 bg-white/70 px-4 py-2 text-xs font-bold tracking-[.18em] text-[#b6533d]">PHOTO GUIDE</div>
+      <h1 class="serif text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">屏東公園<span class="text-[#b6533d]">拍照與最佳時段</span></h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-[#173226]/75">想把百年公園拍得好看，不一定需要專業器材。跟著<strong>光線與時段</strong>走，清晨的綠蔭、黃昏的暖光、夜間的<strong>季節燈飾</strong>，都能讓散步隨拍更有層次。本專區整理推薦構圖點與拍攝小提醒。</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 pb-4 lg:px-8">
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#b6533d]">MORNING</p>
+        <h2 class="serif mt-3 text-xl font-black">清晨與上午</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">光線柔和、遊客較少，適合拍樹蔭步道的光影與平靜的湖面，人物與親子隨拍也最舒服。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">AFTERNOON</p>
+        <h2 class="serif mt-3 text-xl font-black">午後樹蔭</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">園區樹蔭多、遮陽舒服，適合慢慢取景；夏季午後留意雷陣雨，可預留騎樓或室內備案。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#d7a948]">GOLDEN</p>
+        <h2 class="serif mt-3 text-xl font-black">黃昏暖光</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">溫暖側光適合以阿猴城門、湖畔與林蔭為前景，拍出有氛圍的剪影與人像。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#9fc6d4]">NIGHT</p>
+        <h2 class="serif mt-3 text-xl font-black">夜間燈飾</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">年末聖誕節或燈會期間，季節燈飾讓夜景最豐富，是拍夜景與打卡的熱門時機。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">SPOTS</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">推薦拍照點</h2>
+    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {[
+        ['樹蔭步道', '綠蔭與光影交錯，適合慢拍與人物隨拍。'],
+        ['湖畔水池', '平靜水面能拍出倒影，黃昏尤佳。'],
+        ['阿猴城門', '歷史地標，適合帶入構圖的剪影與對稱感。'],
+        ['神社遺構與防空洞', '質感紋理豐富，適合黑白或低飽和風格。'],
+        ['季節燈飾區', '年末點燈與燈會期間，夜景與人像都好出片。'],
+        ['草坪與涼亭', '開闊前景適合全家福與親子動態抓拍。']
+      ].map(([title, body]) => (
+        <div class="rounded-2xl border border-[#173226]/10 bg-white/75 p-6">
+          <h3 class="font-black">{title}</h3>
+          <p class="mt-2 text-sm leading-7 text-[#173226]/70">{body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-[#173226] text-[#fffdf7]">
+    <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+      <p class="text-xs font-bold tracking-[.24em] text-[#d7a948]">LIGHT & SEASON</p>
+      <h2 class="serif mt-3 text-4xl font-black sm:text-5xl">光線與季節小提醒</h2>
+      <div class="mt-8 space-y-4 text-base leading-8 text-white/80">
+        <p>夏季午後常有雷陣雨，建議把拍攝排在上午或留意天氣；冬季東北季風下較乾爽，適合長時間散步與取景。</p>
+        <p>年末的聖誕節點燈、季節燈會是夜景最豐富的時段，可參考<a href="/events" class="mx-1 underline decoration-dotted text-[#ffe5a9]">「活動專區」</a>掌握動態；實際燈飾與點燈日期請以官方公告為準。</p>
+      </div>
+      <div class="mt-8 flex flex-wrap gap-3 text-sm font-bold">
+        <a href="/events" class="rounded-full bg-white px-5 py-3 text-[#173226]">季節活動</a>
+        <a href="/history" class="rounded-full border border-white/50 px-5 py-3 text-white hover:bg-white/10">歷史古蹟</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="mx-auto max-w-4xl px-5 py-16 lg:py-24">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FAQ</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">屏東公園拍照常見問答</h2>
+    <div class="mt-8 space-y-3">
+      {faqs.map((item, i) => (
+        <details class="group rounded-2xl border border-[#173226]/10 bg-white/75 p-5" open={i === 0}>
+          <summary class="cursor-pointer list-none pr-8 font-black">{item.q}<span class="float-right text-[#b6533d] group-open:rotate-45">＋</span></summary>
+          <p class="mt-4 text-sm leading-7 text-[#173226]/68">{item.a}</p>
+        </details>
+      ))}
+    </div>
+    <p class="mt-8 text-sm leading-7 text-[#173226]/60">想規劃散步路線，請前往<a href="/attractions" class="underline decoration-dotted hover:text-[#b6533d]">「附近景點」專區</a>；交通與停車請見<a href="/transport" class="underline decoration-dotted hover:text-[#b6533d]">「交通停車」專區</a>。</p>
+  </section>
+</BaseLayout>

@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const site = Astro.site ?? new URL('https://pingtungpark.com');
+const canonical = new URL('/faq', site).toString();
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '屏東公園', item: new URL('/', site).toString() },
+    { '@type': 'ListItem', position: 2, name: '常見問題總整理', item: canonical }
+  ]
+};
+
+const faqs = [
+  { cat: '入園', q: '屏東公園要門票嗎？', a: '屏東公園多為免費開放的市立公園，一般時段免費入園；若遇特展、收費活動或施工管制，以入口與官方公告為準。' },
+  { cat: '入園', q: '屏東公園開放時間是幾點？', a: '園區多為全天或清晨至夜間照明時段開放；確切開閉園與特殊管制請見入口告示與主管機關公告，本頁不硬編固定時間。' },
+  { cat: '交通', q: '屏東公園怎麼去？', a: '可搭台鐵至屏東車站後轉乘市區公車或步行；自駕請參考「交通停車」專區掌握周邊停車與路線。' },
+  { cat: '交通', q: '屏東公園停車方便嗎？', a: '周邊設有路邊與公共停車空間，假日較熱門；詳細車位與無障礙車位請見「交通停車」專區與現場指示。' },
+  { cat: '設施', q: '屏東公園有廁所嗎？', a: '園區一般設有公共廁所，並多有無障礙廁所；確切位置以現場指示牌與地圖為準。' },
+  { cat: '設施', q: '屏東公園有遮蔭與休息座椅嗎？', a: '公園樹蔭多、設有座椅可休息；夏季午後易有雷陣雨，建議隨身帶傘並留意天氣。' },
+  { cat: '設施', q: '屏東公園適合帶小孩嗎？', a: '園區多為平坦園路、設有休息座椅，適合親子散步；兒童遊戲設施與共融遊戲場請以現場為準，細節見「親子友善設施」專區。' },
+  { cat: '寵物', q: '屏東公園可以帶狗或寵物嗎？', a: '是否開放攜帶寵物依園區與主管機關規範；若允許，請全程繫繩、清理排泄物，並避開兒童遊戲區與餐飲區。' },
+  { cat: '寵物', q: '屏東公園可以烤肉或野餐嗎？', a: '可否烤肉、野餐依現場禁火與使用規範；請勿於禁火區使用火源，並落實無痕遊憩、垃圾自行帶走。' },
+  { cat: '活動', q: '屏東公園可以騎腳踏車或滑板嗎？', a: '騎行與滑行請禮讓行人、注意安全；部分步道或廣場可能限行或禁行，依現場標示辦理。' },
+  { cat: '活動', q: '屏東公園有聖誕節或燈會活動嗎？', a: '年末常見聖誕節點燈、季節燈會等活動，確切檔期與內容請見「活動專區」與官方最新公告。' },
+  { cat: '活動', q: '屏東公園可以辦活動或拍攝嗎？', a: '大型活動、商業拍攝或佈展多需向主管機關申請並依規範進行；建議提早洽詢承辦單位。' },
+  { cat: '周邊', q: '屏東公園附近有什麼可順遊？', a: '可接續屏東演武場、勝利星村、屏東美術館等市區景點，用餐與動線請見「附近景點」與「周邊美食」專區。' }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } }))
+};
+---
+<BaseLayout
+  title="屏東公園常見問題總整理｜門票、開放時間、交通、寵物與設施 — Pingtung Park"
+  description="屏東公園（Pingtung Park）常見問題總整理：門票、開放時間、交通停車、寵物規範、烤肉野餐、兒童設施與季節活動，一次解答遊客最想知道的事項。"
+  keywords="屏東公園常見問題, 屏東公園要門票嗎, 屏東公園開放時間, 屏東公園可以帶狗, 屏東公園可以烤肉, 屏東公園停車, 屏東公園問題"
+  canonicalPath="/faq"
+  ogImageAlt="屏東公園（Pingtung Park）— 常見問題總整理"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+  </Fragment>
+
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
+      <nav aria-label="地理層級" class="mb-4 text-xs font-semibold text-[#173226]/55">
+        <a href="/" class="hover:text-[#b6533d]">首頁</a>
+        <span class="mx-1">→</span><span class="text-[#b6533d]">常見問題總整理</span>
+      </nav>
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#b6533d]/20 bg-white/70 px-4 py-2 text-xs font-bold tracking-[.18em] text-[#b6533d]">ALL FAQ</div>
+      <h1 class="serif text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">屏東公園<span class="text-[#b6533d]">常見問題</span></h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-[#173226]/75">門票、開放時間、交通、寵物、烤肉、兒童設施到季節活動——把遊客最常搜尋的問題一次整理。本頁內容<strong>僅供旅遊規劃參考</strong>，實際規範請以現場與主管機關公告為準。</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-4xl px-5 py-4 lg:px-8">
+    <div class="space-y-3">
+      {faqs.map((item, i) => (
+        <details class="group rounded-2xl border border-[#173226]/10 bg-white/75 p-5" open={i < 2}>
+          <summary class="flex cursor-pointer list-none items-start gap-3 pr-8 font-black">
+            <span class="mt-0.5 shrink-0 rounded-full bg-[#eef2e8] px-2.5 py-0.5 text-[11px] font-bold text-[#6c7f4d]">{item.cat}</span>
+            <span class="flex-1">{item.q}</span>
+            <span class="shrink-0 text-[#b6533d] group-open:rotate-45">＋</span>
+          </summary>
+          <p class="mt-4 text-sm leading-7 text-[#173226]/68">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-[#173226] text-[#fffdf7]">
+    <div class="mx-auto max-w-7xl px-5 py-14 lg:px-8">
+      <p class="text-xs font-bold tracking-[.24em] text-[#d7a948]">EXPLORE MORE</p>
+      <h2 class="serif mt-3 text-3xl font-black sm:text-4xl">還想了解什麼？</h2>
+      <div class="mt-7 flex flex-wrap gap-3 text-sm font-bold">
+        <a href="/transport" class="rounded-full bg-white px-5 py-3 text-[#173226]">交通停車</a>
+        <a href="/family" class="rounded-full border border-white/50 px-5 py-3 text-white hover:bg-white/10">親子友善設施</a>
+        <a href="/events" class="rounded-full border border-white/50 px-5 py-3 text-white hover:bg-white/10">活動專區</a>
+        <a href="/attractions" class="rounded-full border border-white/50 px-5 py-3 text-white hover:bg-white/10">附近景點</a>
+        <a href="/food" class="rounded-full border border-white/50 px-5 py-3 text-white hover:bg-white/10">周邊美食</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

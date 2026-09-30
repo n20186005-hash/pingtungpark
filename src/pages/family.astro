@@ -1,0 +1,124 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const site = Astro.site ?? new URL('https://pingtungpark.com');
+const canonical = new URL('/family', site).toString();
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '屏東公園', item: new URL('/', site).toString() },
+    { '@type': 'ListItem', position: 2, name: '親子友善設施', item: canonical }
+  ]
+};
+
+const faqs = [
+  { q: '屏東公園適合帶小孩嗎？', a: '園區多為平坦園路、設有休息座椅與遮蔭，適合親子散步與放電；具體兒童遊戲設施請以現場為準，建議出發前先確認。' },
+  { q: '屏東公園有兒童遊戲場或溜滑梯嗎？', a: '不少市區公園設有兒童遊戲區／共融遊戲場；屏東公園實際是否設置與設施內容，請以現場與主管機關公告為準，若有可優先排入動線。' },
+  { q: '推嬰兒車方便嗎？', a: '園內以平路為主、推車相對順暢；僅少數階梯或地形區需繞行，建議避開陡坡與階梯動線。' },
+  { q: '屏東公園有哺乳室或換尿布的地方嗎？', a: '園區多設有公共廁所，部分另設無障礙／親子廁所；是否設哺乳室請以現場為準，建議自備尿布與簡易用品。' },
+  { q: '屏東公園有遮蔭嗎？夏天會不會太熱？', a: '樹蔭多、座椅充足，但夏季仍炎熱，建議避開正午、自備防曬與飲水，午後留意雷陣雨。' },
+  { q: '帶長輩同行友善嗎？', a: '平路園道、座椅與無障礙廁所適合長輩慢行；可安排短程、多休息的輕鬆動線。' }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } }))
+};
+---
+<BaseLayout
+  title="屏東公園親子友善設施｜嬰兒車、遊戲場、遮蔭與無障礙 — Pingtung Park"
+  description="屏東公園（Pingtung Park）親子友善設施指南：平坦園路與嬰兒車動線、樹蔭休息座椅、兒童遊戲區與共融遊戲場、公共／無障礙廁所，以及帶小孩與長輩的遊園小撇步。"
+  keywords="屏東公園親子, 屏東公園共融遊戲場, 屏東公園兒童遊戲區, 屏東公園溜滑梯, 屏東公園嬰兒車, 屏東公園友善設施, 屏東公園無障礙, 屏東公園適合帶小孩"
+  canonicalPath="/family"
+  ogImageAlt="屏東公園（Pingtung Park）— 親子友善設施與遊戲場"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+  </Fragment>
+
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
+      <nav aria-label="地理層級" class="mb-4 text-xs font-semibold text-[#173226]/55">
+        <a href="/" class="hover:text-[#b6533d]">首頁</a>
+        <span class="mx-1">→</span><span class="text-[#b6533d]">親子友善設施</span>
+      </nav>
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#b6533d]/20 bg-white/70 px-4 py-2 text-xs font-bold tracking-[.18em] text-[#b6533d]">FAMILY FRIENDLY</div>
+      <h1 class="serif text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">屏東公園<span class="text-[#b6533d]">親子友善設施</span></h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-[#173226]/75">想帶小孩或長輩放電、散步，<strong>平坦園路、充足遮蔭與休息座椅</strong>是關鍵。本專區整理適合親子的動線與設施提示，並附上遊園小撇步。</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 pb-4 lg:px-8">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">PATH</p>
+        <h2 class="serif mt-3 text-lg font-black">平坦園路與推車動線</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">園內以平路為主，嬰兒車與輪椅推動相對順暢；僅少數階梯或地形區需繞行，建議避開陡坡動線。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#d7a948]">SHADE</p>
+        <h2 class="serif mt-3 text-lg font-black">樹蔭與休息座椅</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">樹蔭多、座椅充足，適合中途休息與野餐墊小歇；夏季仍建議避開正午並自備防曬。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#b6533d]">PLAY</p>
+        <h2 class="serif mt-3 text-lg font-black">兒童遊戲區</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">若有兒童遊戲場／共融遊戲場，是放電重點；實際設施與開放情形請以現場與主管機關公告為準。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#9fc6d4]">TOILET</p>
+        <h2 class="serif mt-3 text-lg font-black">公共與無障礙廁所</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">園區多設公共廁所，部分另設無障礙／親子廁所；是否設哺乳室請以現場為準，建議自備用品。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">ACCESS</p>
+        <h2 class="serif mt-3 text-lg font-black">無障礙與長輩同行</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">平路園道、座椅與無障礙廁所適合長輩慢行；可安排短程、多休息的輕鬆動線。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#b6533d]">HYDRATE</p>
+        <h2 class="serif mt-3 text-lg font-black">飲水與補給</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">建議自備飲水與點心；園區周邊有市區小吃與飲料店，可參考「周邊美食」專區補給。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="bg-[#eef2e8]">
+    <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+      <p class="text-xs font-bold tracking-[.2em] text-[#6c7f4d]">TIPS</p>
+      <h2 class="section-title serif mt-2 text-4xl font-black">親子遊園小撇步</h2>
+      <ul class="mt-7 grid gap-4 sm:grid-cols-2">
+        {[
+          '避開正午高溫，選清晨或下午後段出門更舒服。',
+          '自備防曬、帽子、飲水與簡易藥品，午後留意雷陣雨。',
+          '把兒童遊戲區排入中段，前後用平路散步暖身與收尾。',
+          '推車族優先走無階梯園道，必要時繞行。',
+          '長輩同行放慢步調，多利用座椅分段休息。',
+          '需要室內備案時，可接續「附近景點」的展館或總圖。'
+        ].map(tip => (
+          <li class="flex gap-3 rounded-2xl bg-[#fffdf7] p-5 text-sm leading-7 text-[#173226]/75"><span class="font-black text-[#b6533d]">✓</span><span>{tip}</span></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="faq" class="mx-auto max-w-4xl px-5 py-16 lg:py-24">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FAQ</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">屏東公園親子常見問答</h2>
+    <div class="mt-8 space-y-3">
+      {faqs.map((item, i) => (
+        <details class="group rounded-2xl border border-[#173226]/10 bg-white/75 p-5" open={i === 0}>
+          <summary class="cursor-pointer list-none pr-8 font-black">{item.q}<span class="float-right text-[#b6533d] group-open:rotate-45">＋</span></summary>
+          <p class="mt-4 text-sm leading-7 text-[#173226]/68">{item.a}</p>
+        </details>
+      ))}
+    </div>
+    <p class="mt-8 text-sm leading-7 text-[#173226]/60">想確認園區開放與設施規範，請見<a href="/faq" class="underline decoration-dotted hover:text-[#b6533d]">「常見問題總整理」</a>；周邊用餐請參考<a href="/food" class="underline decoration-dotted hover:text-[#b6533d]">「周邊美食」專區</a>。</p>
+  </section>
+</BaseLayout>

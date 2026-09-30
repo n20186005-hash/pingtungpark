@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const site = Astro.site ?? new URL('https://pingtungpark.com');
+const canonical = new URL('/history', site).toString();
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '屏東公園', item: new URL('/', site).toString() },
+    { '@type': 'ListItem', position: 2, name: '歷史古蹟', item: canonical }
+  ]
+};
+
+const faqs = [
+  { q: '屏東公園的歷史是什麼？', a: '屏東公園創設於日治時期明治 35 年（1902），初期與城市公共空間、衛生建設相關；戰後曾改稱「中山公園」，2016 年恢復「屏東公園」原名，是屏東市中心極具代表性的百年都市公園。' },
+  { q: '阿猴城門是什麼？', a: '阿猴城門是屏東公園周邊極具代表性的歷史地標，見證「阿猴」（屏東舊稱）的城郭與城市記憶；實際開放與解說狀態請以現場與主管機關公告為準。' },
+  { q: '屏東公園有神社遺構嗎？', a: '園區與周邊可連結神社遺構、防空洞等歷史線索，讓公園比一般城市綠地多了一層「走讀」的樂趣；遺構保存狀況會隨維護調整，專程前往建議先查最新資訊。' },
+  { q: '屏東公園以前叫什麼名字？', a: '戰後一段時間改稱「中山公園」，2016 年恢復為「屏東公園」；因此舊文獻或長輩口中常以中山公園、阿猴公園稱呼。' },
+  { q: '適合安排走讀路線嗎？', a: '非常適合。可把阿猴城門、神社遺構與防空洞等線索串成市中心慢走路線，再銜接屏東演武場、勝利星村等周邊景點，安排半日文化散步。' }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } }))
+};
+---
+<BaseLayout
+  title="屏東公園歷史與古蹟｜阿猴城門、神社遺構與城市記憶 — Pingtung Park"
+  description="屏東公園（Pingtung Park）歷史與古蹟指南：認識阿猴城門、神社遺構、防空洞等文化線索，以及從 1902 創園到 2016 復名的屏東城市演變。"
+  keywords="屏東公園歷史, 阿猴城門, 阿猴城門歷史, 屏東公園古蹟, 阿緱神社遺址, 屏東公園神社, 屏東公園防空洞, 屏東公園日治遺構, 中山公園屏東"
+  canonicalPath="/history"
+  ogImageAlt="屏東公園（Pingtung Park）— 阿猴城門與歷史古蹟走讀"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+  </Fragment>
+
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
+      <nav aria-label="地理層級" class="mb-4 text-xs font-semibold text-[#173226]/55">
+        <a href="/" class="hover:text-[#b6533d]">首頁</a>
+        <span class="mx-1">→</span><span class="text-[#b6533d]">歷史古蹟</span>
+      </nav>
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#b6533d]/20 bg-white/70 px-4 py-2 text-xs font-bold tracking-[.18em] text-[#b6533d]">1902 → TODAY</div>
+      <h1 class="serif text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">屏東公園<span class="text-[#b6533d]">歷史與古蹟</span></h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-[#173226]/75">從 1902 年的城市公共空間，到戰後的「中山公園」，再到 2016 年復名的<strong>屏東公園</strong>——這座百年公園疊著阿猴到屏東的城市記憶。<strong>阿猴城門</strong>、神社遺構與防空洞等線索，讓散步多了一層走讀的樂趣。</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 pb-4 lg:px-8">
+    <div class="rounded-[2.5rem] border border-[#173226]/10 bg-white/70 p-7 lg:p-10">
+      <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FROM 1902</p>
+      <h2 class="section-title serif mt-2 text-4xl font-black">從創園到復名：一座公園的城市演變</h2>
+      <div class="mt-7 grid gap-6 md:grid-cols-3">
+        <div class="rounded-2xl bg-[#fffdf7] p-6 leaf-card">
+          <p class="serif text-3xl font-black text-[#d7a948]">1902</p>
+          <h3 class="mt-2 font-black">創設之初</h3>
+          <p class="mt-2 text-sm leading-7 text-[#173226]/70">日治時期明治 35 年（1902）前後，公園做為城市公共空間與衛生建設的一環誕生，逐步出現水池、亭榭與運動設施。</p>
+        </div>
+        <div class="rounded-2xl bg-[#fffdf7] p-6 leaf-card">
+          <p class="serif text-3xl font-black text-[#d7a948]">戰後</p>
+          <h3 class="mt-2 font-black">中山公園時期</h3>
+          <p class="mt-2 text-sm leading-7 text-[#173226]/70">戰後一度改稱「中山公園」，成為市民日常散步與聚會的城市綠地，也留下長輩口中的舊稱記憶。</p>
+        </div>
+        <div class="rounded-2xl bg-[#fffdf7] p-6 leaf-card">
+          <p class="serif text-3xl font-black text-[#d7a948]">2016</p>
+          <h3 class="mt-2 font-black">復名屏東公園</h3>
+          <p class="mt-2 text-sm leading-7 text-[#173226]/70">2016 年恢復「屏東公園」原名，讓這塊市中心綠地重新與城市歷史接軌，也更易被旅人搜尋與認識。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+    <div class="grid gap-6 md:grid-cols-2">
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">CITY GATE</p>
+        <h3 class="serif mt-3 text-2xl font-black">阿猴城門</h3>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">阿猴城門是屏東公園周邊極具代表性的歷史地標，見證「阿猴」這個屏東舊稱的城郭記憶。它是認識屏東城市發展的重要起點，也常是走讀路線的第一站。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">SHRINE & SHELTER</p>
+        <h3 class="serif mt-3 text-2xl font-black">神社遺構與防空洞</h3>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">園區與周邊仍可在地景中連結神社遺構、防空洞等歷史線索。這些遺構讓屏東公園比一般城市公園多了一層文化厚度，適合慢走觀察。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="bg-[#173226] text-[#fffdf7]">
+    <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+      <p class="text-xs font-bold tracking-[.24em] text-[#d7a948]">WALK & READ</p>
+      <h2 class="serif mt-3 text-4xl font-black sm:text-5xl">建議的歷史走讀路線</h2>
+      <div class="mt-8 space-y-4 text-base leading-8 text-white/80">
+        <p>把<strong>阿猴城門</strong>作為起點，沿園區認識神社遺構與防空洞等線索，再順遊鄰近的<strong>屏東演武場</strong>與<strong>勝利星村創意生活園區</strong>，是適合半日的市中心文化散步。</p>
+        <p>遺構的保存與開放狀態可能調整，若你專程為某處而來，出發前建議再查官方最新公告；本站僅整理亮點與動線建議，不保證特定遺構的當日開放情形。</p>
+      </div>
+      <div class="mt-8 flex flex-wrap gap-3 text-sm font-bold">
+        <a href="/transport" class="rounded-full bg-white px-5 py-3 text-[#173226]">怎麼去：交通停車</a>
+        <a href="/events" class="rounded-full border border-white/50 px-5 py-3 text-white hover:bg-white/10">季節活動</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="mx-auto max-w-4xl px-5 py-16 lg:py-24">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FAQ</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">屏東公園歷史古蹟常見問答</h2>
+    <div class="mt-8 space-y-3">
+      {faqs.map((item, i) => (
+        <details class="group rounded-2xl border border-[#173226]/10 bg-white/75 p-5" open={i === 0}>
+          <summary class="cursor-pointer list-none pr-8 font-black">{item.q}<span class="float-right text-[#b6533d] group-open:rotate-45">＋</span></summary>
+          <p class="mt-4 text-sm leading-7 text-[#173226]/68">{item.a}</p>
+        </details>
+      ))}
+    </div>
+    <p class="mt-8 text-sm leading-7 text-[#173226]/60">看完歷史，想安排美食與散步，請前往<a href="/food" class="underline decoration-dotted hover:text-[#b6533d]">「周邊美食」專區</a>；基本資料與評價可回到<a href="/" class="underline decoration-dotted hover:text-[#b6533d]">首頁</a>。</p>
+  </section>
+</BaseLayout>

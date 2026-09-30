@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const site = Astro.site ?? new URL('https://pingtungpark.com');
+const canonical = new URL('/en/night', site).toString();
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Pingtung Park', item: new URL('/en/', site).toString() },
+    { '@type': 'ListItem', position: 2, name: 'Night Walk', item: canonical }
+  ]
+};
+
+const faqs = [
+  { q: 'Can I walk in Pingtung Park at night?', a: 'The park usually has basic lighting at night, good for strolls and cooling off; exact opening and lighting hours follow on-site and authority announcements.' },
+  { q: 'Are the night views of Pingtung Park nice?', a: 'Shaded paths, the lake, A-kau Gate and seasonal lights have a special atmosphere at night; for framing and light tips see the Photography & Best Times page.' },
+  { q: 'Is Pingtung Park safe at night?', a: 'Go with company, stay on the main paths and mind lighting; avoid remote or unlit areas; also watch your belongings when crowded.' },
+  { q: 'Are there night activities?', a: 'Around year-end Christmas lights and seasonal lantern festivals are liveliest at night; exact schedule see the Pingtung Christmas page and official announcements.' },
+  { q: 'How to get there at night / is parking convenient?', a: 'Take a city bus or walk; if driving, mind nearby parking and night fees. See the Transport & Parking page and on-site signs.' }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } }))
+};
+---
+<BaseLayout
+  title="Pingtung Park Night Walk | Evening Lights, Cool Strolls & Safety — Pingtung Park"
+  description="Pingtung Park (Pingtung Park) night walk guide: a recommended evening route with seasonal lights, best photo timing, plus safety and transport tips — great for cooling off in summer and lantern-festival nights."
+  keywords="Pingtung Park night, Pingtung Park night walk, Pingtung Park at night, Pingtung Park lights, Pingtung Park walking route, Pingtung Park night run, Pingtung Park evening, Pingtung Park safety"
+  canonicalPath="/en/night"
+  locale="en"
+  ogImageAlt="Pingtung Park (Pingtung Park) — evening stroll and lights"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+  </Fragment>
+
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
+      <nav aria-label="Breadcrumb" class="mb-4 text-xs font-semibold text-[#173226]/55">
+        <a href="/en/" class="hover:text-[#b6533d]">Home</a>
+        <span class="mx-1">→</span><span class="text-[#b6533d]">Night Walk</span>
+      </nav>
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#b6533d]/20 bg-white/70 px-4 py-2 text-xs font-bold tracking-[.18em] text-[#b6533d]">NIGHT WALK</div>
+      <h1 class="serif text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">Pingtung Park <span class="text-[#b6533d]">Night Walk</span></h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-[#173226]/75">Too hot in the day? After dusk, <strong>Pingtung Park</strong> is more comfortable — cooler, with swaying light and shadows, plus seasonal lights. This page compiles an easy, highlight-rich night walking route and safety and transport tips.</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 pb-4 lg:px-8">
+    <div class="grid gap-6 md:grid-cols-3">
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">COOL</p>
+        <h2 class="serif mt-3 text-xl font-black">Cool evening stroll</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">Summer days are hot; nights are cooler with no UV, a good time for walks and slow movement.</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#b6533d]">LIGHTS</p>
+        <h2 class="serif mt-3 text-xl font-black">Light atmosphere</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">Shaded paths, the lake and the gate have a different charm under lights; livelier during year-end festivals.</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#d7a948]">CALM</p>
+        <h2 class="serif mt-3 text-xl font-black">Avoid crowds</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">Weekday nights are quieter, good for a quiet stroll, night run or casual shooting.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">ROUTE</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">Recommended night walking route</h2>
+    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      {[
+        ['01', 'Entrance gate', 'Enter from the main entrance along the main path, getting used to the night light first.'],
+        ['02', 'Shaded path', 'Light and greenery interweave, flat and easy, good for slow walking.'],
+        ['03', 'Lakeside pond', 'Water reflects the lights, a highlight to pause and shoot.'],
+        ['04', 'A-kau Gate', 'The gate’s silhouette is more historical at night, good for distant framing.'],
+        ['05', 'Lights / exit', 'Follow the seasonal lights back to the exit, forming an easy loop.']
+      ].map(([no, title, body]) => (
+        <div class="rounded-2xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+          <div class="serif text-2xl font-black text-[#d7a948]">{no}</div>
+          <h3 class="mt-2 font-black">{title}</h3>
+          <p class="mt-2 text-sm leading-7 text-[#173226]/70">{body}</p>
+        </div>
+      ))}
+    </div>
+    <p class="mt-6 text-sm leading-7 text-[#173226]/60">For seasonal lights and lighting info see the <a href="/en/christmas" class="underline decoration-dotted hover:text-[#b6533d]">Pingtung Christmas</a> page; for night shooting tips see <a href="/en/photo" class="underline decoration-dotted hover:text-[#b6533d]">Photography & Best Times</a>.</p>
+  </section>
+
+  <section class="bg-[#173226] text-[#fffdf7]">
+    <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+      <p class="text-xs font-bold tracking-[.24em] text-[#d7a948]">STAY SAFE</p>
+      <h2 class="serif mt-3 text-4xl font-black sm:text-5xl">Night safety & tips</h2>
+      <ul class="mt-8 grid gap-4 sm:grid-cols-2">
+        {[
+          'Go with company, stay on the main paths and mind lighting.',
+          'Avoid remote or unlit areas and construction zones.',
+          'When crowded, watch your belongings and kids’ whereabouts.',
+          'After summer afternoon thunderstorms, ground is slippery; mind your step.',
+          'Night public transport runs less often; reserve return time.',
+          'Exact opening and lighting hours follow on-site and authority announcements.'
+        ].map(tip => (
+          <li class="flex gap-3 rounded-2xl bg-white/5 p-5 text-sm leading-7 text-white/85"><span class="font-black text-[#ffe5a9]">✓</span><span>{tip}</span></li>
+        ))}
+      </ul>
+      <div class="mt-8 flex flex-wrap gap-3 text-sm font-bold">
+        <a href="/en/transport" class="rounded-full bg-white px-5 py-3 text-[#173226]">Transport & Parking</a>
+        <a href="/en/photo" class="rounded-full border border-white/50 px-5 py-3 text-white hover:bg-white/10">Photo times</a>
+        <a href="/en/christmas" class="rounded-full border border-white/50 px-5 py-3 text-white hover:bg-white/10">Pingtung Christmas</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="mx-auto max-w-4xl px-5 py-16 lg:py-24">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FAQ</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">Pingtung Park Night Walk FAQ</h2>
+    <div class="mt-8 space-y-3">
+      {faqs.map((item, i) => (
+        <details class="group rounded-2xl border border-[#173226]/10 bg-white/75 p-5" open={i === 0}>
+          <summary class="cursor-pointer list-none pr-8 font-black">{item.q}<span class="float-right text-[#b6533d] group-open:rotate-45">＋</span></summary>
+          <p class="mt-4 text-sm leading-7 text-[#173226]/68">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

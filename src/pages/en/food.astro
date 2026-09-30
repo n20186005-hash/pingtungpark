@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const site = Astro.site ?? new URL('https://pingtungpark.com');
+const canonical = new URL('/en/food', site).toString();
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Pingtung Park', item: new URL('/en/', site).toString() },
+    { '@type': 'ListItem', position: 2, name: 'Food Nearby', item: canonical }
+  ]
+};
+
+const faqs = [
+  { q: 'What is there to eat near Pingtung Park?', a: 'Nearby Gongyuan Rd and Zhonghua Rd offer cafés and brunch, local Pingtung snacks (such as braised pork rice, noodles, tofu pudding), and the mall district southwest has gathering and air-conditioned options; a food route is within walking or a short trip.' },
+  { q: 'Are there cafés or brunch on Gongyuan Rd?', a: 'Gongyuan Rd and Zhonghua Rd have cafés and brunch options, good for a rest after a morning stroll; shop and hours change frequently, so check the latest store or map info before going.' },
+  { q: 'Does Victory Village have dining?', a: 'Victory Village creative life park preserves many Japanese-style dormitories and adds dining, selection shops and cultural content, great for combining meals with old-house atmosphere, placed in the latter half of the park stroll.' },
+  { q: 'Any recommended local Pingtung snacks?', a: 'Downtown Pingtung has braised pork rice, noodles, tofu pudding and various Taiwanese snacks at generally friendly prices; this site does not hard-code specific shops or fixed hours, so rely on on-site and map reviews.' },
+  { q: 'How to plan a Pingtung Park food walk?', a: 'Stroll the park and heritage like A-kau Gate first, then have coffee and snacks on Gongyuan Rd, move to Victory Village or the mall district in the afternoon; see the Transport section for details.' }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } }))
+};
+---
+<BaseLayout
+  title="Food Near Pingtung Park | Cafés on Gongyuan Rd, Local Eats & Victory Village — Pingtung Park"
+  description="Food map around Pingtung Park (Pingtung Park): cafés and brunch on Gongyuan Rd, local Pingtung snacks, mall dining and Victory Village eateries, with a walk-and-eat day route suggestion."
+  keywords="Pingtung Park food, food near Pingtung Park, Gongyuan Rd food, Pingtung City snacks, Pingtung Park café, Victory Village food, downtown Pingtung food, Pingtung Park brunch"
+  canonicalPath="/en/food"
+  locale="en"
+  ogImageAlt="Pingtung Park (Pingtung Park) — nearby food and café walking route"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+  </Fragment>
+
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
+      <nav aria-label="Breadcrumb" class="mb-4 text-xs font-semibold text-[#173226]/55">
+        <a href="/en/" class="hover:text-[#b6533d]">Home</a>
+        <span class="mx-1">→</span><span class="text-[#b6533d]">Food Nearby</span>
+      </nav>
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#b6533d]/20 bg-white/70 px-4 py-2 text-xs font-bold tracking-[.18em] text-[#b6533d]">LOCAL BITES</div>
+      <h1 class="serif text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">Pingtung Park <span class="text-[#b6533d]">Food Nearby</span></h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-[#173226]/75">After a green stroll, it is time to refuel. <strong>Pingtung Park</strong> is close to Gongyuan Rd, Zhonghua Rd and Victory Village; cafés, brunch, local Pingtung snacks and mall dining are all within walking distance or a short trip. This section maps a “walk-and-eat” route.</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 pb-4 lg:px-8">
+    <div class="grid gap-6 md:grid-cols-2">
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#b6533d]">CAFE & BRUNCH</p>
+        <h3 class="serif mt-3 text-2xl font-black">Cafés & brunch on Gongyuan Rd</h3>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">Gongyuan Rd and Zhonghua Rd have cafés and brunch options, good for a rest after a morning stroll; shop hours and menus change frequently, so rely on on-site and map info.</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#b6533d]">LOCAL EATS</p>
+        <h3 class="serif mt-3 text-2xl font-black">Local Pingtung snacks</h3>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">Downtown Pingtung has braised pork rice, noodles, tofu pudding and various Taiwanese snacks at generally friendly prices — an easy way to experience the locals.</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">MALL DINING</p>
+        <h3 class="serif mt-3 text-2xl font-black">Mall dining</h3>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">Southwest of the park is near the downtown mall district, most convenient for group dining, air-conditioning and rain backup; especially useful for larger groups or bad weather.</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">VICTORY VILLAGE</p>
+        <h3 class="serif mt-3 text-2xl font-black">Victory Village dining</h3>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">Victory Village creative life park preserves many Japanese-style dormitories and adds dining, selection shops and culture; pair meals with old-house atmosphere in the latter half of your stroll.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="bg-[#eef2e8]">
+    <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+      <p class="text-xs font-bold tracking-[.2em] text-[#6c7f4d]">ONE-DAY ROUTE</p>
+      <h2 class="section-title serif mt-2 text-4xl font-black">A walk-and-eat day route</h2>
+      <div class="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          ['01', 'Park stroll', 'Start with Pingtung Park and heritage like A-kau Gate to wake up your appetite.'],
+          ['02', 'Gongyuan Rd café', 'After the stroll, grab a coffee and brunch on Gongyuan Rd to rest.'],
+          ['03', 'Local snacks', 'At noon move to downtown snacks — braised pork rice, noodles, tofu pudding are easy picks.'],
+          ['04', 'Victory Village', 'In the afternoon, old-house atmosphere with dining and shops to wrap up.']
+        ].map(([no, title, body]) => (
+          <div class="rounded-2xl bg-[#fffdf7] p-6 leaf-card">
+            <div class="serif text-2xl font-black text-[#d7a948]">{no}</div>
+            <h3 class="mt-2 font-black">{title}</h3>
+            <p class="mt-2 text-sm leading-7 text-[#173226]/70">{body}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mt-6 text-xs leading-5 text-[#173226]/45">Shop hours and menus change frequently; this page does not hard-code fixed business info. Please rely on the latest store announcements or real-time map info before departure.</p>
+    </div>
+  </section>
+
+  <section id="faq" class="mx-auto max-w-4xl px-5 py-16 lg:py-24">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FAQ</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">Pingtung Park Food Nearby FAQ</h2>
+    <div class="mt-8 space-y-3">
+      {faqs.map((item, i) => (
+        <details class="group rounded-2xl border border-[#173226]/10 bg-white/75 p-5" open={i === 0}>
+          <summary class="cursor-pointer list-none pr-8 font-black">{item.q}<span class="float-right text-[#b6533d] group-open:rotate-45">＋</span></summary>
+          <p class="mt-4 text-sm leading-7 text-[#173226]/68">{item.a}</p>
+        </details>
+      ))}
+    </div>
+    <p class="mt-8 text-sm leading-7 text-[#173226]/60">For history and heritage, go to the <a href="/en/history" class="underline decoration-dotted hover:text-[#b6533d]">History & Heritage</a> page; for transport and parking see the <a href="/en/transport" class="underline decoration-dotted hover:text-[#b6533d]">Transport & Parking</a> page.</p>
+  </section>
+</BaseLayout>

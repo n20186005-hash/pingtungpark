@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const site = Astro.site ?? new URL('https://pingtungpark.com');
+const canonical = new URL('/en/attractions', site).toString();
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Pingtung Park', item: new URL('/en/', site).toString() },
+    { '@type': 'ListItem', position: 2, name: 'Nearby Attractions', item: canonical }
+  ]
+};
+
+const faqs = [
+  { q: 'What attractions are near Pingtung Park?', a: 'Centered on Pingtung Park, you can visit downtown cultural venues such as Pingtung Martial Arts Hall, Victory Village creative life park, Pingtung Art Museum and the main library, within walking distance or a short trip for a full-day route.' },
+  { q: 'What is Pingtung Martial Arts Hall?', a: 'A representative Japanese-style martial arts (budokan) hall, witnessing Pingtung’s martial culture and city memory, often combined with Pingtung Park in the same downtown cultural stroll.' },
+  { q: 'What is Victory Village?', a: 'Victory Village creative life park centers on a large group of Japanese-style dormitories, adding creative shops, dining and exhibitions, great to continue a slow visit after the park stroll.' },
+  { q: 'How to arrange Pingtung Art Museum?', a: 'The Pingtung Art Museum is a downtown exhibition venue, suitable as a stop on a cultural itinerary; exhibitions and opening hours change frequently, so check official announcements before departure.' },
+  { q: 'How to plan a Pingtung Park day-trip route?', a: 'Visit the park and heritage like A-kau Gate first, then the Martial Arts Hall, move to Victory Village for lunch and shopping in the afternoon, and finish with the Art Museum or library depending on energy; see Transport for details.' }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } }))
+};
+---
+<BaseLayout
+  title="Attractions Near Pingtung Park | Martial Arts Hall, Victory Village & Art Museum — Pingtung Park"
+  description="Nearby attractions guide for Pingtung Park (Pingtung Park): visit downtown cultural venues like Pingtung Martial Arts Hall, Victory Village creative park and Pingtung Art Museum, and plan a day-trip walking route."
+  keywords="attractions near Pingtung Park, Pingtung Martial Arts Hall, Victory Village, Pingtung Art Museum, around Pingtung Park, Pingtung downtown attractions, Pingtung Park day trip, Pingtung Martial Arts Hall history"
+  canonicalPath="/en/attractions"
+  locale="en"
+  ogImageAlt="Pingtung Park (Pingtung Park) — nearby: Martial Arts Hall, Victory Village, Art Museum"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+  </Fragment>
+
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
+      <nav aria-label="Breadcrumb" class="mb-4 text-xs font-semibold text-[#173226]/55">
+        <a href="/en/" class="hover:text-[#b6533d]">Home</a>
+        <span class="mx-1">→</span><span class="text-[#b6533d]">Nearby Attractions</span>
+      </nav>
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#b6533d]/20 bg-white/70 px-4 py-2 text-xs font-bold tracking-[.18em] text-[#b6533d]">NEARBY</div>
+      <h1 class="serif text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">Pingtung Park <span class="text-[#b6533d]">Nearby Attractions</span></h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-[#173226]/75">Don’t leave right after the park — downtown also has <strong>Pingtung Martial Arts Hall</strong>, <strong>Victory Village</strong>, <strong>Pingtung Art Museum</strong> and other cultural venues, reachable on foot or a short trip for a fulfilling day trip. This section compiles nearby attractions and routes.</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 pb-4 lg:px-8">
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#b6533d]">MARTIAL HALL</p>
+        <h2 class="serif mt-3 text-2xl font-black">Pingtung Martial Arts Hall</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">A representative Japanese-style budokan hall, witnessing Pingtung’s martial culture and city memory, often combined with Pingtung Park in the same downtown cultural stroll.</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">VILLAGE</p>
+        <h2 class="serif mt-3 text-2xl font-black">Victory Village</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">Victory Village creative life park centers on Japanese-style dormitories, combining creative shops, dining and exhibitions, great to continue a slow visit after the park stroll.</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#9fc6d4]">ART MUSEUM</p>
+        <h2 class="serif mt-3 text-2xl font-black">Pingtung Art Museum</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">A downtown exhibition venue, suitable as a stop on a cultural itinerary; exhibitions and opening hours change frequently, so check official announcements before departure.</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#d7a948]">LIBRARY</p>
+        <h2 class="serif mt-3 text-2xl font-black">Pingtung Main Library</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">The Pingtung County Library and other downtown cultural facilities are not far, good for family rest, air-conditioning and an indoor backup.</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#b6533d]">OLD TOWN</p>
+        <h2 class="serif mt-3 text-2xl font-black">Old town & shopping district</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">Around the park, Gongyuan Rd and Zhonghua Rd have cafés, snacks and a mall district, naturally linking dining with your stroll.</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">TRANSIT HUB</p>
+        <h2 class="serif mt-3 text-2xl font-black">Pingtung Station hub</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">Use Pingtung Station as the start and return hub, linking the park, Martial Arts Hall and Victory Village; public transport completes the day trip. See the Transport section.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="bg-[#eef2e8]">
+    <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+      <p class="text-xs font-bold tracking-[.2em] text-[#6c7f4d]">DAY TRIP</p>
+      <h2 class="section-title serif mt-2 text-4xl font-black">A day-trip walking route</h2>
+      <div class="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          ['01', 'Pingtung Park', 'Start with the park and heritage like A-kau Gate to wake up for the day.'],
+          ['02', 'Martial Arts Hall', 'A walkable Japanese-style budokan, continuing the cultural stroll.'],
+          ['03', 'Victory Village', 'In the afternoon, dine, shop and see exhibitions among old houses.'],
+          ['04', 'Museum / Library', 'Depending on energy, finish indoors at an exhibition or library.']
+        ].map(([no, title, body]) => (
+          <div class="rounded-2xl bg-[#fffdf7] p-6 leaf-card">
+            <div class="serif text-2xl font-black text-[#d7a948]">{no}</div>
+            <h3 class="mt-2 font-black">{title}</h3>
+            <p class="mt-2 text-sm leading-7 text-[#173226]/70">{body}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mt-6 text-xs leading-5 text-[#173226]/45">Each venue has different opening and closed days; this page does not hard-code fixed business info. Please rely on the latest official announcements or real-time map info before departure.</p>
+    </div>
+  </section>
+
+  <section id="faq" class="mx-auto max-w-4xl px-5 py-16 lg:py-24">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FAQ</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">Pingtung Park Nearby Attractions FAQ</h2>
+    <div class="mt-8 space-y-3">
+      {faqs.map((item, i) => (
+        <details class="group rounded-2xl border border-[#173226]/10 bg-white/75 p-5" open={i === 0}>
+          <summary class="cursor-pointer list-none pr-8 font-black">{item.q}<span class="float-right text-[#b6533d] group-open:rotate-45">＋</span></summary>
+          <p class="mt-4 text-sm leading-7 text-[#173226]/68">{item.a}</p>
+        </details>
+      ))}
+    </div>
+    <p class="mt-8 text-sm leading-7 text-[#173226]/60">For dining, go to the <a href="/en/food" class="underline decoration-dotted hover:text-[#b6533d]">Food Nearby</a> page; for transport and parking see the <a href="/en/transport" class="underline decoration-dotted hover:text-[#b6533d]">Transport & Parking</a> page.</p>
+  </section>
+</BaseLayout>

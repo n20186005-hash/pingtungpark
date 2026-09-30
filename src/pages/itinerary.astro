@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const site = Astro.site ?? new URL('https://pingtungpark.com');
+const canonical = new URL('/itinerary', site).toString();
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '屏東公園', item: new URL('/', site).toString() },
+    { '@type': 'ListItem', position: 2, name: '一日遊行程表', item: canonical }
+  ]
+};
+
+const faqs = [
+  { q: '屏東公園一天怎麼玩？', a: '可先逛公園與古蹟，再接演武場、勝利星村與美術館等周邊景點；行程表提供上午到夜間的建議動線，可依體力調整。' },
+  { q: '屏東公園半日夠嗎？', a: '園區本身不大，半日可走完核心園道與古蹟；若想順遊周邊市區景點，建議排一整天更從容。' },
+  { q: '適合安排一日遊嗎？', a: '非常適合。屏東公園位處市中心，可串接演武場、勝利星村、屏東美術館與周邊美食，見「附近景點」與「周邊美食」專頁。' },
+  { q: '帶小孩一日遊怎麼排？', a: '把兒童遊戲區排入中段、前後用平路散步暖身與收尾，多休息、多補水；細節見「親子友善設施」專區。' },
+  { q: '什麼季節安排最好？', a: '冬季涼爽、年末有聖誕節燈飾最推薦；夏季建議選清晨或傍晚，避開正午高溫與午後雷陣雨。' }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } }))
+};
+---
+<BaseLayout
+  title="屏東公園一日遊行程表｜半日／親子路線與順遊建議 — Pingtung Park"
+  description="屏東公園（Pingtung Park）一日遊行程表：提供上午到夜間的建議動線、半日與親子版行程，以及順遊演武場、勝利星村、美術館與周邊美食的安排建議。"
+  keywords="屏東公園一日遊, 屏東公園行程, 屏東公園行程表, 屏東公園半日遊, 屏東公園怎麼玩, 屏東公園路線, 屏東市一日遊, 屏東公園親子行程"
+  canonicalPath="/itinerary"
+  ogImageAlt="屏東公園（Pingtung Park）— 一日遊行程安排"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+  </Fragment>
+
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
+      <nav aria-label="地理層級" class="mb-4 text-xs font-semibold text-[#173226]/55">
+        <a href="/" class="hover:text-[#b6533d]">首頁</a>
+        <span class="mx-1">→</span><span class="text-[#b6533d]">一日遊行程表</span>
+      </nav>
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#b6533d]/20 bg-white/70 px-4 py-2 text-xs font-bold tracking-[.18em] text-[#b6533d]">ITINERARY</div>
+      <h1 class="serif text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">屏東公園<span class="text-[#b6533d]">一日遊</span></h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-[#173226]/75">想把屏東公園與周邊一次玩透？這份<strong>一日遊行程表</strong>用時段規劃動線，也附上半日與親子版本，讓你從散步、古蹟到夜間燈飾都能順順安排。</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-5 pb-4 lg:px-8">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FULL DAY</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">建議一日遊行程表</h2>
+    <div class="mt-8 overflow-hidden rounded-3xl border border-[#173226]/10 bg-white/75">
+      <table class="w-full text-left text-sm">
+        <thead class="bg-[#eef2e8] text-[#173226]">
+          <tr><th class="px-5 py-3 font-black">時段</th><th class="px-5 py-3 font-black">建議安排</th><th class="px-5 py-3 font-black">貼心提醒</th></tr>
+        </thead>
+        <tbody class="divide-y divide-[#173226]/10">
+          <tr><td class="px-5 py-4 font-black text-[#b6533d]">上午</td><td class="px-5 py-4">屏東公園散步、看阿猴城門等古蹟，神清氣爽開場。</td><td class="px-5 py-4 text-[#173226]/65">清晨至上午光線柔和、遊客少。</td></tr>
+          <tr><td class="px-5 py-4 font-black text-[#6c7f4d]">中午</td><td class="px-5 py-4">轉往周邊用餐，順遊勝利星村或屏東演武場。</td><td class="px-5 py-4 text-[#173226]/65">避開正午強曬，室內備案更舒服。</td></tr>
+          <tr><td class="px-5 py-4 font-black text-[#d7a948]">下午</td><td class="px-5 py-4">續遊屏東美術館等市區文化場館，或回公園兒童遊戲區。</td><td class="px-5 py-4 text-[#173226]/65">夏季留意午後雷陣雨。</td></tr>
+          <tr><td class="px-5 py-4 font-black text-[#9fc6d4]">傍晚</td><td class="px-5 py-4">回到公園看黃昏光線，湖畔與城門最出片。</td><td class="px-5 py-4 text-[#173226]/65">想拍照可參考「拍照與最佳時段」。</td></tr>
+          <tr><td class="px-5 py-4 font-black text-[#b6533d]">夜間</td><td class="px-5 py-4">沿夜間散步路線收尾，年末可看聖誕節燈飾。</td><td class="px-5 py-4 text-[#173226]/65">結伴、走主園道，注意照明。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-3 text-xs leading-5 text-[#173226]/45">以上為建議時段（非固定時刻），請依天氣、體力與官方公告彈性調整。</p>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+    <div class="grid gap-6 md:grid-cols-2">
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">HALF DAY</p>
+        <h3 class="serif mt-3 text-2xl font-black">半日遊版本</h3>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">若時間有限，集中逛屏東公園核心園道與古蹟（約 1.5–2 小時），再就近吃一餐即可；想順遊周邊則建議排一整天。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#b6533d]">WITH KIDS</p>
+        <h3 class="serif mt-3 text-2xl font-black">親子版本</h3>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">把兒童遊戲區排在中段，前後用平路散步暖身與收尾，多休息、多補水；設施細節見「親子友善設施」專區。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="bg-[#eef2e8]">
+    <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+      <p class="text-xs font-bold tracking-[.2em] text-[#6c7f4d]">ADD-ONS</p>
+      <h2 class="section-title serif mt-2 text-4xl font-black">順遊串接建議</h2>
+      <div class="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          ['屏東演武場', '日式武德殿，公園旁可順遊。'],
+          ['勝利星村', '日式宿舍群文創園區，適合用餐。'],
+          ['屏東美術館', '市區展覽場館，文化行程一站。'],
+          ['周邊美食', '公園路、中華路一帶小吃與咖啡。']
+        ].map(([title, body]) => (
+          <div class="rounded-2xl bg-[#fffdf7] p-6 leaf-card">
+            <h3 class="font-black">{title}</h3>
+            <p class="mt-2 text-sm leading-7 text-[#173226]/70">{body}</p>
+          </div>
+        ))}
+      </div>
+      <div class="mt-8 flex flex-wrap gap-3 text-sm font-bold">
+        <a href="/attractions" class="rounded-full bg-[#173226] px-5 py-3 text-white">附近景點</a>
+        <a href="/food" class="rounded-full border border-[#173226]/30 px-5 py-3 text-[#173226]">周邊美食</a>
+        <a href="/history" class="rounded-full border border-[#173226]/30 px-5 py-3 text-[#173226]">歷史古蹟</a>
+        <a href="/family" class="rounded-full border border-[#173226]/30 px-5 py-3 text-[#173226]">親子友善</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="mx-auto max-w-4xl px-5 py-16 lg:py-24">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FAQ</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">屏東公園一日遊常見問答</h2>
+    <div class="mt-8 space-y-3">
+      {faqs.map((item, i) => (
+        <details class="group rounded-2xl border border-[#173226]/10 bg-white/75 p-5" open={i === 0}>
+          <summary class="cursor-pointer list-none pr-8 font-black">{item.q}<span class="float-right text-[#b6533d] group-open:rotate-45">＋</span></summary>
+          <p class="mt-4 text-sm leading-7 text-[#173226]/68">{item.a}</p>
+        </details>
+      ))}
+    </div>
+    <p class="mt-8 text-sm leading-7 text-[#173226]/60">出發前請看<a href="/transport" class="underline decoration-dotted hover:text-[#b6533d]">「交通停車」專區</a>與<a href="/faq" class="underline decoration-dotted hover:text-[#b6533d]">「常見問題總整理」</a>。</p>
+  </section>
+</BaseLayout>

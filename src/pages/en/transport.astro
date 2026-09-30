@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const site = Astro.site ?? new URL('https://pingtungpark.com');
+const canonical = new URL('/en/transport', site).toString();
+const MAPS_EMBED_SRC = 'https://www.google.com/maps?q=22.6746753,120.4923113&hl=en&z=16&output=embed';
+const MAPS_SHARE_URL = 'https://maps.app.goo.gl/EDkUSZQMdvhaWmhK6';
+const directionsUrl = 'https://www.google.com/maps/dir/?api=1&destination=22.6746753,120.4923113&hl=en';
+const POSTAL_CODE = '900';
+const COUNTRY_NAME = 'Taiwan';
+const STATE_PROVINCE = 'Pingtung County';
+const CITY_NAME = 'Pingtung City';
+const STREET_ADDRESS = 'Gongyuan Rd';
+const PLUS_CODE = 'MFFR+VW Pingtung City, Pingtung County, Taiwan';
+const TELEPHONE = '+886 8 732 0415';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Pingtung Park', item: new URL('/en/', site).toString() },
+    { '@type': 'ListItem', position: 2, name: 'Transport & Parking', item: canonical }
+  ]
+};
+
+const faqs = [
+  { q: 'How do I get to Pingtung Park from Pingtung Station?', a: 'From Pingtung Station you can walk, ride a YouBike, or transfer to a city bus. Walking toward Zhongshan Rd and Gongyuan Rd brings you into the downtown park area; follow real-time navigation for the most comfortable route.' },
+  { q: 'Is there a bus near Pingtung Park?', a: 'Look for stops such as “Pingtung Park”, “Pingtung Gymnasium” or nearby stops; common city routes include the 505, 509 and 516 series. Actual schedules are subject to the day’s bus operator information.' },
+  { q: 'Where can I park at Pingtung Park?', a: 'Check the Pingtung Park Zhonghua Rd outer parking lot first; along Zhonghua Rd there are also multi-story and private lots. Traffic is heavier on weekends, holidays and during large events, so arrive early or use public transport.' },
+  { q: 'Does Pingtung Park have YouBike or bike lanes?', a: 'Downtown Pingtung has YouBike stations; you can link Pingtung Park with Victory Village, the Pingtung main library and other downtown spots into a short cycling route.' },
+  { q: 'What is the exact address and map of Pingtung Park?', a: `The address is ${POSTAL_CODE} ${COUNTRY_NAME}${STATE_PROVINCE}${CITY_NAME}${STREET_ADDRESS}, phone ${TELEPHONE}, Plus Code ${PLUS_CODE}. A Google Maps location and one-tap navigation are provided below.` },
+  { q: 'Is it convenient with strollers or elderly visitors?', a: 'The paths are mostly flat with plenty of shade, good for slow walks; after rain, watersides, tree roots and paving may be slippery, so mind your step with strollers and elderly visitors. For accessibility route details, confirm with the authority before departure.' }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } }))
+};
+---
+<BaseLayout
+  title="Getting to Pingtung Park | From Pingtung Station, Parking & Map — Pingtung Park"
+  description="Complete guide to Pingtung Park (Pingtung Park) transport and parking: how to get there from Pingtung Station by walking, city bus or YouBike, nearby parking lots, Google Maps location and accessibility info."
+  keywords="Pingtung Park transport, how to get to Pingtung Park, Pingtung Station Pingtung Park, Pingtung Park bus, Pingtung Park parking, Pingtung Park map, Pingtung Park YouBike, Pingtung Park accessibility"
+  canonicalPath="/en/transport"
+  locale="en"
+  ogImageAlt="Pingtung Park (Pingtung Park) — Google Maps location and transport info"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+  </Fragment>
+
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
+      <nav aria-label="Breadcrumb" class="mb-4 text-xs font-semibold text-[#173226]/55">
+        <a href="/en/" class="hover:text-[#b6533d]">Home</a>
+        <span class="mx-1">→</span><span class="text-[#b6533d]">Transport & Parking</span>
+      </nav>
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#b6533d]/20 bg-white/70 px-4 py-2 text-xs font-bold tracking-[.18em] text-[#b6533d]">GETTING HERE</div>
+      <h1 class="serif text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">Pingtung Park <span class="text-[#b6533d]">Transport & Parking</span></h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-[#173226]/75">Whether you walk from <strong>Pingtung Station</strong>, take a city bus, ride a <strong>YouBike</strong>, or drive, Pingtung Park sits in downtown Pingtung and is very accessible. This section compiles all arrival options, nearby <strong>parking</strong> and the Google Maps location to help you plan in one go.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href={directionsUrl} target="_blank" rel="noreferrer" class="rounded-full bg-[#173226] px-6 py-3 font-bold text-white transition hover:-translate-y-0.5">Open Google navigation ↗</a>
+        <a href="#map" class="rounded-full border border-[#173226]/20 bg-white/60 px-6 py-3 font-bold">View map</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 pb-4 lg:px-8">
+    <div class="grid gap-6 md:grid-cols-2">
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#b6533d]">TRAINS</p>
+        <h2 class="serif mt-3 text-2xl font-black">Train | From Pingtung Station</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">Use Pingtung Station as the main gateway; you can walk, ride a YouBike, or transfer to a city bus. Walking toward Zhongshan Rd and Gongyuan Rd brings you into the downtown park area; follow real-time navigation for the most comfortable route.</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#b6533d]">BUS</p>
+        <h2 class="serif mt-3 text-2xl font-black">City bus</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">Look for stops such as “Pingtung Park”, “Pingtung Gymnasium” or nearby stops; common city routes include the 505, 509 and 516 series. Actual schedules and stops are subject to the day’s bus operator information.</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">BIKE</p>
+        <h2 class="serif mt-3 text-2xl font-black">YouBike & cycling</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">Downtown Pingtung has YouBike stations; you can link Pingtung Park with Victory Village, the Pingtung main library or other downtown spots into a short cycling route, great in comfortable weather.</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">DRIVE</p>
+        <h2 class="serif mt-3 text-2xl font-black">Driving & parking</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">Set navigation to Gongyuan Rd, Pingtung City, and check the <strong>Pingtung Park Zhonghua Rd outer parking lot</strong> first; along Zhonghua Rd there are also multi-story and private lots. Traffic is heavier on weekends, holidays and during large events, so arrive early or use public transport.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="map" class="bg-[#b6533d] text-white">
+    <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+      <div class="mb-7 grid gap-4 lg:grid-cols-2 lg:items-end">
+        <div>
+          <p class="text-xs font-bold tracking-[.2em] text-[#ffe5a9]">MAP</p>
+          <h2 class="serif mt-2 text-4xl font-black">Where is Pingtung Park?</h2>
+        </div>
+        <p class="text-sm leading-6 text-white/80">Address: {POSTAL_CODE} {COUNTRY_NAME}{STATE_PROVINCE}{CITY_NAME}{STREET_ADDRESS}<br/>Phone: {TELEPHONE} · Plus Code: {PLUS_CODE}</p>
+      </div>
+      <div class="map-frame overflow-hidden rounded-[2rem] border-8 border-white/15 bg-white">
+        <iframe src={MAPS_EMBED_SRC} title="Pingtung Park Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+      <div class="mt-6 flex flex-wrap gap-3 text-sm font-bold">
+        <a href={directionsUrl} target="_blank" rel="noopener noreferrer" class="rounded-full bg-white px-5 py-3 text-[#173226]">Open Google navigation ↗</a>
+        <a href={MAPS_SHARE_URL} target="_blank" rel="noopener noreferrer" class="rounded-full border border-white/50 px-5 py-3 text-white hover:bg-white/10">Open Pingtung Park on Google Maps ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#eef2e8]">
+    <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+      <p class="text-xs font-bold tracking-[.2em] text-[#6c7f4d]">ACCESSIBILITY</p>
+      <h2 class="section-title serif mt-2 text-4xl font-black">Accessibility & handy tips</h2>
+      <div class="mt-7 grid gap-6 md:grid-cols-2">
+        <div class="rounded-2xl bg-[#fffdf7] p-6 text-sm leading-7 text-[#173226]/75">
+          <h3 class="serif text-xl font-black">Paths & strollers</h3>
+          <p class="mt-3">The paths are mostly flat with plenty of shade, good for slow walks and short family stops; after rain, watersides, tree roots and paving may be slippery, so mind your step with strollers and elderly visitors.</p>
+        </div>
+        <div class="rounded-2xl bg-[#fffdf7] p-6 text-sm leading-7 text-[#173226]/75">
+          <h3 class="serif text-xl font-black">Planning advice</h3>
+          <p class="mt-3">If you need accessible ramps, wheelchair routes or specific facility locations, confirm the latest status with the authority or on-site info desk before departure for a smoother trip.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="mx-auto max-w-4xl px-5 py-16 lg:py-24">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FAQ</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">Pingtung Park Transport FAQ</h2>
+    <div class="mt-8 space-y-3">
+      {faqs.map((item, i) => (
+        <details class="group rounded-2xl border border-[#173226]/10 bg-white/75 p-5" open={i === 0}>
+          <summary class="cursor-pointer list-none pr-8 font-black">{item.q}<span class="float-right text-[#b6533d] group-open:rotate-45">＋</span></summary>
+          <p class="mt-4 text-sm leading-7 text-[#173226]/68">{item.a}</p>
+        </details>
+      ))}
+    </div>
+    <p class="mt-8 text-sm leading-7 text-[#173226]/60">For activity and seasonal highlights, go to the <a href="/en/events" class="underline decoration-dotted hover:text-[#b6533d]">Events</a> page; for basic info and reviews return to the <a href="/en/" class="underline decoration-dotted hover:text-[#b6533d]">homepage</a>.</p>
+  </section>
+</BaseLayout>

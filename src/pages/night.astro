@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const site = Astro.site ?? new URL('https://pingtungpark.com');
+const canonical = new URL('/night', site).toString();
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '屏東公園', item: new URL('/', site).toString() },
+    { '@type': 'ListItem', position: 2, name: '夜景散步路線', item: canonical }
+  ]
+};
+
+const faqs = [
+  { q: '屏東公園晚上可以逛嗎？', a: '園區夜間多有基本照明，適合散步與消暑；確切開放與照明時段依現場與主管機關公告為準。' },
+  { q: '屏東公園夜景好看嗎？', a: '樹蔭步道、湖畔、阿猴城門與季節燈飾在夜間頗有氛圍；取景與光線建議可參考「拍照與最佳時段」專區。' },
+  { q: '屏東公園夜間安全嗎？', a: '建議結伴同行、走主園道並注意照明，避開偏僻或無照明區域；人多時也請留意隨身物品。' },
+  { q: '屏東公園有夜間活動嗎？', a: '年末聖誕節點燈、季節燈會期間夜間最熱鬧，確切檔期請見「屏東聖誕節」專頁與官方公告。' },
+  { q: '夜間怎麼去、停車方便嗎？', a: '可搭市區公車或步行，自駕請留意周邊停車與夜間收費；詳見「交通停車」專區與現場指示。' }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } }))
+};
+---
+<BaseLayout
+  title="屏東公園夜景散步路線｜夜間點燈、避暑散步與安全提醒 — Pingtung Park"
+  description="屏東公園（Pingtung Park）夜景散步路線專頁：整理夜間推薦動線、季節燈飾亮點、拍照時機、安全與交通提醒，適合夏季避暑與年末燈會夜遊。"
+  keywords="屏東公園夜景, 屏東公園夜間散步, 屏東公園晚上, 屏東公園點燈, 屏東公園散步路線, 屏東公園夜跑, 屏東公園夜間, 屏東公園安全"
+  canonicalPath="/night"
+  ogImageAlt="屏東公園（Pingtung Park）— 夜間散步與燈飾"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+  </Fragment>
+
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
+      <nav aria-label="地理層級" class="mb-4 text-xs font-semibold text-[#173226]/55">
+        <a href="/" class="hover:text-[#b6533d]">首頁</a>
+        <span class="mx-1">→</span><span class="text-[#b6533d]">夜景散步路線</span>
+      </nav>
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#b6533d]/20 bg-white/70 px-4 py-2 text-xs font-bold tracking-[.18em] text-[#b6533d]">NIGHT WALK</div>
+      <h1 class="serif text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">屏東公園<span class="text-[#b6533d]">夜景散步</span></h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-[#173226]/75">白天太熱？入夜後的屏東公園更舒服——<strong>涼爽、燈影搖曳，還有季節燈飾</strong>。本專頁整理一條好走、有亮點的夜間散步路線，以及安全與交通提醒。</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 pb-4 lg:px-8">
+    <div class="grid gap-6 md:grid-cols-3">
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">COOL</p>
+        <h2 class="serif mt-3 text-xl font-black">避暑涼散步</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">夏季白天炎熱，夜間氣溫較低、紫外線歸零，是散步與慢走的好時機。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#b6533d]">LIGHTS</p>
+        <h2 class="serif mt-3 text-xl font-black">燈飾氛圍</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">樹蔭步道、湖畔與城門在燈光下另有一番味道；年末燈會期間更熱鬧。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#d7a948]">CALM</p>
+        <h2 class="serif mt-3 text-xl font-black">避開人潮</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">平日夜間遊客較少，適合想安静散步、夜跑或隨拍的人。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">ROUTE</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">推薦夜間散步路線</h2>
+    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      {[
+        ['01', '入口大門', '從主要入口進入，沿主園道前行，先適應夜間光線。'],
+        ['02', '樹蔭步道', '燈影與綠意交錯，平路好走、適合慢行。'],
+        ['03', '湖畔水池', '水面映燈，是夜拍與駐足休息的亮點。'],
+        ['04', '阿猴城門', '夜裡的城門輪廓更有歷史感，可遠觀取景。'],
+        ['05', '燈飾／出口', '順季節燈飾動線走回出口，形成一個輕鬆迴圈。']
+      ].map(([no, title, body]) => (
+        <div class="rounded-2xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+          <div class="serif text-2xl font-black text-[#d7a948]">{no}</div>
+          <h3 class="mt-2 font-black">{title}</h3>
+          <p class="mt-2 text-sm leading-7 text-[#173226]/70">{body}</p>
+        </div>
+      ))}
+    </div>
+    <p class="mt-6 text-sm leading-7 text-[#173226]/60">季節燈飾與點燈詳見<a href="/christmas" class="underline decoration-dotted hover:text-[#b6533d]">「屏東聖誕節」專頁</a>；想拍好夜景請參考<a href="/photo" class="underline decoration-dotted hover:text-[#b6533d]">「拍照與最佳時段」</a>。</p>
+  </section>
+
+  <section class="bg-[#173226] text-[#fffdf7]">
+    <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+      <p class="text-xs font-bold tracking-[.24em] text-[#d7a948]">STAY SAFE</p>
+      <h2 class="serif mt-3 text-4xl font-black sm:text-5xl">夜間安全與小提醒</h2>
+      <ul class="mt-8 grid gap-4 sm:grid-cols-2">
+        {[
+          '建議結伴同行，走主園道並留意照明狀況。',
+          '避開偏僻、無照明或施工區域。',
+          '人多時請留意隨身物品與孩童動向。',
+          '夏季午後雷陣雨後地面濕滑，注意步伐。',
+          '夜間大眾運輸班次較少，回程請預留時間。',
+          '確切開放與照明時段以現場與主管機關公告為準。'
+        ].map(tip => (
+          <li class="flex gap-3 rounded-2xl bg-white/5 p-5 text-sm leading-7 text-white/85"><span class="font-black text-[#ffe5a9]">✓</span><span>{tip}</span></li>
+        ))}
+      </ul>
+      <div class="mt-8 flex flex-wrap gap-3 text-sm font-bold">
+        <a href="/transport" class="rounded-full bg-white px-5 py-3 text-[#173226]">交通停車</a>
+        <a href="/photo" class="rounded-full border border-white/50 px-5 py-3 text-white hover:bg-white/10">拍照時段</a>
+        <a href="/christmas" class="rounded-full border border-white/50 px-5 py-3 text-white hover:bg-white/10">屏東聖誕節</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="mx-auto max-w-4xl px-5 py-16 lg:py-24">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FAQ</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">屏東公園夜景散步常見問答</h2>
+    <div class="mt-8 space-y-3">
+      {faqs.map((item, i) => (
+        <details class="group rounded-2xl border border-[#173226]/10 bg-white/75 p-5" open={i === 0}>
+          <summary class="cursor-pointer list-none pr-8 font-black">{item.q}<span class="float-right text-[#b6533d] group-open:rotate-45">＋</span></summary>
+          <p class="mt-4 text-sm leading-7 text-[#173226]/68">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

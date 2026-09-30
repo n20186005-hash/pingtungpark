@@ -1,0 +1,124 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const site = Astro.site ?? new URL('https://pingtungpark.com');
+const canonical = new URL('/en/history', site).toString();
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Pingtung Park', item: new URL('/en/', site).toString() },
+    { '@type': 'ListItem', position: 2, name: 'History & Heritage', item: canonical }
+  ]
+};
+
+const faqs = [
+  { q: 'What is the history of Pingtung Park?', a: 'Pingtung Park was founded in 1902 (Meiji 35) during the Japanese era, initially related to urban public space and sanitation; after the war it was renamed “Zhongshan Park” and restored to “Pingtung Park” in 2016, making it a representative century-old urban park in downtown Pingtung.' },
+  { q: 'What is A-kau Gate?', a: 'A-kau Gate is a representative historical landmark near Pingtung Park, witnessing the city wall memory of “A-kau” (the old name of Pingtung). Opening and interpretation status are subject to on-site and authority announcements.' },
+  { q: 'Are there shrine remains in Pingtung Park?', a: 'The park and its surroundings connect to historical clues such as shrine remains and air-raid shelters, giving the park an extra layer of “walk-and-read” interest beyond a typical urban green space; preservation status changes with maintenance, so check the latest info before a dedicated visit.' },
+  { q: 'What was Pingtung Park formerly called?', a: 'It was renamed “Zhongshan Park” for a period after the war and restored to “Pingtung Park” in 2016; hence old documents or elders may call it Zhongshan Park or A-kau Park.' },
+  { q: 'Is it good for a heritage walk route?', a: 'Very much so. You can string A-kau Gate, shrine remains and air-raid shelters into a slow downtown route, then connect to nearby Pingtung Martial Arts Hall and Victory Village for a half-day cultural walk.' }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } }))
+};
+---
+<BaseLayout
+  title="Pingtung Park History & Heritage | A-kau Gate, Shrine Remains & City Memory — Pingtung Park"
+  description="Pingtung Park (Pingtung Park) history and heritage guide: learn about cultural clues such as A-kau Gate, shrine remains and air-raid shelter, and the park's evolution from its 1902 founding to its 2016 renaming."
+  keywords="Pingtung Park history, A-kau Gate, A-kau Gate history, Pingtung Park heritage, A-lin Shrine remains, Pingtung Park shrine, Pingtung Park shelter, Pingtung Park Japanese remains, Zhongshan Park Pingtung"
+  canonicalPath="/en/history"
+  locale="en"
+  ogImageAlt="Pingtung Park (Pingtung Park) — A-kau Gate and heritage walk"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+  </Fragment>
+
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
+      <nav aria-label="Breadcrumb" class="mb-4 text-xs font-semibold text-[#173226]/55">
+        <a href="/en/" class="hover:text-[#b6533d]">Home</a>
+        <span class="mx-1">→</span><span class="text-[#b6533d]">History & Heritage</span>
+      </nav>
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#b6533d]/20 bg-white/70 px-4 py-2 text-xs font-bold tracking-[.18em] text-[#b6533d]">1902 → TODAY</div>
+      <h1 class="serif text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">Pingtung Park <span class="text-[#b6533d]">History & Heritage</span></h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-[#173226]/75">From a 1902 urban public space, to “Zhongshan Park” after the war, and back to <strong>Pingtung Park</strong> in 2016 — this century-old park layers the city memory of A-kau to Pingtung. Clues like <strong>A-kau Gate</strong>, shrine remains and air-raid shelters add a walk-and-read dimension to your stroll.</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 pb-4 lg:px-8">
+    <div class="rounded-[2.5rem] border border-[#173226]/10 bg-white/70 p-7 lg:p-10">
+      <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FROM 1902</p>
+      <h2 class="section-title serif mt-2 text-4xl font-black">From founding to renaming: a park's urban evolution</h2>
+      <div class="mt-7 grid gap-6 md:grid-cols-3">
+        <div class="rounded-2xl bg-[#fffdf7] p-6 leaf-card">
+          <p class="serif text-3xl font-black text-[#d7a948]">1902</p>
+          <h3 class="mt-2 font-black">The beginning</h3>
+          <p class="mt-2 text-sm leading-7 text-[#173226]/70">Around 1902 (Meiji 35), the park was born as part of urban public space and sanitation, gradually gaining a pond, pavilions and sports facilities.</p>
+        </div>
+        <div class="rounded-2xl bg-[#fffdf7] p-6 leaf-card">
+          <p class="serif text-3xl font-black text-[#d7a948]">Post-war</p>
+          <h3 class="mt-2 font-black">The Zhongshan Park era</h3>
+          <p class="mt-2 text-sm leading-7 text-[#173226]/70">After the war it was renamed “Zhongshan Park”, becoming a daily green space for citizens and leaving the old name in elders’ memory.</p>
+        </div>
+        <div class="rounded-2xl bg-[#fffdf7] p-6 leaf-card">
+          <p class="serif text-3xl font-black text-[#d7a948]">2016</p>
+          <h3 class="mt-2 font-black">Restored to Pingtung Park</h3>
+          <p class="mt-2 text-sm leading-7 text-[#173226]/70">In 2016 the original name “Pingtung Park” was restored, reconnecting this downtown green with the city’s history and making it easier for travelers to find.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+    <div class="grid gap-6 md:grid-cols-2">
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">CITY GATE</p>
+        <h3 class="serif mt-3 text-2xl font-black">A-kau Gate</h3>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">A-kau Gate is a representative historical landmark near Pingtung Park, witnessing the city wall memory of “A-kau”, the old name of Pingtung. It is an important starting point for understanding the city’s development and often the first stop of a heritage walk.</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">SHRINE & SHELTER</p>
+        <h3 class="serif mt-3 text-2xl font-black">Shrine remains & air-raid shelter</h3>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">The park and surroundings still connect to historical clues such as shrine remains and air-raid shelters. These remains give Pingtung Park more cultural depth than a typical urban park, ideal for slow observation.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="bg-[#173226] text-[#fffdf7]">
+    <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+      <p class="text-xs font-bold tracking-[.24em] text-[#d7a948]">WALK & READ</p>
+      <h2 class="serif mt-3 text-4xl font-black sm:text-5xl">Suggested heritage walk route</h2>
+      <div class="mt-8 space-y-4 text-base leading-8 text-white/80">
+        <p>Start with <strong>A-kau Gate</strong>, follow the park to read clues like shrine remains and air-raid shelters, then visit the nearby <strong>Pingtung Martial Arts Hall</strong> and <strong>Victory Village creative life park</strong> — a suitable half-day cultural walk downtown.</p>
+        <p>Preservation and opening status of the remains may change; if you are visiting specifically for one site, check the latest official announcement before departure. This site only compiles highlights and route suggestions and does not guarantee a site’s same-day opening.</p>
+      </div>
+      <div class="mt-8 flex flex-wrap gap-3 text-sm font-bold">
+        <a href="/en/transport" class="rounded-full bg-white px-5 py-3 text-[#173226]">How to get here: Transport</a>
+        <a href="/en/events" class="rounded-full border border-white/50 px-5 py-3 text-white hover:bg-white/10">Seasonal events</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="mx-auto max-w-4xl px-5 py-16 lg:py-24">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FAQ</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">Pingtung Park History & Heritage FAQ</h2>
+    <div class="mt-8 space-y-3">
+      {faqs.map((item, i) => (
+        <details class="group rounded-2xl border border-[#173226]/10 bg-white/75 p-5" open={i === 0}>
+          <summary class="cursor-pointer list-none pr-8 font-black">{item.q}<span class="float-right text-[#b6533d] group-open:rotate-45">＋</span></summary>
+          <p class="mt-4 text-sm leading-7 text-[#173226]/68">{item.a}</p>
+        </details>
+      ))}
+    </div>
+    <p class="mt-8 text-sm leading-7 text-[#173226]/60">After history, for food and strolls go to the <a href="/en/food" class="underline decoration-dotted hover:text-[#b6533d]">Food Nearby</a> page; for basic info and reviews return to the <a href="/en/" class="underline decoration-dotted hover:text-[#b6533d]">homepage</a>.</p>
+  </section>
+</BaseLayout>

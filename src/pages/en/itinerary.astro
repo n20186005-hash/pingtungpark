@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const site = Astro.site ?? new URL('https://pingtungpark.com');
+const canonical = new URL('/en/itinerary', site).toString();
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Pingtung Park', item: new URL('/en/', site).toString() },
+    { '@type': 'ListItem', position: 2, name: 'Day-Trip Itinerary', item: canonical }
+  ]
+};
+
+const faqs = [
+  { q: 'How to spend a day at Pingtung Park?', a: 'Start with the park and heritage, then visit the Martial Arts Hall, Victory Village and Art Museum nearby; the itinerary table suggests a route from morning to night, adjustable by energy.' },
+  { q: 'Is a half day enough for Pingtung Park?', a: 'The park itself is not large; a half day covers the core paths and heritage. If you want to visit nearby downtown spots, a full day is more relaxed.' },
+  { q: 'Is it good for a day trip?', a: 'Very much. Pingtung Park is in downtown, linking the Martial Arts Hall, Victory Village, Pingtung Art Museum and nearby food; see Nearby Attractions and Food Nearby.' },
+  { q: 'How to plan a day trip with kids?', a: 'Put the children’s play area in the middle, warm up and cool down with flat walks before and after, rest more and hydrate; details in Family-Friendly Facilities.' },
+  { q: 'What season is best?', a: 'Winter is cool and year-end has Christmas lights, most recommended; in summer choose morning or evening, avoiding noon heat and afternoon thunderstorms.' }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } }))
+};
+---
+<BaseLayout
+  title="Pingtung Park Day-Trip Itinerary | Half-Day & Family Plans — Pingtung Park"
+  description="Pingtung Park (Pingtung Park) day-trip itinerary: a morning-to-night route plan, plus half-day and family versions, with suggestions to add the Martial Arts Hall, Victory Village, Art Museum and nearby food."
+  keywords="Pingtung Park day trip, Pingtung Park itinerary, Pingtung Park schedule, Pingtung Park half day, how to spend a day at Pingtung Park, Pingtung Park route, Pingtung City day trip, Pingtung Park family itinerary"
+  canonicalPath="/en/itinerary"
+  locale="en"
+  ogImageAlt="Pingtung Park (Pingtung Park) — day-trip itinerary planning"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+  </Fragment>
+
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
+      <nav aria-label="Breadcrumb" class="mb-4 text-xs font-semibold text-[#173226]/55">
+        <a href="/en/" class="hover:text-[#b6533d]">Home</a>
+        <span class="mx-1">→</span><span class="text-[#b6533d]">Day-Trip Itinerary</span>
+      </nav>
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#b6533d]/20 bg-white/70 px-4 py-2 text-xs font-bold tracking-[.18em] text-[#b6533d]">ITINERARY</div>
+      <h1 class="serif text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">Pingtung Park <span class="text-[#b6533d]">Day-Trip Itinerary</span></h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-[#173226]/75">Want to do Pingtung Park and the surroundings in one go? This <strong>day-trip itinerary</strong> plans the route by time of day, with half-day and family versions, so you can smoothly arrange from a stroll and heritage to night lights.</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-5 pb-4 lg:px-8">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FULL DAY</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">Suggested day-trip itinerary</h2>
+    <div class="mt-8 overflow-hidden rounded-3xl border border-[#173226]/10 bg-white/75">
+      <table class="w-full text-left text-sm">
+        <thead class="bg-[#eef2e8] text-[#173226]">
+          <tr><th class="px-5 py-3 font-black">Time</th><th class="px-5 py-3 font-black">Suggested plan</th><th class="px-5 py-3 font-black">Tips</th></tr>
+        </thead>
+        <tbody class="divide-y divide-[#173226]/10">
+          <tr><td class="px-5 py-4 font-black text-[#b6533d]">Morning</td><td class="px-5 py-4">Pingtung Park stroll and A-kau Gate heritage — a fresh, clean start.</td><td class="px-5 py-4 text-[#173226]/65">Soft light and fewer visitors in early morning.</td></tr>
+          <tr><td class="px-5 py-4 font-black text-[#6c7f4d]">Noon</td><td class="px-5 py-4">Move to nearby dining; add Victory Village or Pingtung Martial Arts Hall.</td><td class="px-5 py-4 text-[#173226]/65">Avoid strong midday sun; indoor backup is comfier.</td></tr>
+          <tr><td class="px-5 py-4 font-black text-[#d7a948]">Afternoon</td><td class="px-5 py-4">Continue to Pingtung Art Museum and other downtown culture venues, or the park’s children’s play area.</td><td class="px-5 py-4 text-[#173226]/65">Watch for summer afternoon thunderstorms.</td></tr>
+          <tr><td class="px-5 py-4 font-black text-[#9fc6d4]">Evening</td><td class="px-5 py-4">Return to the park for golden-hour light; the lake and gate are most photogenic.</td><td class="px-5 py-4 text-[#173226]/65">For shooting see Photography & Best Times.</td></tr>
+          <tr><td class="px-5 py-4 font-black text-[#b6533d]">Night</td><td class="px-5 py-4">End along the night walking route; year-end Christmas lights if in season.</td><td class="px-5 py-4 text-[#173226]/65">Go with company, stay on main paths, mind lighting.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-3 text-xs leading-5 text-[#173226]/45">The above are suggested time blocks (not fixed clock times); adjust flexibly by weather, energy and official announcements.</p>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+    <div class="grid gap-6 md:grid-cols-2">
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">HALF DAY</p>
+        <h3 class="serif mt-3 text-2xl font-black">Half-day version</h3>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">If time is limited, focus on the core paths and heritage (about 1.5–2 hours), then have a meal nearby; to visit surroundings too, a full day is better.</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#b6533d]">WITH KIDS</p>
+        <h3 class="serif mt-3 text-2xl font-black">Family version</h3>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">Put the children’s play area in the middle, warm up and cool down with flat walks before and after, rest more and hydrate; details in Family-Friendly Facilities.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="bg-[#eef2e8]">
+    <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+      <p class="text-xs font-bold tracking-[.2em] text-[#6c7f4d]">ADD-ONS</p>
+      <h2 class="section-title serif mt-2 text-4xl font-black">Add-on suggestions</h2>
+      <div class="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          ['Martial Arts Hall', 'A Japanese-style budokan next to the park, an easy add-on.'],
+          ['Victory Village', 'A Japanese-dormitory creative park, good for dining.'],
+          ['Art Museum', 'A downtown exhibition venue, a cultural stop.'],
+          ['Nearby food', 'Cafés and snacks around Gongyuan Rd and Zhonghua Rd.']
+        ].map(([title, body]) => (
+          <div class="rounded-2xl bg-[#fffdf7] p-6 leaf-card">
+            <h3 class="font-black">{title}</h3>
+            <p class="mt-2 text-sm leading-7 text-[#173226]/70">{body}</p>
+          </div>
+        ))}
+      </div>
+      <div class="mt-8 flex flex-wrap gap-3 text-sm font-bold">
+        <a href="/en/attractions" class="rounded-full bg-[#173226] px-5 py-3 text-white">Nearby Attractions</a>
+        <a href="/en/food" class="rounded-full border border-[#173226]/30 px-5 py-3 text-[#173226]">Food Nearby</a>
+        <a href="/en/history" class="rounded-full border border-[#173226]/30 px-5 py-3 text-[#173226]">History & Heritage</a>
+        <a href="/en/family" class="rounded-full border border-[#173226]/30 px-5 py-3 text-[#173226]">Family-Friendly</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="mx-auto max-w-4xl px-5 py-16 lg:py-24">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FAQ</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">Pingtung Park Day-Trip FAQ</h2>
+    <div class="mt-8 space-y-3">
+      {faqs.map((item, i) => (
+        <details class="group rounded-2xl border border-[#173226]/10 bg-white/75 p-5" open={i === 0}>
+          <summary class="cursor-pointer list-none pr-8 font-black">{item.q}<span class="float-right text-[#b6533d] group-open:rotate-45">＋</span></summary>
+          <p class="mt-4 text-sm leading-7 text-[#173226]/68">{item.a}</p>
+        </details>
+      ))}
+    </div>
+    <p class="mt-8 text-sm leading-7 text-[#173226]/60">Before departure see the <a href="/en/transport" class="underline decoration-dotted hover:text-[#b6533d]">Transport & Parking</a> page and the <a href="/en/faq" class="underline decoration-dotted hover:text-[#b6533d]">FAQ</a>.</p>
+  </section>
+</BaseLayout>

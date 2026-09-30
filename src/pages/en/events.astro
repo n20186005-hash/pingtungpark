@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const site = Astro.site ?? new URL('https://pingtungpark.com');
+const canonical = new URL('/en/events', site).toString();
+const MAPS_SHARE_URL = 'https://maps.app.goo.gl/EDkUSZQMdvhaWmhK6';
+const GOVT_TOURISM_URL = 'https://www.i-pingtung.com';
+const GOVT_URL = 'https://www.pingtung.gov.tw';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Pingtung Park', item: new URL('/en/', site).toString() },
+    { '@type': 'ListItem', position: 2, name: 'Events', item: canonical }
+  ]
+};
+
+const faqs = [
+  { q: 'Are there Christmas events at Pingtung Park?', a: 'Pingtung Park sits next to downtown Pingtung; around year-end and New Year the surrounding area is often decorated with Christmas lights and displays, making it a popular evening stroll spot downtown. Exact lighting dates and program are subject to announcements by the Pingtung County Government, Pingtung City Office and on-site notices.' },
+  { q: 'Does Pingtung Park host a lantern festival or seasonal lights?', a: 'The park and downtown Pingtung may arrange seasonal illuminations or themed events during festivals. Because arrangements vary by year, check official tourism channels and on-site notices before you go, and combine the stroll with any events in the same trip.' },
+  { q: 'Are there family-friendly activities at Pingtung Park?', a: 'The park has an inclusive playground and children’s play equipment, making it suitable for family strolls on ordinary days; if there are seasonal markets, cultural or weekend events, it is even better for a half-day family plan.' },
+  { q: 'Where can I find the latest Pingtung Park event info?', a: 'Refer to official tourism channels such as the Pingtung County Government tourism site, or check the latest updates on the Google Maps listing for Pingtung Park. This site also compiles transport and nearby add-on suggestions for trip planning.' },
+  { q: 'How do I get to events at the park?', a: 'You can walk from Pingtung Station, ride YouBike, or take a city bus; if driving, use nearby parking. See the Transport & Parking section for details.' }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } }))
+};
+---
+<BaseLayout
+  title="Pingtung Park Events | Christmas Lights, Seasonal Festivals & Activities — Pingtung Park"
+  description="Pingtung Park (Pingtung Park) events guide: Pingtung Christmas lights, seasonal illuminations, family and market activities, with transport, nearby add-ons and where to check the latest updates."
+  keywords="Pingtung Park events, Pingtung Christmas, Pingtung Park Christmas lights, Pingtung Park lantern festival, Pingtung Park New Year, Pingtung Park market, Pingtung Park family activities, Pingtung City events"
+  canonicalPath="/en/events"
+  locale="en"
+  ogImageAlt="Pingtung Park (Pingtung Park) — seasonal events and night lights"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+  </Fragment>
+
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
+      <nav aria-label="Breadcrumb" class="mb-4 text-xs font-semibold text-[#173226]/55">
+        <a href="/en/" class="hover:text-[#b6533d]">Home</a>
+        <span class="mx-1">→</span><span class="text-[#b6533d]">Events</span>
+      </nav>
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#b6533d]/20 bg-white/70 px-4 py-2 text-xs font-bold tracking-[.18em] text-[#b6533d]">EVENTS · DOWNTOWN PINGTUNG</div>
+      <h1 class="serif text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">Pingtung Park <span class="text-[#b6533d]">Events</span></h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-[#173226]/75">Pingtung Park (Pingtung Park) is more than a daytime green space. Year-end <strong>Pingtung Christmas</strong> lights, seasonal <strong>illuminations</strong> and weekend markets give this century-old park a different look at night and during festivals. This section compiles event highlights and where to check them, helping you plan the smoothest trip.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/en/transport" class="rounded-full bg-[#b6533d] px-6 py-3 font-bold text-white shadow-lg shadow-[#b6533d]/20">How to get here: Transport</a>
+        <a href="#latest" class="rounded-full border border-[#173226]/20 bg-white/60 px-6 py-3 font-bold">Stay updated</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 pb-4 lg:px-8">
+    <div class="rounded-[2.5rem] border border-[#173226]/10 bg-white/70 p-7 lg:p-10">
+      <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">CHRISTMAS IN PINGTUNG</p>
+      <h2 class="section-title serif mt-2 text-4xl font-black">Pingtung Christmas: a highlight for evening strolls downtown</h2>
+      <p class="mt-6 leading-8 text-[#173226]/75">Every year-end, downtown Pingtung is often decorated with Christmas lights and displays, and the area around Pingtung Park and neighboring districts forms a warm evening walking route. For locals and visitors, <strong>Pingtung Park Christmas lights</strong> is an easy-to-plan, family-friendly option in the winter downtown itinerary.</p>
+      <p class="mt-4 leading-8 text-[#173226]/75">Because the themed lights, lighting dates and supporting activities differ each year, <strong>please rely on announcements from the Pingtung County Government, Pingtung City Office and on-site notices</strong>. This site does not predict or hard-code specific dates to avoid outdated information.</p>
+      <div class="mt-6"><a href="/en/christmas" class="inline-flex items-center gap-2 rounded-full bg-[#b6533d] px-5 py-3 text-sm font-bold text-white shadow-lg shadow-[#b6533d]/20">Pingtung Christmas page →</a></div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+    <div class="grid gap-6 md:grid-cols-2">
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">SEASONAL LIGHTS</p>
+        <h3 class="serif mt-3 text-2xl font-black">Seasonal illuminations & festival lights</h3>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">During festivals, the park and downtown Pingtung may arrange seasonal lights or themed light environments. Visiting at night avoids the strong daytime sun and lets you connect with the light route nearby.</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">FAMILY & MARKET</p>
+        <h3 class="serif mt-3 text-2xl font-black">Family activities & weekend markets</h3>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">The park has an inclusive playground and children's play equipment, suitable for family strolls on ordinary days; if there are seasonal markets, cultural or weekend events, it is even better for a half-day family plan with nearby dining.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="latest" class="bg-[#173226] text-[#fffdf7]">
+    <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+      <p class="text-xs font-bold tracking-[.24em] text-[#d7a948]">STAY UPDATED</p>
+      <h2 class="serif mt-3 text-4xl font-black sm:text-5xl">How to keep up with the latest Pingtung Park events?</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <div class="rounded-2xl border border-white/15 bg-white/5 p-6">
+          <h3 class="font-black">Official tourism channels</h3>
+          <p class="mt-3 text-sm leading-7 text-white/78">Follow <a href={GOVT_TOURISM_URL} target="_blank" rel="noopener noreferrer" class="mx-1 underline decoration-dotted">Pingtung Travel (Pingtung County Government Tourism)↗</a> and <a href={GOVT_URL} target="_blank" rel="noopener noreferrer" class="mx-1 underline decoration-dotted">Pingtung County Government↗</a> for annual events, lights and market announcements.</p>
+        </div>
+        <div class="rounded-2xl border border-white/15 bg-white/5 p-6">
+          <h3 class="font-black">Google Maps updates</h3>
+          <p class="mt-3 text-sm leading-7 text-white/78">On the <a href={MAPS_SHARE_URL} target="_blank" rel="noopener noreferrer" class="mx-1 underline decoration-dotted">Google Maps listing for Pingtung Park↗</a> you can see the latest updates, reviews and on-site photos, with navigation in one place.</p>
+        </div>
+      </div>
+      <p class="mt-8 text-sm leading-7 text-white/70">Tip: event information changes often. Please rely on official and on-site notices before departure; this site only compiles highlights and planning suggestions and does not guarantee specific-date event content.</p>
+    </div>
+  </section>
+
+  <section id="faq" class="mx-auto max-w-4xl px-5 py-16 lg:py-24">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FAQ</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">Pingtung Park Events FAQ</h2>
+    <div class="mt-8 space-y-3">
+      {faqs.map((item, i) => (
+        <details class="group rounded-2xl border border-[#173226]/10 bg-white/75 p-5" open={i === 0}>
+          <summary class="cursor-pointer list-none pr-8 font-black">{item.q}<span class="float-right text-[#b6533d] group-open:rotate-45">＋</span></summary>
+          <p class="mt-4 text-sm leading-7 text-[#173226]/68">{item.a}</p>
+        </details>
+      ))}
+    </div>
+    <p class="mt-8 text-sm leading-7 text-[#173226]/60">For activity and seasonal highlights, go to the <a href="/en/christmas" class="underline decoration-dotted hover:text-[#b6533d]">Pingtung Christmas</a> page; for basic info and reviews return to the <a href="/en/" class="underline decoration-dotted hover:text-[#b6533d]">homepage</a>.</p>
+  </section>
+</BaseLayout>

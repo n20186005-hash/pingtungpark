@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const site = Astro.site ?? new URL('https://pingtungpark.com');
+const canonical = new URL('/food', site).toString();
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '屏東公園', item: new URL('/', site).toString() },
+    { '@type': 'ListItem', position: 2, name: '周邊美食', item: canonical }
+  ]
+};
+
+const faqs = [
+  { q: '屏東公園附近有什麼吃的？', a: '園區鄰近公園路、中華路一帶，有咖啡與早午餐、屏東在地小吃（如肉燥飯、麵食、豆花），西南側百貨商圈也有聚餐與吹冷氣的選擇；步行或短程移動即可串成美食動線。' },
+  { q: '公園路有咖啡或早午餐嗎？', a: '公園路與中華路一帶有咖啡、早午餐選擇，適合清晨散步後休息；實際店家與營業時間變動頻繁，出發前請以店家最新公告或地圖即時資訊為準。' },
+  { q: '勝利星村有餐飲嗎？', a: '勝利星村創意生活園區保存大量日式宿舍群，並加入餐飲、選物與文化內容，很適合把用餐和老屋氛圍結合，排在公園散步的後半段。' },
+  { q: '屏東有什麼在地小吃推薦？', a: '屏東市中心可找到肉燥飯、麵食、豆花與各式台灣小吃，價格帶普遍親民；本站不硬編特定店家與固定時段，建議以現場與地圖評價為準。' },
+  { q: '怎麼安排屏東公園美食散步路線？', a: '可先逛公園與阿猴城門等古蹟，再到公園路喝咖啡、吃小吃，午後轉往勝利星村或百貨商圈；詳細交通請見「交通停車」專區。' }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } }))
+};
+---
+<BaseLayout
+  title="屏東公園周邊美食｜公園路咖啡、在地小吃與勝利星村餐飲 — Pingtung Park"
+  description="屏東公園（Pingtung Park）周邊美食地圖：公園路咖啡早午餐、屏東在地小吃、百貨商圈與勝利星村餐飲，散步就能吃的一日動線建議。"
+  keywords="屏東公園美食, 屏東公園附近美食, 公園路美食, 屏東市小吃, 屏東公園咖啡, 勝利星村美食, 屏東市中心美食, 屏東公園早午餐"
+  canonicalPath="/food"
+  ogImageAlt="屏東公園（Pingtung Park）— 周邊美食與咖啡散步動線"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+  </Fragment>
+
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
+      <nav aria-label="地理層級" class="mb-4 text-xs font-semibold text-[#173226]/55">
+        <a href="/" class="hover:text-[#b6533d]">首頁</a>
+        <span class="mx-1">→</span><span class="text-[#b6533d]">周邊美食</span>
+      </nav>
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#b6533d]/20 bg-white/70 px-4 py-2 text-xs font-bold tracking-[.18em] text-[#b6533d]">LOCAL BITES</div>
+      <h1 class="serif text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">屏東公園<span class="text-[#b6533d]">周邊美食</span></h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-[#173226]/75">散步看綠意之後，肚子也該歇一下。<strong>屏東公園</strong>鄰近公園路、中華路與勝利星村，咖啡、早午餐、屏東在地小吃與百貨商圈餐飲都在步行或短程範圍內。本專區整理一條「散步就能吃」的動線。</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 pb-4 lg:px-8">
+    <div class="grid gap-6 md:grid-cols-2">
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#b6533d]">CAFE & BRUNCH</p>
+        <h3 class="serif mt-3 text-2xl font-black">公園路咖啡與早午餐</h3>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">公園路與中華路一帶有咖啡、早午餐選擇，適合清晨散步後休息；店家營業時間與菜單變動頻繁，建議以現場與地圖即時資訊為準。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#b6533d]">LOCAL EATS</p>
+        <h3 class="serif mt-3 text-2xl font-black">屏東在地小吃</h3>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">屏東市中心可找到肉燥飯、麵食、豆花與各式台灣小吃，價格帶普遍親民，是體驗在地的輕鬆方式。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">MALL DINING</p>
+        <h3 class="serif mt-3 text-2xl font-black">百貨商圈餐飲</h3>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">公園西南側鄰近市中心百貨商圈，聚餐、吹冷氣與雨備最方便；多人出行或天氣不佳時特別實用。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">VICTORY VILLAGE</p>
+        <h3 class="serif mt-3 text-2xl font-black">勝利星村餐飲</h3>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">勝利星村創意生活園區保存大量日式宿舍群，加入餐飲、選物與文化內容；想把用餐和老屋氛圍結合，可排在散步後半段。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="bg-[#eef2e8]">
+    <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+      <p class="text-xs font-bold tracking-[.2em] text-[#6c7f4d]">ONE-DAY ROUTE</p>
+      <h2 class="section-title serif mt-2 text-4xl font-black">散步就能吃的一日動線</h2>
+      <div class="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          ['01', '公園散步', '先走屏東公園與阿猴城門等古蹟，喚醒胃口。'],
+          ['02', '公園路咖啡', '散步後到公園路喝杯咖啡、吃早午餐休息。'],
+          ['03', '在地小吃', '中午轉往市中心小吃，肉燥飯、麵食、豆花都好入手。'],
+          ['04', '勝利星村', '午後到勝利星村，老屋氛圍配餐飲與選物收尾。']
+        ].map(([no, title, body]) => (
+          <div class="rounded-2xl bg-[#fffdf7] p-6 leaf-card">
+            <div class="serif text-2xl font-black text-[#d7a948]">{no}</div>
+            <h3 class="mt-2 font-black">{title}</h3>
+            <p class="mt-2 text-sm leading-7 text-[#173226]/70">{body}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mt-6 text-xs leading-5 text-[#173226]/45">店家營業時間與菜單變動頻繁，本頁不硬編固定營業資訊；出發前請以店家最新公告或地圖即時資訊為準。</p>
+    </div>
+  </section>
+
+  <section id="faq" class="mx-auto max-w-4xl px-5 py-16 lg:py-24">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FAQ</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">屏東公園周邊美食常見問答</h2>
+    <div class="mt-8 space-y-3">
+      {faqs.map((item, i) => (
+        <details class="group rounded-2xl border border-[#173226]/10 bg-white/75 p-5" open={i === 0}>
+          <summary class="cursor-pointer list-none pr-8 font-black">{item.q}<span class="float-right text-[#b6533d] group-open:rotate-45">＋</span></summary>
+          <p class="mt-4 text-sm leading-7 text-[#173226]/68">{item.a}</p>
+        </details>
+      ))}
+    </div>
+    <p class="mt-8 text-sm leading-7 text-[#173226]/60">想了解歷史古蹟，請前往<a href="/history" class="underline decoration-dotted hover:text-[#b6533d]">「歷史古蹟」專區</a>；交通與停車請見<a href="/transport" class="underline decoration-dotted hover:text-[#b6533d]">「交通停車」專區</a>。</p>
+  </section>
+</BaseLayout>

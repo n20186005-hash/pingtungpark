@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const site = Astro.site ?? new URL('https://pingtungpark.com');
+const canonical = new URL('/en/faq', site).toString();
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Pingtung Park', item: new URL('/en/', site).toString() },
+    { '@type': 'ListItem', position: 2, name: 'FAQ', item: canonical }
+  ]
+};
+
+const faqs = [
+  { cat: 'Admission', q: 'Does Pingtung Park charge admission?', a: 'Pingtung Park is mostly a free municipal park, free to enter in ordinary hours; if there are special exhibitions, paid events or construction control, follow the entrance and official announcements.' },
+  { cat: 'Admission', q: 'What are the opening hours of Pingtung Park?', a: 'The park is mostly open all day or from early morning to the lighting hours at night; for exact opening/closing and special control, see the entrance notice and authority announcements. This page does not hard-code fixed times.' },
+  { cat: 'Transport', q: 'How do I get to Pingtung Park?', a: 'Take the TRA to Pingtung Station then transfer to a city bus or walk; for driving, see the Transport & Parking page for nearby parking and routes.' },
+  { cat: 'Transport', q: 'Is parking convenient at Pingtung Park?', a: 'There are roadside and public parking spaces nearby, popular on holidays; for detailed spaces and accessible spaces see the Transport & Parking page and on-site signs.' },
+  { cat: 'Facilities', q: 'Are there restrooms in Pingtung Park?', a: 'The park generally has public restrooms, often with accessible toilets; exact locations follow on-site signs and maps.' },
+  { cat: 'Facilities', q: 'Is there shade and seating in Pingtung Park?', a: 'The park has plenty of shade and seating for rest; summer afternoons may bring thunderstorms, so carry an umbrella and watch the weather.' },
+  { cat: 'Facilities', q: 'Is Pingtung Park good for kids?', a: 'The park has mostly flat paths and seating, good for family strolls; for children’s play equipment and inclusive playground, follow on-site info; details in the Family-Friendly Facilities page.' },
+  { cat: 'Pets', q: 'Can I bring dogs or pets to Pingtung Park?', a: 'Whether pets are allowed follows the park and authority rules; if allowed, keep them leashed, clean up after them, and avoid children’s play and dining areas.' },
+  { cat: 'Pets', q: 'Can I barbecue or picnic at Pingtung Park?', a: 'Whether barbecue or picnic is allowed follows on-site fire and usage rules; do not use fire in no-fire zones, and practice leave-no-trace, taking trash with you.' },
+  { cat: 'Activities', q: 'Can I ride a bike or skateboard in Pingtung Park?', a: 'Riding and skating should yield to pedestrians and mind safety; some paths or plazas may restrict or ban wheels, following on-site signs.' },
+  { cat: 'Activities', q: 'Are there Christmas or lantern events at Pingtung Park?', a: 'Around year-end there are often Christmas lights and seasonal lantern events; for exact dates and content see the Events page and latest official announcements.' },
+  { cat: 'Activities', q: 'Can I hold events or shoot photos at Pingtung Park?', a: 'Large events, commercial shoots or exhibitions usually require application to the authority and must follow rules; contact the office early.' },
+  { cat: 'Nearby', q: 'What can I visit near Pingtung Park?', a: 'You can continue to downtown spots like Pingtung Martial Arts Hall, Victory Village and Pingtung Art Museum; for dining and routes see the Nearby Attractions and Food Nearby pages.' }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } }))
+};
+---
+<BaseLayout
+  title="Pingtung Park FAQ | Admission, Opening Hours, Transport, Pets & Facilities — Pingtung Park"
+  description="Pingtung Park (Pingtung Park) frequently asked questions: admission, opening hours, transport and parking, pet rules, barbecue and picnic, children’s facilities and seasonal events — answers to what visitors search most."
+  keywords="Pingtung Park FAQ, does Pingtung Park charge admission, Pingtung Park opening hours, can I bring dogs to Pingtung Park, can I barbecue at Pingtung Park, Pingtung Park parking, Pingtung Park questions"
+  canonicalPath="/en/faq"
+  locale="en"
+  ogImageAlt="Pingtung Park (Pingtung Park) — FAQ compilation"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+  </Fragment>
+
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
+      <nav aria-label="Breadcrumb" class="mb-4 text-xs font-semibold text-[#173226]/55">
+        <a href="/en/" class="hover:text-[#b6533d]">Home</a>
+        <span class="mx-1">→</span><span class="text-[#b6533d]">FAQ</span>
+      </nav>
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#b6533d]/20 bg-white/70 px-4 py-2 text-xs font-bold tracking-[.18em] text-[#b6533d]">ALL FAQ</div>
+      <h1 class="serif text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">Pingtung Park <span class="text-[#b6533d]">FAQ</span></h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-[#173226]/75">Admission, opening hours, transport, pets, barbecue, children’s facilities to seasonal events — the questions visitors search most, all in one place. This page is <strong>for travel planning reference only</strong>; actual rules follow on-site and authority announcements.</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-4xl px-5 py-4 lg:px-8">
+    <div class="space-y-3">
+      {faqs.map((item, i) => (
+        <details class="group rounded-2xl border border-[#173226]/10 bg-white/75 p-5" open={i < 2}>
+          <summary class="flex cursor-pointer list-none items-start gap-3 pr-8 font-black">
+            <span class="mt-0.5 shrink-0 rounded-full bg-[#eef2e8] px-2.5 py-0.5 text-[11px] font-bold text-[#6c7f4d]">{item.cat}</span>
+            <span class="flex-1">{item.q}</span>
+            <span class="shrink-0 text-[#b6533d] group-open:rotate-45">＋</span>
+          </summary>
+          <p class="mt-4 text-sm leading-7 text-[#173226]/68">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-[#173226] text-[#fffdf7]">
+    <div class="mx-auto max-w-7xl px-5 py-14 lg:px-8">
+      <p class="text-xs font-bold tracking-[.24em] text-[#d7a948]">EXPLORE MORE</p>
+      <h2 class="serif mt-3 text-3xl font-black sm:text-4xl">What else would you like to know?</h2>
+      <div class="mt-7 flex flex-wrap gap-3 text-sm font-bold">
+        <a href="/en/transport" class="rounded-full bg-white px-5 py-3 text-[#173226]">Transport & Parking</a>
+        <a href="/en/family" class="rounded-full border border-white/50 px-5 py-3 text-white hover:bg-white/10">Family-Friendly Facilities</a>
+        <a href="/en/events" class="rounded-full border border-white/50 px-5 py-3 text-white hover:bg-white/10">Events</a>
+        <a href="/en/attractions" class="rounded-full border border-white/50 px-5 py-3 text-white hover:bg-white/10">Nearby Attractions</a>
+        <a href="/en/food" class="rounded-full border border-white/50 px-5 py-3 text-white hover:bg-white/10">Food Nearby</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

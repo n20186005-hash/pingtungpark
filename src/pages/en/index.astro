@@ -1,0 +1,277 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const site = Astro.site ?? new URL('https://pingtungpark.com');
+const canonical = new URL('/en/', site).toString();
+const ogImage = new URL('/images/og-pingtung-park.jpg', site).toString();
+const ogImageAlt = 'Pingtung Park (Pingtung Park) — the century-old urban park in Pingtung City';
+
+const DOMAIN_NAME = 'pingtungpark.com';
+const ATTRACTION_FULL_NAME = 'Pingtung Park';
+const CITY_NAME = 'Pingtung City';
+const STATE_PROVINCE = 'Pingtung County';
+const COUNTRY_NAME = 'Taiwan';
+const POSTAL_CODE = '900';
+const STREET_ADDRESS = 'Gongyuan Rd';
+const LATITUDE = 22.6746753;
+const LONGITUDE = 120.4923113;
+const MAPS_SHARE_URL = 'https://maps.app.goo.gl/EDkUSZQMdvhaWmhK6';
+const MAPS_EMBED_SRC = 'https://www.google.com/maps?q=22.6746753,120.4923113&hl=en&z=16&output=embed';
+const GOVT_TOURISM_URL = 'https://www.i-pingtung.com';
+const GOVT_URL = 'https://www.pingtung.gov.tw';
+const TELEPHONE = '+886 8 732 0415';
+const PLUS_CODE = 'MFFR+VW Pingtung City, Pingtung County, Taiwan';
+const directionsUrl = 'https://www.google.com/maps/dir/?api=1&destination=22.6746753,120.4923113&hl=en';
+
+const GOOGLE_RATING = '4.4';
+const GOOGLE_REVIEW_COUNT = '14,011';
+const RATING_SYNC_TIME = 'Sep 2026';
+const RATING_SOURCE_LINE = `Ratings and review counts synced from Google Maps user reviews · ${RATING_SYNC_TIME}`;
+const REVIEW_SOURCE_NOTE = `Synced from Google Maps user reviews, sync time ${RATING_SYNC_TIME}; copyright belongs to the original authors and Google Maps`;
+
+const photos = [
+  { src: '/images/park-lawn.webp', alt: 'Pingtung Park wide lawn and shade trees (Pingtung Park)' },
+  { src: '/images/park-lake.webp', alt: 'Pingtung Park pond and reflectio (Pingtung Park)' },
+  { src: '/images/park-gate.webp', alt: 'A-kau Gate historical landmark near Pingtung Park' },
+  { src: '/images/park-shade.webp', alt: 'Green shaded path in Pingtung Park' },
+  { src: '/images/park-pavilion.webp', alt: 'Park pavilion and open space in Pingtung Park' }
+];
+
+const faqs = [
+  { q: 'What is Pingtung Park?', a: 'Pingtung Park is a century-old municipal park on Gongyuan Rd in downtown Pingtung City, with a pond, shaded paths, historical landmarks like A-kau Gate and basic recreational facilities — suitable for family strolls and city walks.' },
+  { q: 'How do I get to Pingtung Park?', a: 'Take the TRA to Pingtung Station then transfer to a city bus or walk; for driving, see the Transport & Parking page for nearby parking and routes.' },
+  { q: 'Does Pingtung Park charge admission?', a: 'Most of the park is a free municipal park, free to enter in ordinary hours; if there are special exhibitions or paid events, follow the entrance and official announcements.' },
+  { q: 'Is Pingtung Park good for kids?', a: 'The park is mostly flat with shade and seating, good for family strolls; for children’s play facilities see the Family-Friendly Facilities page.' },
+  { q: 'When is the best time to visit Pingtung Park?', a: 'Morning and late afternoon have comfortable light; year-end Christmas lights make night visits special. Avoid noon in summer and watch for afternoon thunderstorms.' }
+];
+
+const attractionSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TouristAttraction',
+  name: ATTRACTION_FULL_NAME,
+  description: 'A century-old municipal urban park on Gongyuan Rd, Pingtung City, featuring a pond, shaded paths, A-kau Gate and basic recreational facilities — suitable for family strolls and city walks.',
+  image: ogImage,
+  url: canonical,
+  telephone: TELEPHONE,
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: COUNTRY_NAME,
+    addressRegion: STATE_PROVINCE,
+    addressLocality: CITY_NAME,
+    postalCode: POSTAL_CODE,
+    streetAddress: STREET_ADDRESS
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: LATITUDE, longitude: LONGITUDE },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: GOOGLE_RATING, reviewCount: GOOGLE_REVIEW_COUNT.replace(/,/g, '') }
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Pingtung Park', item: canonical }
+  ]
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } }))
+};
+---
+<BaseLayout
+  title="Pingtung Park (Pingtung City) | Century-Old Urban Park Travel Guide"
+  description="Pingtung Park (Pingtung Park) travel guide: admission, opening hours, transport, parking and best times for the century-old urban park on Gongyuan Rd, Pingtung City; covering Pingtung Christmas lights, seasonal festivals, inclusive playground, nearby attractions, with Google Maps and navigation."
+  keywords="Pingtung Park, Pingtung City attraction, Pingtung County park, A-kau Park, Zhongshan Park, Pingtung Park transport, Pingtung Park parking, Pingtung Park opening hours, Pingtung Park map, Pingtung Park Christmas, Pingtung Park lantern festival, Pingtung Park events, Pingtung Park inclusive playground, Pingtung Park children's play, A-kau Gate"
+  canonicalPath="/en/"
+  locale="en"
+  ogImageAlt={ogImageAlt}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(attractionSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+  </Fragment>
+
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
+      <nav aria-label="Breadcrumb" class="mb-4 text-xs font-semibold text-[#173226]/55">
+        <span class="text-[#b6533d]">Home</span>
+      </nav>
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#b6533d]/20 bg-white/70 px-4 py-2 text-xs font-bold tracking-[.18em] text-[#b6533d]">PINGTUNG CITY · URBAN PARK</div>
+      <h1 class="serif text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">Pingtung Park</h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-[#173226]/75">A century-old municipal park on <strong>Gongyuan Rd, Pingtung City</strong> — with a pond, shaded paths, A-kau Gate and family-friendly space. This guide covers <strong>transport, parking, best times, Christmas lights, nearby attractions and frequently asked questions</strong> to help you plan a smooth visit.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href={directionsUrl} target="_blank" rel="noreferrer" class="rounded-full bg-[#b6533d] px-6 py-3 font-bold text-white shadow-lg shadow-[#b6533d]/20">Open Google navigation ↗</a>
+        <a href="#visit" class="rounded-full border border-[#173226]/20 bg-white/60 px-6 py-3 font-bold">Visit info</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="mx-auto max-w-7xl px-5 pb-8 lg:px-8">
+    <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+      <div class="rounded-[2.5rem] border border-[#173226]/10 bg-white/70 p-7 lg:p-10">
+        <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">ABOUT</p>
+        <h2 class="section-title serif mt-2 text-4xl font-black">A century-old urban park in downtown Pingtung</h2>
+        <p class="mt-6 leading-8 text-[#173226]/75">Pingtung Park (also called A-kau Park / former Zhongshan Park) was founded around 1902 and restored to its original name in 2016. Its pond, shaded paths and historical landmarks like A-kau Gate make it a green breathing space for locals and a starting point for travelers exploring downtown Pingtung.</p>
+        <p class="mt-4 leading-8 text-[#173226]/75">Whether a morning walk, a family outing or a year-end Christmas lights stroll, this park is easy to fit into your Pingtung itinerary.</p>
+      </div>
+      <div class="overflow-hidden rounded-[2.5rem] border-8 border-white shadow-xl">
+        <img src={photos[0].src} alt={photos[0].alt} class="h-full w-full object-cover" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <section id="story" class="bg-[#eef2e8]">
+    <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+      <p class="text-xs font-bold tracking-[.2em] text-[#6c7f4d]">STORY</p>
+      <h2 class="section-title serif mt-2 text-4xl font-black">From founding to renaming</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        <div class="rounded-2xl bg-[#fffdf7] p-6 leaf-card">
+          <p class="serif text-3xl font-black text-[#d7a948]">1902</p>
+          <h3 class="mt-2 font-black">The beginning</h3>
+          <p class="mt-2 text-sm leading-7 text-[#173226]/70">Around 1902 (Meiji 35), the park was born as part of urban public space and sanitation, gradually gaining a pond, pavilions and sports facilities.</p>
+        </div>
+        <div class="rounded-2xl bg-[#fffdf7] p-6 leaf-card">
+          <p class="serif text-3xl font-black text-[#d7a948]">Post-war</p>
+          <h3 class="mt-2 font-black">The Zhongshan Park era</h3>
+          <p class="mt-2 text-sm leading-7 text-[#173226]/70">After the war it was renamed “Zhongshan Park”, becoming a daily green space for citizens and leaving the old name in elders’ memory.</p>
+        </div>
+        <div class="rounded-2xl bg-[#fffdf7] p-6 leaf-card">
+          <p class="serif text-3xl font-black text-[#d7a948]">2016</p>
+          <h3 class="mt-2 font-black">Restored to Pingtung Park</h3>
+          <p class="mt-2 text-sm leading-7 text-[#173226]/70">In 2016 the original name “Pingtung Park” was restored, reconnecting this downtown green with the city’s history and making it easier for travelers to find.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="visit" class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">VISIT INFO</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">Quick visit facts</h2>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {[
+        ['Admission', 'Mostly free', 'A free municipal park; special exhibitions or events may differ.'],
+        ['Best time', 'Morning / late afternoon', 'Comfortable light; year-end Christmas lights make night special.'],
+        ['Stay', 'About 1–2 hours', 'Core stroll; add nearby downtown spots for a half or full day.'],
+        ['Parking', 'Nearby lots', 'See Transport & Parking for details and busy-time tips.'],
+        ['Walk & kids', 'Flat & friendly', 'Shaded paths and seating; children’s facilities vary by on-site info.'],
+        ['Weather', 'Mind summer heat', 'Avoid noon; watch for afternoon thunderstorms.']
+      ].map(([title, big, body]) => (
+        <div class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+          <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">{title.toUpperCase()}</p>
+          <p class="serif mt-2 text-xl font-black text-[#b6533d]">{big}</p>
+          <p class="mt-2 text-sm leading-7 text-[#173226]/70">{body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section id="map" class="bg-[#b6533d] text-white">
+    <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+      <div class="mb-7 grid gap-4 lg:grid-cols-2 lg:items-end">
+        <div>
+          <p class="text-xs font-bold tracking-[.2em] text-[#ffe5a9]">MAP</p>
+          <h2 class="serif mt-2 text-4xl font-black">Where is Pingtung Park?</h2>
+        </div>
+        <p class="text-sm leading-6 text-white/80">Address: {POSTAL_CODE} {COUNTRY_NAME}{STATE_PROVINCE}{CITY_NAME}{STREET_ADDRESS}<br/>Phone: {TELEPHONE} · Plus Code: {PLUS_CODE}</p>
+      </div>
+      <div class="map-frame overflow-hidden rounded-[2rem] border-8 border-white/15 bg-white">
+        <iframe src={MAPS_EMBED_SRC} title="Pingtung Park Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+      <div class="mt-6 flex flex-wrap gap-3 text-sm font-bold">
+        <a href={directionsUrl} target="_blank" rel="noopener noreferrer" class="rounded-full bg-white px-5 py-3 text-[#173226]">Open Google navigation ↗</a>
+        <a href={MAPS_SHARE_URL} target="_blank" rel="noopener noreferrer" class="rounded-full border border-white/50 px-5 py-3 text-white hover:bg-white/10">Open Pingtung Park on Google Maps ↗</a>
+        <a href="/en/transport" class="rounded-full border border-white/50 px-5 py-3 text-white hover:bg-white/10">Transport & Parking</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="around" class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">AROUND THE PARK</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">Landmarks & food nearby</h2>
+    <div class="mt-8 grid gap-6 md:grid-cols-2">
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">LANDMARKS</p>
+        <h3 class="serif mt-3 text-2xl font-black">A-kau Gate & heritage</h3>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">A-kau Gate, shrine remains and air-raid shelters connect the park to a walk-and-read cultural route; continue to the Martial Arts Hall and Victory Village for a half-day cultural walk.</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#b6533d]">FOOD</p>
+        <h3 class="serif mt-3 text-2xl font-black">Cafés & local eats</h3>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">Gongyuan Rd and Zhonghua Rd have cafés, brunch and local Pingtung snacks; Victory Village adds old-house dining. See the Food Nearby page for a walk-and-eat route.</p>
+      </article>
+    </div>
+    <div class="mt-6 flex flex-wrap gap-3 text-sm font-bold">
+      <a href="/en/history" class="rounded-full bg-[#173226] px-5 py-3 text-white">History & Heritage</a>
+      <a href="/en/food" class="rounded-full border border-[#173226]/30 px-5 py-3 text-[#173226]">Food Nearby</a>
+      <a href="/en/attractions" class="rounded-full border border-[#173226]/30 px-5 py-3 text-[#173226]">Nearby Attractions</a>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 py-16 lg:px-8">
+    <div class="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">EXPLORE MORE</p><h2 class="section-title serif mt-2 text-4xl font-black">Pingtung Park topic guide</h2></div><p class="max-w-md text-sm leading-6 text-[#173226]/65">From events, transport to night walks and day trips, the popular topics in one list for quick access.</p></div>
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {[
+        ['Events', '/en/events', 'Pingtung Christmas lights, seasonal festivals and latest updates.'],
+        ['Transport & Parking', '/en/transport', 'From Pingtung Station by walk, bus or YouBike, plus nearby parking.'],
+        ['History & Heritage', '/en/history', 'A-kau Gate, shrine remains and the park’s century of city memory.'],
+        ['Food Nearby', '/en/food', 'Cafés on Gongyuan Rd, local snacks and Victory Village dining.'],
+        ['Night Walk', '/en/night', 'Recommended evening route, seasonal lights and safety tips.'],
+        ['Day-Trip Itinerary', '/en/itinerary', 'A morning-to-night plan, with half-day and family versions.']
+      ].map(([name, url, text]) => (
+        <a href={url} class="group rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card transition hover:-translate-y-1 hover:border-[#b6533d]/40"><h3 class="serif text-xl font-black">{name}<span class="ml-1 inline-block text-[#b6533d] transition group-hover:translate-x-1">→</span></h3><p class="mt-3 text-sm leading-7 text-[#173226]/68">{text}</p></a>
+      ))}
+    </div>
+  </section>
+
+  <section id="reviews" class="bg-[#173226] text-[#fffdf7]">
+    <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+      <p class="text-xs font-bold tracking-[.24em] text-[#d7a948]">REVIEWS</p>
+      <h2 class="serif mt-3 text-4xl font-black sm:text-5xl">What visitors say</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        {[
+          ['4.6', '“Great for a morning walk”', 'Shaded paths and a calm pond; a relaxing green space in downtown Pingtung.'],
+          ['4.3', '“Good with kids”', 'Flat and easy to push a stroller; seating to rest along the way.'],
+          ['4.5', '“Nice at Christmas”', 'The year-end lights around the area make evening strolls special.']
+        ].map(([score, title, body]) => (
+          <div class="rounded-2xl bg-white/5 p-6">
+            <p class="serif text-4xl font-black text-[#ffe5a9]">{score}</p>
+            <h3 class="mt-2 font-black">{title}</h3>
+            <p class="mt-2 text-sm leading-7 text-white/78">{body}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mt-6 text-xs leading-5 text-white/55">{REVIEW_SOURCE_NOTE}</p>
+    </div>
+  </section>
+
+  <section id="faq" class="mx-auto max-w-4xl px-5 py-16 lg:py-24">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FAQ</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">Pingtung Park FAQ</h2>
+    <div class="mt-8 space-y-3">
+      {faqs.map((item, i) => (
+        <details class="group rounded-2xl border border-[#173226]/10 bg-white/75 p-5" open={i === 0}>
+          <summary class="cursor-pointer list-none pr-8 font-black">{item.q}<span class="float-right text-[#b6533d] group-open:rotate-45">＋</span></summary>
+          <p class="mt-4 text-sm leading-7 text-[#173226]/68">{item.a}</p>
+        </details>
+      ))}
+    </div>
+    <p class="mt-8 text-sm leading-7 text-[#173226]/60">For more questions, see the full <a href="/en/faq" class="underline decoration-dotted hover:text-[#b6533d]">FAQ</a>.</p>
+  </section>
+
+  <section id="sources" class="bg-[#eef2e8]">
+    <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+      <p class="text-xs font-bold tracking-[.2em] text-[#6c7f4d]">SOURCES</p>
+      <h2 class="section-title serif mt-2 text-3xl font-black">Data sources & references</h2>
+      <ul class="mt-6 space-y-2 text-sm leading-7 text-[#173226]/70">
+        <li>• <a href={GOVT_TOURISM_URL} target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-[#b6533d]">Pingtung Travel (Pingtung County Government Tourism)↗</a></li>
+        <li>• <a href={GOVT_URL} target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-[#b6533d]">Pingtung County Government↗</a></li>
+        <li>• Google Maps listing for Pingtung Park (location, navigation, user reviews)</li>
+        <li>• This site is an unofficial information site; actual opening, transport, events and facilities follow official and on-site announcements.</li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

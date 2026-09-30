@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const site = Astro.site ?? new URL('https://pingtungpark.com');
+const canonical = new URL('/christmas', site).toString();
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '屏東公園', item: new URL('/', site).toString() },
+    { '@type': 'ListItem', position: 2, name: '屏東聖誕節', item: canonical }
+  ]
+};
+
+const faqs = [
+  { q: '屏東聖誕節在哪裡舉辦？', a: '屏東每年冬季的「屏東聖誕節」是屏東市重要的節慶活動，屏東公園周邊常見節慶燈飾與氛圍；確切舉辦地點與範圍請以官方公告為準。' },
+  { q: '屏東公園聖誕點燈時間是幾點？', a: '燈飾多於入夜後點亮，實際點燈與熄燈時間依年度規劃；出發前請查官方最新公告，本頁不硬編固定時刻。' },
+  { q: '屏東聖誕節是幾月幾號？', a: '活動多落在每年冬季（約 12 月前後），確切檔期與年份安排以主管機關與官方社群公告為準。' },
+  { q: '屏東公園聖誕節好拍嗎？', a: '夜間燈飾與節慶造景很適合拍照；取景與光線建議可參考「拍照與最佳時段」專區。' },
+  { q: '人潮與交通怎麼安排？', a: '熱門時段與週末人潮較多，建議提早抵達、優先大眾運輸或留意停車；詳見「交通停車」專區。' },
+  { q: '適合帶小孩去嗎？', a: '燈飾與節慶氛圍適合親子同遊；平路園道與休息座椅較友善，細節見「親子友善設施」專區。' }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } }))
+};
+---
+<BaseLayout
+  title="屏東聖誕節｜屏東公園點燈、燈飾與最佳拍照時機 — Pingtung Park"
+  description="屏東聖誕節（屏東公園）專頁：整理節慶燈飾亮點、入夜後最佳拍照時機、人潮與交通提醒、親子同遊與周邊順遊建議，並附確切檔期查詢方式。"
+  keywords="屏東聖誕節, 屏東公園聖誕節, 屏東聖誕點燈, 屏東公園燈會, 屏東耶誕節, 屏東公園耶誕, 屏東聖誕活動, 屏東公園聖誕拍照"
+  canonicalPath="/christmas"
+  ogImageAlt="屏東公園（Pingtung Park）— 屏東聖誕節燈飾"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+  </Fragment>
+
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
+      <nav aria-label="地理層級" class="mb-4 text-xs font-semibold text-[#173226]/55">
+        <a href="/" class="hover:text-[#b6533d]">首頁</a>
+        <span class="mx-1">→</span><a href="/events" class="hover:text-[#b6533d]">活動專區</a>
+        <span class="mx-1">→</span><span class="text-[#b6533d]">屏東聖誕節</span>
+      </nav>
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#b6533d]/20 bg-white/70 px-4 py-2 text-xs font-bold tracking-[.18em] text-[#b6533d]">CHRISTMAS</div>
+      <h1 class="serif text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">屏東<span class="text-[#b6533d]">聖誕節</span></h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-[#173226]/75">每年冬季，<strong>屏東聖誕節</strong>為屏東市點亮節慶氛圍，屏東公園周邊常見燈飾與造景。本專頁整理<strong>點燈亮點、最佳拍照時機、人潮交通與親子同遊</strong>建議；確切檔期、地點與點燈時間請以官方公告為準。</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 pb-4 lg:px-8">
+    <div class="grid gap-6 md:grid-cols-3">
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#b6533d]">LIGHTS</p>
+        <h2 class="serif mt-3 text-xl font-black">節慶燈飾</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">入夜後園區與周邊常見聖誕燈飾、主題造景與光影佈置，是冬季散步與打卡的熱門亮點。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">PHOTO</p>
+        <h2 class="serif mt-3 text-xl font-black">夜景拍照</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">燈飾亮度高、適合手持夜拍；構圖與時段建議可參考「拍照與最佳時段」專區。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-6 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#d7a948]">FAMILY</p>
+        <h2 class="serif mt-3 text-xl font-black">親子同遊</h2>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">平路園道與休息座椅適合帶小孩慢遊；人潮較多時建議避開尖峰、分批休息。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="bg-[#173226] text-[#fffdf7]">
+    <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+      <p class="text-xs font-bold tracking-[.24em] text-[#d7a948]">PLAN YOUR VISIT</p>
+      <h2 class="serif mt-3 text-4xl font-black sm:text-5xl">人潮、交通與拍攝小提醒</h2>
+      <ul class="mt-8 grid gap-4 sm:grid-cols-2">
+        {[
+          '熱門時段與週末人潮多，建議提早抵達或選非假日夜晚。',
+          '優先大眾運輸或留意周邊停車，詳見「交通停車」專區。',
+          '夜拍請注意安全與他人動線，必要時使用隨身照明。',
+          '冬季夜間偏涼，帶小孩與長輩請多備外套。',
+          '確切點燈日期、地點與活動安排，以官方公告為準。',
+          '可順遊演武場、勝利星村與周邊美食，見「附近景點」與「周邊美食」專區。'
+        ].map(tip => (
+          <li class="flex gap-3 rounded-2xl bg-white/5 p-5 text-sm leading-7 text-white/85"><span class="font-black text-[#ffe5a9]">✓</span><span>{tip}</span></li>
+        ))}
+      </ul>
+      <div class="mt-8 flex flex-wrap gap-3 text-sm font-bold">
+        <a href="/photo" class="rounded-full bg-white px-5 py-3 text-[#173226]">拍照時段</a>
+        <a href="/transport" class="rounded-full border border-white/50 px-5 py-3 text-white hover:bg-white/10">交通停車</a>
+        <a href="/attractions" class="rounded-full border border-white/50 px-5 py-3 text-white hover:bg-white/10">附近景點</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="mx-auto max-w-4xl px-5 py-16 lg:py-24">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FAQ</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">屏東聖誕節常見問答</h2>
+    <div class="mt-8 space-y-3">
+      {faqs.map((item, i) => (
+        <details class="group rounded-2xl border border-[#173226]/10 bg-white/75 p-5" open={i === 0}>
+          <summary class="cursor-pointer list-none pr-8 font-black">{item.q}<span class="float-right text-[#b6533d] group-open:rotate-45">＋</span></summary>
+          <p class="mt-4 text-sm leading-7 text-[#173226]/68">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

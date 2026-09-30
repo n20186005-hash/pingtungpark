@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const site = Astro.site ?? new URL('https://pingtungpark.com');
+const canonical = new URL('/events', site).toString();
+const MAPS_SHARE_URL = 'https://maps.app.goo.gl/EDkUSZQMdvhaWmhK6';
+const GOVT_TOURISM_URL = 'https://www.i-pingtung.com';
+const GOVT_URL = 'https://www.pingtung.gov.tw';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '屏東公園', item: new URL('/', site).toString() },
+    { '@type': 'ListItem', position: 2, name: '活動專區', item: canonical }
+  ]
+};
+
+const faqs = [
+  { q: '屏東公園有聖誕節活動嗎？', a: '屏東公園鄰近屏東市中心，年末至跨年期間周邊常會佈置聖誕節燈飾與點燈活動，是屏東市區冬季夜間散步的熱門去處；實際點燈日期與活動內容請以屏東縣政府、屏東市公所與現場公告為準。' },
+  { q: '屏東公園會舉辦燈會或節慶燈飾嗎？', a: '園區與屏東市中心在節慶期間可能安排季節性燈飾或主題活動。因年度安排不同，建議出發前關注官方觀光資訊與現場公告，把散步與活動安排在同一趟。' },
+  { q: '屏東公園有適合親子的活動嗎？', a: '公園設有共融遊戲場與兒童遊具，平日就適合親子散步；若遇季節市集、藝文或假日活動，則更適合安排半日親子行程。' },
+  { q: '在哪裡查最新的屏東公園活動資訊？', a: '可參考屏東縣政府與屏東旅遊網等官方觀光頻道，或於 Google 地圖的屏東公園商家檔案查看最新動態；本站也整理交通與周邊順遊建議供行程規劃。' },
+  { q: '參加活動時怎麼去屏東公園？', a: '可自屏東車站步行、騎 YouBike 或搭乘市區公車前往，開車則可善用周邊停車場；詳細交通與停車資訊請見本站「交通停車」專區。' }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } }))
+};
+---
+<BaseLayout
+  title="屏東公園活動專區｜屏東聖誕節點燈、季節燈會與年度活動 — Pingtung Park"
+  description="屏東公園（Pingtung Park）活動專區：整理屏東聖誕節點燈、季節燈會、親子與市集活動資訊，並附交通、周邊順遊與最新動態查詢建議。"
+  keywords="屏東公園活動, 屏東聖誕節, 屏東公園聖誕節點燈, 屏東公園燈會, 屏東公園跨年, 屏東公園市集, 屏東公園親子活動, 屏東市活動"
+  canonicalPath="/events"
+  ogImageAlt="屏東公園（Pingtung Park）— 季節活動與夜間燈飾氛圍"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+  </Fragment>
+
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
+      <nav aria-label="地理層級" class="mb-4 text-xs font-semibold text-[#173226]/55">
+        <a href="/" class="hover:text-[#b6533d]">首頁</a>
+        <span class="mx-1">→</span><span class="text-[#b6533d]">活動專區</span>
+      </nav>
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#b6533d]/20 bg-white/70 px-4 py-2 text-xs font-bold tracking-[.18em] text-[#b6533d]">EVENTS · 屏東市中心</div>
+      <h1 class="serif text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">屏東公園<span class="text-[#b6533d]">活動專區</span></h1>
+      <p class="mt-7 max-w-2xl text-lg leading-8 text-[#173226]/75">屏東公園（Pingtung Park）不只是白天散步的城市綠地，年末的<strong>屏東聖誕節</strong>燈飾、季節<strong>燈會</strong>與假日市集，也讓這座百年公園在夜間與節慶時展現不同面貌。本專區整理活動亮點與查詢方式，幫你安排最順的一趟。</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/transport" class="rounded-full bg-[#b6533d] px-6 py-3 font-bold text-white shadow-lg shadow-[#b6533d]/20">怎麼去：交通停車</a>
+        <a href="#latest" class="rounded-full border border-[#173226]/20 bg-white/60 px-6 py-3 font-bold">掌握最新活動</a>
+        <a href="/christmas" class="rounded-full border border-[#b6533d]/30 bg-[#fff8eb] px-6 py-3 font-bold text-[#b6533d]">屏東聖誕節專頁</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 pb-4 lg:px-8">
+    <div class="rounded-[2.5rem] border border-[#173226]/10 bg-white/70 p-7 lg:p-10">
+      <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">CHRISTMAS IN PINGTUNG</p>
+      <h2 class="section-title serif mt-2 text-4xl font-black">屏東聖誕節：市中心夜間散步的亮點</h2>
+      <p class="mt-6 leading-8 text-[#173226]/75">每到年末，屏東市區常會佈置聖誕節燈飾與點燈活動，屏東公園與周邊商圈、勝利星村一帶形成溫馨的夜間散步路線。對在地居民與旅客來說，<strong>屏東公園聖誕節點燈</strong>是冬季市區行程中容易安排、也適合親子同行的選項。</p>
+      <p class="mt-4 leading-8 text-[#173226]/75">由於每年的燈飾主題、點燈日期與配合活動不盡相同，<strong>實際安排請以屏東縣政府、屏東市公所與現場公告為準</strong>；本站不預測或寫入具體日期，以免提供過期資訊。</p>
+      <div class="mt-6"><a href="/christmas" class="inline-flex items-center gap-2 rounded-full bg-[#b6533d] px-5 py-3 text-sm font-bold text-white shadow-lg shadow-[#b6533d]/20">屏東聖誕節專頁 →</a></div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+    <div class="grid gap-6 md:grid-cols-2">
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">SEASONAL LIGHTS</p>
+        <h3 class="serif mt-3 text-2xl font-black">季節燈會與節慶燈飾</h3>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">節慶期間，園區與屏東市中心可能安排季節性燈飾或主題光環境。夜間來訪可避開白天強日照，也能順遊周邊的燈飾動線。</p>
+      </article>
+      <article class="rounded-3xl border border-[#173226]/10 bg-white/75 p-7 leaf-card">
+        <p class="text-xs font-black tracking-[.15em] text-[#6c7f4d]">FAMILY & MARKET</p>
+        <h3 class="serif mt-3 text-2xl font-black">親子活動與假日市集</h3>
+        <p class="mt-3 text-sm leading-7 text-[#173226]/70">公園設有共融遊戲場與兒童遊具，平日即適合親子散步；若遇季節市集、藝文或假日活動，更適合安排半日親子行程，並就近銜接周邊餐飲。</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="latest" class="bg-[#173226] text-[#fffdf7]">
+    <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+      <p class="text-xs font-bold tracking-[.24em] text-[#d7a948]">STAY UPDATED</p>
+      <h2 class="serif mt-3 text-4xl font-black sm:text-5xl">如何掌握屏東公園最新活動？</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <div class="rounded-2xl border border-white/15 bg-white/5 p-6">
+          <h3 class="font-black">官方觀光頻道</h3>
+          <p class="mt-3 text-sm leading-7 text-white/78">關注<a href={GOVT_TOURISM_URL} target="_blank" rel="noopener noreferrer" class="mx-1 underline decoration-dotted">屏東旅遊網（屏東縣政府觀光旅遊網）↗</a>與<a href={GOVT_URL} target="_blank" rel="noopener noreferrer" class="mx-1 underline decoration-dotted">屏東縣政府↗</a>，可取得年度活動、燈飾與市集的最新公告。</p>
+        </div>
+        <div class="rounded-2xl border border-white/15 bg-white/5 p-6">
+          <h3 class="font-black">Google 地圖動態</h3>
+          <p class="mt-3 text-sm leading-7 text-white/78">在<a href={MAPS_SHARE_URL} target="_blank" rel="noopener noreferrer" class="mx-1 underline decoration-dotted">Google 地圖的屏東公園↗</a>商家檔案，可查看最新動態、評價與現場照片，搭配導航一次搞定。</p>
+        </div>
+      </div>
+      <p class="mt-8 text-sm leading-7 text-white/70">小提醒：活動資訊變動頻繁，出發前請以官方與現場公告為準；本站僅整理亮點與行程建議，不保證特定日期的活動內容。</p>
+    </div>
+  </section>
+
+  <section id="faq" class="mx-auto max-w-4xl px-5 py-16 lg:py-24">
+    <p class="text-xs font-bold tracking-[.2em] text-[#b6533d]">FAQ</p>
+    <h2 class="section-title serif mt-2 text-4xl font-black">屏東公園活動常見問答</h2>
+    <div class="mt-8 space-y-3">
+      {faqs.map((item, i) => (
+        <details class="group rounded-2xl border border-[#173226]/10 bg-white/75 p-5" open={i === 0}>
+          <summary class="cursor-pointer list-none pr-8 font-black">{item.q}<span class="float-right text-[#b6533d] group-open:rotate-45">＋</span></summary>
+          <p class="mt-4 text-sm leading-7 text-[#173226]/68">{item.a}</p>
+        </details>
+      ))}
+    </div>
+    <p class="mt-8 text-sm leading-7 text-[#173226]/60">想了解位置、交通與停車，請前往<a href="/transport" class="underline decoration-dotted hover:text-[#b6533d]">「交通停車」專區</a>；園區基本資料與評價可回到<a href="/" class="underline decoration-dotted hover:text-[#b6533d]">首頁</a>。</p>
+  </section>
+</BaseLayout>

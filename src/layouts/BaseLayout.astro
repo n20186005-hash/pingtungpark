@@ -1,0 +1,155 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  keywords: string;
+  canonicalPath: string;
+  ogImage?: string;
+  ogImageAlt?: string;
+  locale?: 'zh-Hant' | 'en';
+}
+const { title, description, keywords, canonicalPath, ogImage, ogImageAlt, locale = 'zh-Hant' } = Astro.props;
+
+const site = Astro.site ?? new URL('https://pingtungpark.com');
+const canonical = new URL(canonicalPath, site).toString();
+const ogImageUrl = new URL(ogImage ?? '/images/og-pingtung-park.jpg', site).toString();
+
+const isEn = locale === 'en';
+const prefix = isEn ? '/en' : '';
+const homeHref = isEn ? '/en/' : '/';
+const htmlLang = isEn ? 'en' : 'zh-Hant-TW';
+const ogLocale = isEn ? 'en_US' : 'zh_TW';
+
+// hreflang alternates: derive the other-locale path by toggling the /en prefix.
+const zhPath = canonicalPath.replace(/^\/en/, '') || '/';
+const enPath = '/en' + (zhPath === '/' ? '' : zhPath);
+const alternates = [
+  { lang: 'zh-Hant', href: new URL(zhPath, site).toString() },
+  { lang: 'en', href: new URL(enPath, site).toString() },
+  { lang: 'x-default', href: new URL(zhPath, site).toString() }
+];
+
+const DOMAIN_NAME = 'pingtungpark.com';
+const ATTRACTION_FULL_NAME = '屏東公園';
+const CITY_NAME = '屏東市';
+const directionsUrl = isEn
+  ? 'https://www.google.com/maps/dir/?api=1&destination=22.6746753,120.4923113&hl=en'
+  : 'https://www.google.com/maps/dir/?api=1&destination=22.6746753,120.4923113&hl=zh-TW';
+const MAPS_SHARE_URL = 'https://maps.app.goo.gl/EDkUSZQMdvhaWmhK6';
+
+const footerNote = isEn
+  ? `Unofficial attraction information site (${DOMAIN_NAME}); content is for travel-planning reference only. Actual opening hours, transport, events, and facility status are subject to competent authorities and on-site announcements.`
+  : `非官方景點資訊網站（${DOMAIN_NAME}）；內容僅供旅遊規劃參考，實際開放、交通、活動與設施狀況請以主管機關及現場公告為準。`;
+
+const navItems = isEn
+  ? [
+      ['About', '/#about'], ['Story', '/#story'], ['Visit info', '/#visit'],
+      ['Events', '/events'], ['Transport', '/transport'], ['History', '/history'],
+      ['Food', '/food'], ['Photo', '/photo'], ['Nearby', '/attractions'],
+      ['Around', '/#around'], ['FAQ', '/faq'], ['Family', '/family'],
+      ['Christmas', '/christmas'], ['Night walk', '/night'], ['Itinerary', '/itinerary']
+    ]
+  : [
+      ['公園簡介', '/#about'], ['公園故事', '/#story'], ['遊覽資訊', '/#visit'],
+      ['活動專區', '/events'], ['交通停車', '/transport'], ['歷史古蹟', '/history'],
+      ['周邊美食', '/food'], ['拍照時段', '/photo'], ['附近景點', '/attractions'],
+      ['周邊探索', '/#around'], ['常見問題', '/faq'], ['親子友善', '/family'],
+      ['聖誕節', '/christmas'], ['夜景散步', '/night'], ['一日遊', '/itinerary']
+    ];
+
+const footerItems = isEn
+  ? [
+      ['Home', '/'], ['Events', '/events'], ['Transport', '/transport'], ['History', '/history'],
+      ['Food', '/food'], ['Photo', '/photo'], ['Nearby', '/attractions'], ['FAQ', '/faq'],
+      ['Family', '/family'], ['Christmas', '/christmas'], ['Night walk', '/night'],
+      ['Itinerary', '/itinerary'], ['Reviews', '/#reviews'], ['Sources', '/#sources']
+    ]
+  : [
+      ['首頁', '/'], ['活動專區', '/events'], ['交通停車', '/transport'], ['歷史古蹟', '/history'],
+      ['周邊美食', '/food'], ['拍照時段', '/photo'], ['附近景點', '/attractions'], ['常見問題', '/faq'],
+      ['親子友善', '/family'], ['聖誕節', '/christmas'], ['夜景散步', '/night'],
+      ['一日遊', '/itinerary'],       ['評價', '/#reviews'], ['資料來源', '/#sources']
+    ];
+
+const currentPath = Astro.url.pathname;
+const otherLocaleUrl = isEn ? (currentPath.replace(/^\/en/, '') || '/') : ('/en' + (currentPath === '/' ? '' : currentPath));
+const langLabel = isEn ? '中文' : 'EN';
+---
+<!doctype html>
+<html lang={htmlLang}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="keywords" content={keywords} />
+  <meta name="theme-color" content="#173226" />
+  <link rel="canonical" href={canonical} />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  {alternates.map(a => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={ATTRACTION_FULL_NAME} />
+  <meta property="og:locale" content={ogLocale} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImageUrl} />
+  {ogImageAlt && <meta property="og:image:alt" content={ogImageAlt} />}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImageUrl} />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content={ATTRACTION_FULL_NAME} />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" />
+  <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" />
+  <link rel="apple-touch-icon" href="/icons/favicon-180.png" sizes="180x180" />
+  <slot name="head" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HXM22WWPKP');
+  </script>
+</head>
+<body class="noise">
+  <header class="sticky top-0 z-50 border-b border-[#173226]/10 bg-[#fffdf7]/90 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-3 lg:px-8">
+      <a href={homeHref} aria-label="回到首頁"><img src="/logo.svg" alt={`${ATTRACTION_FULL_NAME}（Pingtung Park）網站標誌`} class="h-12 w-auto" /></a>
+      <nav class="hidden flex-wrap gap-x-4 gap-y-1 text-sm font-semibold md:flex">
+        {navItems.map(([label, href]) => <a href={prefix + href} class="hover:text-[#b6533d]">{label}</a>)}
+      </nav>
+      <a href={otherLocaleUrl} class="rounded-full border border-[#173226]/20 px-3 py-2 text-sm font-bold hover:border-[#b6533d] hover:text-[#b6533d]">{langLabel}</a>
+      <a href={directionsUrl} target="_blank" rel="noreferrer" class="rounded-full bg-[#173226] px-4 py-2 text-sm font-bold text-white transition hover:-translate-y-0.5">開啟導航 ↗</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <slot />
+  </main>
+
+  <footer class="bg-[#10251b] text-white/65"><div class="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-10 lg:flex-row lg:items-end lg:justify-between lg:px-8"><div><img src="/logo.svg" alt={`${ATTRACTION_FULL_NAME}（Pingtung Park）網站標誌`} class="h-12 w-auto brightness-0 invert"/><p class="mt-4 max-w-xl text-xs leading-6">{footerNote}</p></div><div class="flex flex-wrap gap-5 text-xs">{footerItems.map(([label, href]) => <a href={prefix + href}>{label}</a>)}<a href="#" id="cookie-settings">Cookie 設定</a></div></div></footer>
+
+  <div id="cookie-panel" class="fixed bottom-4 left-4 right-4 z-[60] hidden max-w-lg rounded-2xl border border-[#173226]/15 bg-white p-5 shadow-2xl sm:left-auto sm:w-[420px]" role="dialog" aria-label="Cookie 設定"><h2 class="font-black">Cookie 與分析設定</h2><p class="mt-2 text-sm leading-6 text-[#173226]/65">本站使用 GA4 了解匿名化的整體瀏覽情況。你可以在瀏覽器隱私設定中限制第三方 Cookie；本網站不提供帳號登入或個人資料庫。</p><button id="cookie-close" class="mt-4 rounded-full bg-[#173226] px-4 py-2 text-sm font-bold text-white">知道了</button></div>
+
+  <script is:inline>
+    const openCookie = document.getElementById('cookie-settings');
+    const panel = document.getElementById('cookie-panel');
+    const closeCookie = document.getElementById('cookie-close');
+    openCookie?.addEventListener('click', (e) => { e.preventDefault(); panel?.classList.remove('hidden'); });
+    closeCookie?.addEventListener('click', () => panel?.classList.add('hidden'));
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
