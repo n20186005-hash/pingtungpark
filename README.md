@@ -1,50 +1,17 @@
-# 屏東公園單頁景點網站
+# Pingtung Park bilingual visitor guide
 
-Astro + Tailwind CSS + TypeScript，部署目標為 Cloudflare Workers。
+Traditional Chinese and English pages retain the original static-prerendered route family inside the Astro Cloudflare server build. Shared reviewed content is in `src/data/guide.json`; private research/export evidence is not part of this repository.
 
-## 版本
-- Astro 7.3.3
-- @astrojs/cloudflare 14.3.2
-- @astrojs/check 0.9.10
-- @astrojs/sitemap 3.7.4
-- Tailwind CSS / @tailwindcss/vite 4.3.3
-- TypeScript 6.0.3（@astrojs/check 0.9.10 支援 6.x；TypeScript 7 暫不適用 astro check）
-- Wrangler 4.134.0
-- pnpm 12.4.2
-- Node.js 24.21.0 LTS
+Use Node 24.21.0 and pnpm 12.4.2. Dependencies remain pinned by the existing lockfile. Run a normal `pnpm install --frozen-lockfile`, then `pnpm run check` and `pnpm run build`.
 
-## 域名 / site 唯一配置
-不要在頁面硬編正式域名。部署時只需設定環境變數：
+The established production build command is `pnpm run build` and deployment command is `npx wrangler deploy`. The source wrapper is compiled through `@astrojs/cloudflare/entrypoints/server`; default Wrangler follows the adapter-generated deployment config. Preserve SESSION, IMAGES and ASSETS. Project name is `pingtungpark`; no new domain bindings are declared. Use the pinned local Wrangler for native preview after building: `pnpm exec wrangler dev --ip 127.0.0.1 --port 8947 --local`.
 
-```bash
-SITE_URL=https://你的域名 pnpm build
-```
+`pnpm run build` removes local machine root paths from deliverable modules while retaining the generated local deployment metadata. Unknown URLs and explicit error aliases must return HTTP 404. The former offline homepage cache is retired; this site does not promise offline route delivery.
 
-`astro.config.mjs` 會把它寫入 Astro 的 `site` 欄位；canonical、Open Graph、JSON-LD 與 sitemap 都從 `Astro.site` / `site` 派生。若 `SITE_URL` 缺失，仍可正常建置，且 sitemap 不啟用。
+## Images
 
-## 開發與檢查
-```bash
-corepack enable
-corepack prepare pnpm@12.4.2 --activate
-pnpm install --frozen-lockfile
-pnpm check
-pnpm build
-```
+Only the verified file **Pingtung Park, Jan 2025 (1).jpg**, Ralff Nestor Nacor, 4 January 2025, is used. Exact source: https://commons.wikimedia.org/wiki/File:Pingtung_Park,_Jan_2025_(1).jpg . Licence: https://creativecommons.org/licenses/by-sa/4.0/ . Variants are resized/recompressed; social image also centre-cropped, with the same licence retained. On-page captions contain source, creator, date, licence and modifications. Historical imagery does not verify current site conditions. A photographic licence does not clear every depicted subject right.
 
-## Cloudflare Workers
-```bash
-pnpm deploy
-```
+## Privacy
 
-`wrangler.jsonc` 使用 `@astrojs/cloudflare/entrypoints/server`，並把 `dist` 作為靜態資產目錄。
-
-## 圖片授權
-網站使用 Wikimedia Commons 真實照片：
-- Pingtung Park, Jan 2025 (1).jpg — Ralff Nestor Nacor — CC BY-SA 4.0
-- Pingtung Park, Jan 2025 (2).jpg — Ralff Nestor Nacor — CC BY-SA 4.0
-- Pingtung Park, Jan 2025 (3).jpg — Ralff Nestor Nacor — CC BY-SA 4.0
-
-目前 HTML 直接引用 Commons 原圖 URL，以保留授權來源可追溯性。如需完全本地化，下載三張原圖至 `public/images/` 後，把 `src/pages/index.astro` 的 `photos` 陣列改成本地路徑即可。
-
-## GA4
-已配置：`G-HXM22WWPKP`
+GA4 automatically loads using the existing identifier. There is no site analytics consent switch. Bilingual privacy pages describe the actual behaviour, browser controls and hosting/possible independent measurement limits. Confirm final production HTML and actual browser requests after release; do not treat a single response as proof of permanent absence of hosting injection.

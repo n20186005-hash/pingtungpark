@@ -1,0 +1,800 @@
+{
+  "index": {
+    "title": {
+      "zh": "屏東公園｜活動、交通與百年公園參觀指南",
+      "en": "Pingtung Park | Events, transport and heritage guide"
+    },
+    "description": {
+      "zh": "屏東市公園路的屏東公園指南：2026聖誕節公告、交通停車、共融遊戲場、阿猴城門與Google地圖日期快照；附官方來源與無障礙資訊差異。",
+      "en": "Plan a visit to Pingtung Park on Gongyuan Road: dated 2026 Christmas announcements, transport, playground, heritage and accessibility-source differences."
+    },
+    "sections": [
+      {
+        "title": {
+          "zh": "先認識這座公園",
+          "en": "A park with several names"
+        },
+        "body": {
+          "zh": "屏東公園位於屏東市公園路，舊資料也會寫「中山公園」或「阿猴公園」。國家文化記憶庫所載沿革從1902年談起，戰後曾改名中山公園，2016年恢復屏東公園名稱。不要與屏東縣民公園混為同一地點。",
+          "en": "On Gongyuan Road in Pingtung City, this park also appears in older records as Zhongshan Park or A-kau Park. The National Cultural Memory Bank traces its origins to 1902, its post-war Zhongshan name and restoration of the Pingtung Park name in 2016. It is distinct from Pingtung County Citizen Park."
+        }
+      },
+      {
+        "title": {
+          "zh": "開放、費用與現場限制",
+          "en": "Hours, charges and local restrictions"
+        },
+        "body": {
+          "zh": "2026-10-30查閱屏東旅遊網的遊戲場介紹，開放欄列24小時；Google地圖當日也列24小時。這不是館舍、遊具維護、活動燈飾或夜間照明的共同時刻表，也不保證夜間安全。未查得適用所有活動的統一票價公告，請依入口與主辦單位說明確認。",
+          "en": "The official tourism playground page, checked on 2026-10-30, lists 24-hour opening; the Maps snapshot agrees. This does not set hours for buildings, maintenance, event lighting or every facility, and does not establish night-time safety. No single current tariff covering all activities was verified; check entrance and organiser notices."
+        }
+      },
+      {
+        "title": {
+          "zh": "近期活動與親子準備",
+          "en": "Upcoming events and family planning"
+        },
+        "body": {
+          "zh": "主辦方2026聖誕節頁列屏東公園燈飾2026-11-06至2027-01-03每日17:30–22:00；截至本次查閱仍屬預告，並非現在已亮燈。旅遊網介紹紅尾伯勞主題遊具、公廁等；無障礙入口與整條遊覽動線的可用性需分開確認。",
+          "en": "The organiser lists park Christmas lighting for 6 November 2026–3 January 2027, 17:30–22:00 daily. At this review date it is an upcoming programme, not an observation that lights are already operating. The tourism page describes a shrike-themed playground and toilets; entrance access and a complete usable route need separate checks."
+        }
+      }
+    ],
+    "faqs": [
+      {
+        "q": {
+          "zh": "Google評價是本站收集的嗎？",
+          "en": "Are the ratings collected here?"
+        },
+        "a": {
+          "zh": "不是。4.4星、14,021則是2026-10-30手工查閱Google地圖的日期快照，不會自動更新；本站沒有收集或轉載個別評論。",
+          "en": "No. The 4.4 rating and 14,021 reviews are a manually checked Google Maps snapshot dated 2026-10-30. They do not update automatically, and this guide does not collect or reproduce individual reviews."
+        }
+      },
+      {
+        "q": {
+          "zh": "這是官方網站嗎？",
+          "en": "Is this the official site?"
+        },
+        "a": {
+          "zh": "本站是獨立、非官方、非營利旅遊及科普資訊指南，不代表公園管理者或活動主辦方，也不提供售票。",
+          "en": "This is an independent, unofficial, nonprofit tourism and educational guide. It does not represent park management or event organisers and does not sell tickets."
+        }
+      }
+    ]
+  },
+  "events": {
+    "title": {
+      "zh": "屏東公園活動與市集｜2026公告怎麼看",
+      "en": "Pingtung Park events and markets | 2026 notices"
+    },
+    "description": {
+      "zh": "查核屏東公園2026聖誕燈飾與中華路市集公告，區分活動場地、日期和日常公園開放；出發前重查主辦方。",
+      "en": "Read dated park Christmas and Zhonghua Road market notices, separating event locations and dates from ordinary park access."
+    },
+    "sections": [
+      {
+        "title": {
+          "zh": "2026聖誕燈飾預告",
+          "en": "2026 Christmas lighting announcement"
+        },
+        "body": {
+          "zh": "主辦方官方頁列屏東公園燈飾2026-11-06至2027-01-03，每日17:30–22:00；燈光展演自18:00開始，不同裝置場次不同。此為2026-10-30查閱的預告，出發前重查異動。",
+          "en": "The organiser announces park lighting for 6 November 2026–3 January 2027, 17:30–22:00 daily, with light shows starting at 18:00 and differing intervals by installation. This is an announcement checked on 2026-10-30; recheck for changes before travelling."
+        }
+      },
+      {
+        "title": {
+          "zh": "市集不是每天都有",
+          "en": "A market is not a daily service"
+        },
+        "body": {
+          "zh": "同一官方頁列「中華一條街市集」2026-11-07至11-08、16:00–22:00，地點是中華路民生路至林森路段，不應當作公園每日市集。其他工作坊或活動各有日期與報名限制。",
+          "en": "The same official page lists the Zhonghua Street market on 7–8 November 2026, 16:00–22:00, on Zhonghua Road between Minsheng and Linsen roads. It is not a daily market inside the park. Workshops and other programmes have their own dates and registration conditions."
+        }
+      },
+      {
+        "title": {
+          "zh": "查哪一則才是要去的活動",
+          "en": "Match the notice to your destination"
+        },
+        "body": {
+          "zh": "先核對年份、場地與取消或交通管制公告；屏東燈節、聖誕節和其他市區活動不是同一檔期。不要把慈鳳宮周邊燈區的日期直接套用到公園。",
+          "en": "Check the year, venue and cancellation or traffic notices. The Pingtung Lantern Festival, Christmas programme and other city events are not interchangeable. Dates for lighting around Cifeng Temple should not be applied to the park."
+        }
+      }
+    ],
+    "faqs": [
+      {
+        "q": {
+          "zh": "現在已經點燈嗎？",
+          "en": "Are the announced lights already running?"
+        },
+        "a": {
+          "zh": "截至2026-10-30查閱，公園公告開始日為11月6日，不能把未來預告寫成已開始。",
+          "en": "At the 2026-10-30 review, the announced park start date is 6 November; an upcoming programme is not evidence that it has begun."
+        }
+      },
+      {
+        "q": {
+          "zh": "活動日期會改嗎？",
+          "en": "Can dates change?"
+        },
+        "a": {
+          "zh": "可能因天候、維護或主辦規劃調整，請以主辦方最新頁面及現場公告為準。",
+          "en": "Weather, maintenance or organiser decisions can change a programme. Follow the latest organiser page and on-site notices."
+        }
+      }
+    ]
+  },
+  "christmas": {
+    "title": {
+      "zh": "2026屏東公園聖誕節｜日期、亮燈與場地區分",
+      "en": "Pingtung Park Christmas 2026 | Dates and lighting"
+    },
+    "description": {
+      "zh": "2026屏東公園聖誕燈飾官方預告11月6日至2027年1月3日17:30–22:00；區分慈鳳宮燈區與其他活動。",
+      "en": "Official announced park Christmas lighting: 6 November 2026–3 January 2027, 17:30–22:00. Distinguish other lighting zones and activities."
+    },
+    "sections": [
+      {
+        "title": {
+          "zh": "公園亮燈日程",
+          "en": "Announced park lighting dates"
+        },
+        "body": {
+          "zh": "2026-10-30查閱主辦方官方頁，屏東公園燈飾公告為民國115/11/6–116/1/3，即2026-11-06至2027-01-03，每日17:30–22:00。這是預告日程，特殊停辦與更動仍須重查。",
+          "en": "Checked on 2026-10-30, the organiser lists ROC years 115/11/6–116/1/3: 6 November 2026–3 January 2027, 17:30–22:00 daily. This is an announced programme; check again for cancellations and changes."
+        }
+      },
+      {
+        "title": {
+          "zh": "展演與其他燈區分開看",
+          "en": "Separate shows from other lighting zones"
+        },
+        "body": {
+          "zh": "官方頁說明展演自18:00起，各裝置的間隔不一；也另列慈鳳宮周邊2026-12-18至2027-03-01的燈區日期。後者不是公園延長至3月的證據。",
+          "en": "The page says shows start at 18:00, with different intervals by installation. It separately lists lighting around Cifeng Temple for 18 December 2026–1 March 2027. That does not mean park Christmas lighting runs until March."
+        }
+      },
+      {
+        "title": {
+          "zh": "先安排返程與行走動線",
+          "en": "Plan the return journey first"
+        },
+        "body": {
+          "zh": "17:30亮燈不代表所有服務台、餐飲、館舍或遊具同時營業。確認返程車次，遇人潮時不在橋上或狹窄園路停留架腳架；親子同行先約定集合點。",
+          "en": "Lighting hours do not establish operating hours for every desk, food stall, building or play facility. Check return transport, keep bridges and narrow paths clear of tripods, and agree on a meeting point when visiting with children."
+        }
+      }
+    ],
+    "faqs": [
+      {
+        "q": {
+          "zh": "聖誕燈飾和公園24小時是同一件事嗎？",
+          "en": "Do 24-hour park listings mean all-night Christmas lights?"
+        },
+        "a": {
+          "zh": "不是，活動亮燈另有17:30–22:00公告，且僅適用所列日期。",
+          "en": "No. Event lighting has its own 17:30–22:00 announcement for the stated dates only."
+        }
+      },
+      {
+        "q": {
+          "zh": "所有聖誕活動都免費嗎？",
+          "en": "Is every Christmas activity free?"
+        },
+        "a": {
+          "zh": "不可一概而論。商品、餐飲、個別報名活動可能有不同條件，請逐項核對主辦說明。",
+          "en": "Do not assume so. Merchandise, food and individually registered activities may have different terms; check each organiser notice."
+        }
+      }
+    ]
+  },
+  "transport": {
+    "title": {
+      "zh": "屏東公園交通停車｜地址、公車與入口確認",
+      "en": "Pingtung Park transport | Address, bus and parking"
+    },
+    "description": {
+      "zh": "屏東市公園路地圖、官方列示505/509/516公車及仁愛停車場參考，附無障礙來源差異與入園前確認。",
+      "en": "Gongyuan Road orientation, officially listed buses 505/509/516 and Renai parking reference, with entrance and accessibility limitations."
+    },
+    "sections": [
+      {
+        "title": {
+          "zh": "地址與入口",
+          "en": "Address and entrance"
+        },
+        "body": {
+          "zh": "Google地圖2026-10-30列900屏東縣屏東市公園路，這是園區地址參考，不是已確認無階梯入口或上下車點。使用地圖選定入口，再核對當天施工與活動動線；本站不提供已量測步行時間。",
+          "en": "Google Maps on 2026-10-30 lists Gongyuan Road, Pingtung City, Pingtung County 900. This is park-area orientation, not a verified step-free gate or drop-off point. Select an entrance on the map and check works and event access; no measured walking time is claimed."
+        }
+      },
+      {
+        "title": {
+          "zh": "公車與停車資料",
+          "en": "Bus and parking references"
+        },
+        "body": {
+          "zh": "屏東旅遊網遊戲場頁列505、509、516公車的「屏東公園」站，以及屏東公園仁愛停車場。這是官方資料所列參考，並非即時班次、空位或費率；上車前查業者，停車依現場標示。",
+          "en": "The official tourism playground page lists the Pingtung Park stop on buses 505, 509 and 516, and Pingtung Park Renai parking. These are published references, not live timetables, space counts or tariffs. Recheck the operator and posted parking terms."
+        }
+      },
+      {
+        "title": {
+          "zh": "無障礙資訊有範圍差異",
+          "en": "Accessibility sources describe different scopes"
+        },
+        "body": {
+          "zh": "10月30日Maps標示無障礙入口，但官方遊戲場頁的「無障礙設施」欄列「無」。兩者描述範圍可能不同，不能推論整座公園或遊具皆無障礙。請先確認入口坡度、路面、廁所與所需設施的可用性。",
+          "en": "The 30 October Maps snapshot marks an accessible entrance, while the official playground page lists no accessibility facilities. Their scopes may differ; neither proves all park routes or play equipment are accessible. Confirm gate slope, surfaces, toilets and the specific facilities you need."
+        }
+      }
+    ],
+    "faqs": [
+      {
+        "q": {
+          "zh": "732-0415是公園電話嗎？",
+          "en": "Is 732-0415 the park telephone?"
+        },
+        "a": {
+          "zh": "屏東旅遊網頁尾列此號為觀光資訊聯絡，不能直接當作公園現場專線。請由官方頁尋找適合詢問的單位。",
+          "en": "The tourism website lists this number in its general contact footer; it is not verified as a direct park desk. Use the official page to find the appropriate authority."
+        }
+      },
+      {
+        "q": {
+          "zh": "搭火車後如何安排？",
+          "en": "What should I do after arriving by train?"
+        },
+        "a": {
+          "zh": "先查臺鐵屏東站當日到站與返程時間，再以地圖比較步行或公車路線；不要把地圖距離當作每位旅客的步行保證。",
+          "en": "Check arrivals and return trains at Pingtung Station, then compare walking or bus routes on the map. A map distance is not a walking-time guarantee for every visitor."
+        }
+      }
+    ]
+  },
+  "history": {
+    "title": {
+      "zh": "屏東公園歷史｜中山公園、阿猴城門與史料",
+      "en": "Pingtung Park history | Zhongshan name and A-kau Gate"
+    },
+    "description": {
+      "zh": "從國家文化記憶庫與文化資產資料讀屏東公園1902沿革、2016復名與阿猴城門，分開不同年代與遺構。",
+      "en": "Read the park’s 1902 origins and 2016 name restoration alongside A-kau Gate, using cultural records rather than invented reconstruction."
+    },
+    "sections": [
+      {
+        "title": {
+          "zh": "公園名稱的時間線",
+          "en": "A timeline of park names"
+        },
+        "body": {
+          "zh": "國家文化記憶庫引國立臺灣歷史博物館典藏資料，記述公園建於1902年，戰後曾稱中山公園，2016年恢復屏東公園。這是資料所載沿革，不代表今日每一座設施都建於1902年。",
+          "en": "The National Cultural Memory Bank record, sourced to the National Museum of Taiwan History, describes origins in 1902, the post-war Zhongshan Park name and restoration of the Pingtung Park name in 2016. It does not date every present facility to 1902."
+        }
+      },
+      {
+        "title": {
+          "zh": "阿猴城門比公園更早",
+          "en": "A-kau Gate predates the park"
+        },
+        "body": {
+          "zh": "國家文化資產資料記錄阿猴城於清道光16年（1836）由官民建築，今日存東門「朝陽門」，位於屏東公園範圍。公園沿革與清代城門不是同一個建造事件；觀察古蹟請勿攀爬或觸碰脆弱構件。",
+          "en": "The national heritage record dates the A-kau fortification to 1836 and identifies the surviving east gate, Zhaoyang Gate, in the park. The Qing-period gate and later park are separate building histories. Do not climb the monument or touch fragile fabric."
+        }
+      },
+      {
+        "title": {
+          "zh": "神社與戰後地景",
+          "en": "Shrine and post-war layers"
+        },
+        "body": {
+          "zh": "文化記憶庫記述園內1919年阿猴神社，以及東側稻荷社後來改為涼亭、防空洞的歷史層次。此為史料線索，並非承諾所有遺構可進入；請依解說牌、圍設與保存規範參觀。",
+          "en": "The cultural record describes the 1919 A-kau Shrine and later pavilion and air-raid-shelter changes around an eastern Inari shrine site. These are historical references, not a promise that every remnant is open to enter. Follow signs and conservation barriers."
+        }
+      }
+    ],
+    "faqs": [
+      {
+        "q": {
+          "zh": "中山公園是另一座公園嗎？",
+          "en": "Is Zhongshan Park a different park?"
+        },
+        "a": {
+          "zh": "在本頁引用的屏東公園史料脈絡中，中山公園是其戰後舊名；搜尋時仍須核對屏東市公園路，避免同名地點。",
+          "en": "In the cited Pingtung Park history, Zhongshan Park is a former post-war name. Still check Gongyuan Road, Pingtung City to avoid similarly named parks."
+        }
+      },
+      {
+        "q": {
+          "zh": "可以走進防空洞嗎？",
+          "en": "Can visitors enter the air-raid shelter?"
+        },
+        "a": {
+          "zh": "本次未核實開放進入的現行許可，不應因史料提到就進入；依現場管制。",
+          "en": "Current permission to enter was not verified. A historical mention is not permission; follow on-site restrictions."
+        }
+      }
+    ]
+  },
+  "family": {
+    "title": {
+      "zh": "屏東公園親子與無障礙｜遊戲場、廁所及行前確認",
+      "en": "Pingtung Park with children | Playground and access"
+    },
+    "description": {
+      "zh": "官方紅尾伯勞遊戲場介紹、公廁列示與Maps無障礙入口快照；區分遊具適齡、路徑與當日維護。",
+      "en": "Official shrike-themed playground and toilet references, with distinctions between Maps entrance access, usable routes and equipment maintenance."
+    },
+    "sections": [
+      {
+        "title": {
+          "zh": "遊具內容有官方資料",
+          "en": "What the official playground page describes"
+        },
+        "body": {
+          "zh": "屏東旅遊網介紹紅尾伯勞主題溜滑梯、攀爬架、盪鞦韆與沙坑。不要只因稱「共融」就假定每件遊具適合每位孩子；請依現場年齡、身高、使用方式及維護告示安排。",
+          "en": "The official tourism page describes a shrike-themed slide, climbing equipment, swings and sand play. The inclusive-playground label does not mean each item suits every child. Follow posted age, height, use and maintenance guidance."
+        }
+      },
+      {
+        "title": {
+          "zh": "廁所與照護需求",
+          "en": "Toilets and care requirements"
+        },
+        "body": {
+          "zh": "官方介紹公廁欄列「有」，但本次未確認哺乳室、換尿布台、無障礙廁所現況或座標。需要這些設施時請先查詢管理方，不把一般公廁當作完整照護設施保證。",
+          "en": "The official page lists toilets, but this review did not verify nursing rooms, changing tables or the current location and usability of accessible toilets. Confirm specific care requirements before travelling."
+        }
+      },
+      {
+        "title": {
+          "zh": "入口不是整條路線",
+          "en": "An entrance is not a complete route"
+        },
+        "body": {
+          "zh": "2026-10-30Maps標示無障礙入口；同日查閱的官方遊戲場頁卻在無障礙設施欄列「無」。請把入口、園路與遊具分開確認，尤其是推車、輪椅、移位或需要協助的情況。",
+          "en": "Maps marked an accessible entrance on 2026-10-30; the official playground page checked that day lists no accessibility facilities. Check entrances, paths and equipment separately, especially when using a stroller or wheelchair or needing transfer assistance."
+        }
+      }
+    ],
+    "faqs": [
+      {
+        "q": {
+          "zh": "24小時代表遊具都能使用嗎？",
+          "en": "Does a 24-hour listing cover all play equipment?"
+        },
+        "a": {
+          "zh": "不是。設施可能因維護、天候或活動管制而停用，晚間也需確認照明，不把開放欄當作安全保證。",
+          "en": "No. Maintenance, weather and events may restrict equipment. Check lighting after dark; listed opening hours are not a safety guarantee."
+        }
+      },
+      {
+        "q": {
+          "zh": "如何安排較有彈性的親子行程？",
+          "en": "How can families keep the plan flexible?"
+        },
+        "a": {
+          "zh": "先確認廁所和返程，再依孩子體力安排短段活動，備水與遮陽；遇雷雨或高溫警訊改變計畫。",
+          "en": "Locate toilets and return transport first, then plan short activities around children’s energy. Bring water and shade protection and change plans for thunderstorm or heat warnings."
+        }
+      }
+    ]
+  },
+  "food": {
+    "title": {
+      "zh": "屏東公園附近美食｜查店家與活動攤位的方式",
+      "en": "Food near Pingtung Park | Shops and event stalls"
+    },
+    "description": {
+      "zh": "公園散步後如何查找附近餐飲、區分勝利星村商家與限定活動市集，確認營業、菜單與飲食需求。",
+      "en": "Find food after a park visit, separating independently operated shops, Victory Star Village and date-limited event stalls."
+    },
+    "sections": [
+      {
+        "title": {
+          "zh": "先選餐廳再決定動線",
+          "en": "Choose a venue before fixing the route"
+        },
+        "body": {
+          "zh": "以公園路的實際入口為起點，查找當日營業的店家，確認地址、最後點餐與付款方式。本次未逐店查證，不列虛構店名、固定價位、排隊時間或保證步行距離。",
+          "en": "Start from the entrance you will use on Gongyuan Road, then check current shop addresses, last orders and payment methods. Individual restaurants were not verified in this review, so no invented shop names, fixed prices, queues or walking-time guarantees are supplied."
+        }
+      },
+      {
+        "title": {
+          "zh": "勝利星村是另一處目的地",
+          "en": "Victory Star Village is a separate destination"
+        },
+        "body": {
+          "zh": "觀光署介紹勝利星村為修復後的日式宿舍文化聚落，園區店家各自營業；可作為另選用餐與文化活動的方向，但不等於公園內餐廳，也不保證所有店家同時開門。",
+          "en": "The Tourism Administration describes Victory Star Village as a restored Japanese-era residential cultural cluster. Shops operate independently. Consider it as a separate food and culture stop, not a restaurant inside this park or a guarantee that every shop is open."
+        }
+      },
+      {
+        "title": {
+          "zh": "節慶攤位有指定日期",
+          "en": "Event stalls have specific dates"
+        },
+        "body": {
+          "zh": "2026聖誕節官方頁列11月7–8日中華路市集，並另列活動期間公園內販賣屋。這些活動資訊須按場地與日期核對，不能當作全年每天供餐。飲食過敏或特殊需求請直接詢問店家。",
+          "en": "The official 2026 Christmas page lists a Zhonghua Road market on 7–8 November and separate event-period park stalls. Match each notice to its venue and dates; it does not establish year-round daily food service. Ask vendors directly about allergies and dietary needs."
+        }
+      }
+    ],
+    "faqs": [
+      {
+        "q": {
+          "zh": "本站推薦特定店家嗎？",
+          "en": "Does this guide verify individual restaurants?"
+        },
+        "a": {
+          "zh": "本次未逐店核實，因此提供查詢方向，不宣稱已試吃或與商家合作。",
+          "en": "Individual venues were not verified or sampled for this review. These are planning pointers, not claimed tastings or commercial partnerships."
+        }
+      },
+      {
+        "q": {
+          "zh": "能帶食物進遊戲場嗎？",
+          "en": "Can food be taken onto play equipment?"
+        },
+        "a": {
+          "zh": "依現場規範，勿把熱食、玻璃或垃圾帶上遊具；保持通道與設備清潔。",
+          "en": "Follow posted rules. Keep hot food, glass and litter away from play equipment and keep paths clear."
+        }
+      }
+    ]
+  },
+  "attractions": {
+    "title": {
+      "zh": "屏東公園附近景點｜古蹟與另一段市區行程",
+      "en": "Around Pingtung Park | Heritage and separate city stops"
+    },
+    "description": {
+      "zh": "以阿猴城門史料與勝利星村官方介紹規劃公園後行程，分開開放時間與交通，不保證通用近距路線。",
+      "en": "Use official A-kau Gate and Victory Star Village references to plan separate stops without assuming shared hours or an effortless walking route."
+    },
+    "sections": [
+      {
+        "title": {
+          "zh": "先看公園的歷史層次",
+          "en": "Begin with the park’s heritage"
+        },
+        "body": {
+          "zh": "阿猴城門（朝陽門）是文化資產資料登錄的清代城門，與後來的公園歷史可一起閱讀；現場應依保存範圍參觀，不把穿越或攀登古蹟當作路線的一部分。",
+          "en": "The national heritage record identifies A-kau Gate, also called Zhaoyang Gate, as a Qing-period monument. Read it alongside the later park history, while respecting preservation boundaries; do not build climbing or unpermitted passage into your route."
+        }
+      },
+      {
+        "title": {
+          "zh": "另選勝利星村",
+          "en": "Consider Victory Star Village separately"
+        },
+        "body": {
+          "zh": "觀光署列勝利星村位於屏東市青島街106號，介紹修復宿舍形成的文化聚落，並明示店家時間各不相同。它是不同目的地；請另查當日開放與實際路線，不把它與公園視作同一園區。",
+          "en": "The Tourism Administration lists Victory Star Village at 106 Qingdao Street and describes restored residences forming a cultural cluster, with independent shop hours. It is a separate destination: check its current opening and actual route rather than treating both as one park."
+        }
+      },
+      {
+        "title": {
+          "zh": "避免把整座城市排成短步行",
+          "en": "Keep a city itinerary realistic"
+        },
+        "body": {
+          "zh": "其他展館與圖書館須另查展覽、休館日、交通與入場條件；本次未驗證全部場館，未提供「全部步行即達」或固定半日完成保證。留出休息與返程時間。",
+          "en": "Other museums and libraries need their own exhibition, closure, transport and entry checks. This review did not verify every venue and does not promise that all are an easy walk or can be completed in a fixed half-day. Leave time for rest and the return journey."
+        }
+      }
+    ],
+    "faqs": [
+      {
+        "q": {
+          "zh": "附近景點都和公園同時開放嗎？",
+          "en": "Do other destinations share the park’s hours?"
+        },
+        "a": {
+          "zh": "不會。公園開放欄不適用其他館舍、店家或服務中心。",
+          "en": "No. A park opening listing does not determine the hours of separate buildings, shops or visitor centres."
+        }
+      },
+      {
+        "q": {
+          "zh": "如何決定要不要加一站？",
+          "en": "How should I choose an extra stop?"
+        },
+        "a": {
+          "zh": "先核對目的地當日營運，再比較路線與同行者需求；無法確認時減少站點。",
+          "en": "Verify that destination’s operation first, then compare the route with your group’s needs. Reduce stops when essential details cannot be confirmed."
+        }
+      }
+    ]
+  },
+  "night": {
+    "title": {
+      "zh": "屏東公園夜間散步｜照明、活動與返程提醒",
+      "en": "Pingtung Park after dark | Lighting and return travel"
+    },
+    "description": {
+      "zh": "區分公園24小時列示與節慶燈飾時間；夜間先查照明、開放動線、天候與返程，不保證安全。",
+      "en": "Separate 24-hour listings from event-lighting hours. Check lighting, restrictions, weather and return transport without assuming night-time safety."
+    },
+    "sections": [
+      {
+        "title": {
+          "zh": "24小時不是夜間安全認證",
+          "en": "A 24-hour listing is not a safety assessment"
+        },
+        "body": {
+          "zh": "官方遊戲場介紹與2026-10-30Maps快照均列24小時，但本次沒有現場量測照度或夜間巡查資料。只走當下清楚開放且看得清楚的路段，遇封閉或照明不足即改變計畫。",
+          "en": "The official playground page and 2026-10-30 Maps snapshot list 24 hours, but this review did not measure lighting or verify night patrols. Use only clearly open, adequately lit routes and change plans for closures or insufficient light."
+        }
+      },
+      {
+        "title": {
+          "zh": "看燈飾須選對日期",
+          "en": "Match lighting to the event dates"
+        },
+        "body": {
+          "zh": "主辦方列公園2026聖誕燈飾11月6日至2027年1月3日17:30–22:00。這是限定日程，不代表其他夜晚有相同燈景，也不是所有設施的開放時間。",
+          "en": "The organiser announces park Christmas lighting for 6 November 2026–3 January 2027, 17:30–22:00. This limited programme does not establish the same lighting on other nights or the hours of every facility."
+        }
+      },
+      {
+        "title": {
+          "zh": "返程和同行安排",
+          "en": "Return travel and companions"
+        },
+        "body": {
+          "zh": "出發前確認末班車、停車場出口與集合點；結伴時保持聯繫，避免靠近看不清的水邊或進入未開放遺構。遇雷雨、積水或管制以現場指示為準。",
+          "en": "Check last services, parking exits and a meeting point before leaving. Stay in contact with companions, avoid poorly visible water edges and do not enter closed heritage structures. Follow instructions for thunderstorms, standing water or restrictions."
+        }
+      }
+    ],
+    "faqs": [
+      {
+        "q": {
+          "zh": "22:00之後仍有聖誕燈嗎？",
+          "en": "Are Christmas lights guaranteed after 22:00?"
+        },
+        "a": {
+          "zh": "官方所列亮燈結束為22:00，不應據公園24小時列示推論燈飾通宵。",
+          "en": "The published lighting end time is 22:00. A 24-hour park listing does not imply all-night event lights."
+        }
+      },
+      {
+        "q": {
+          "zh": "晚上一定適合親子嗎？",
+          "en": "Is a night visit always suitable for families?"
+        },
+        "a": {
+          "zh": "應依當晚照明、人潮、孩子體力與返程條件決定，並無普遍安全或適齡保證。",
+          "en": "Decide from actual lighting, crowds, children’s energy and return transport. There is no universal safety or suitability guarantee."
+        }
+      }
+    ]
+  },
+  "photo": {
+    "title": {
+      "zh": "屏東公園拍照｜歷史影像與現場取景",
+      "en": "Photographing Pingtung Park | Sources and practical care"
+    },
+    "description": {
+      "zh": "公園池畔涼亭的2025授權歷史照片與拍攝準備，清楚區分歷史影像、當前現況及未來活動燈飾。",
+      "en": "A credited 2025 historical park photograph, with practical advice distinguishing past imagery, present conditions and upcoming event lighting."
+    },
+    "sections": [
+      {
+        "title": {
+          "zh": "這張照片拍的是什麼",
+          "en": "What the photograph shows"
+        },
+        "body": {
+          "zh": "本站使用Ralff Nestor Nacor於2025年1月4日拍攝、Commons檔名Pingtung Park, Jan 2025 (1)的池畔涼亭照片。它是歷史影像，不代表2026現況、當日天氣或聖誕燈飾，也不是公園入口定位圖。",
+          "en": "This guide uses Ralff Nestor Nacor’s 4 January 2025 photograph, Commons file Pingtung Park, Jan 2025 (1), showing a waterside pavilion. It is historical imagery, not evidence of 2026 conditions, today’s weather, Christmas lighting or a particular entrance."
+        }
+      },
+      {
+        "title": {
+          "zh": "依現場光線決定",
+          "en": "Work with the actual light"
+        },
+        "body": {
+          "zh": "水面反光和樹蔭隨天候、季節改變；可比較現場順光與側光，避免為了取景越過水岸、圍欄或古蹟保護範圍。遇強光、雨勢或雷聲時優先停止拍攝並尋求合適避護。",
+          "en": "Reflections and shade vary with weather and season. Compare available light on site, but do not cross waterside barriers or heritage protection boundaries for a photograph. Stop and seek appropriate shelter when conditions warrant."
+        }
+      },
+      {
+        "title": {
+          "zh": "尊重其他使用者",
+          "en": "Respect other visitors"
+        },
+        "body": {
+          "zh": "拍攝人物特寫前先取得同意，尤其留意兒童；不要在遊具出入口、橋面或狹窄園路阻擋通行。商業或大型拍攝的許可需求應另向管理方確認。",
+          "en": "Ask before making identifiable close-ups, especially of children. Keep equipment out of play entrances, bridges and narrow paths. Confirm permission requirements with the authority for commercial or larger shoots."
+        }
+      }
+    ],
+    "faqs": [
+      {
+        "q": {
+          "zh": "網站照片能當活動預覽嗎？",
+          "en": "Does the site photograph preview this year’s event?"
+        },
+        "a": {
+          "zh": "不能，這是2025年1月白天照片；2026活動設計請看主辦方公告。",
+          "en": "No. It is a January 2025 daytime photograph. Use the organiser’s notices for the 2026 event design."
+        }
+      },
+      {
+        "q": {
+          "zh": "如何查看照片授權？",
+          "en": "Where are the image licence details?"
+        },
+        "a": {
+          "zh": "每處照片下方有作者、來源、CC BY-SA 4.0與修改說明連結；照片授權不等同所有人物、建築或其他主體權利已獲另行授權。",
+          "en": "The caption links the creator, source, CC BY-SA 4.0 licence and modification notice. A photographic licence does not by itself clear every depicted person, building or other subject right."
+        }
+      }
+    ]
+  },
+  "itinerary": {
+    "title": {
+      "zh": "屏東公園半日與一日遊｜彈性行程安排",
+      "en": "Pingtung Park itinerary | Flexible half-day and day plans"
+    },
+    "description": {
+      "zh": "先查活動與設施再安排公園、用餐及另一處文化目的地，將行程建議與真實開放時刻分開。",
+      "en": "Build a flexible park, meal and separate cultural-stop itinerary while keeping suggested plans distinct from verified operating hours."
+    },
+    "sections": [
+      {
+        "title": {
+          "zh": "先選當天的主題",
+          "en": "Choose one priority"
+        },
+        "body": {
+          "zh": "喜歡歷史可先讀阿猴城門與公園沿革；親子則先查遊戲場維護與照護需求。本站建議先保留一段短散步，再依體力延長，不承諾固定分鐘數能完成所有區域。",
+          "en": "For heritage, start with A-kau Gate and the park’s history; for children, first check playground maintenance and care needs. Begin with a short walk and extend it according to your group, rather than assuming a fixed duration covers every area."
+        }
+      },
+      {
+        "title": {
+          "zh": "半日：公園加用餐",
+          "en": "Half-day idea: park and a meal"
+        },
+        "body": {
+          "zh": "核對入口與天氣後，安排園路、可參觀的歷史點或遊戲場，再選當日確認營業的餐飲。這是順序建議，並非店家預約或已實測無障礙路線。",
+          "en": "After checking the entrance and weather, choose park paths, permitted heritage viewpoints or the playground, followed by a food venue confirmed open that day. This is a suggested sequence, not a reservation or a surveyed accessible route."
+        }
+      },
+      {
+        "title": {
+          "zh": "一日：另選一處，不必排滿",
+          "en": "Day plan: add one separate destination"
+        },
+        "body": {
+          "zh": "若有餘裕，再查勝利星村的營運與交通；若要看2026聖誕燈飾，另按活動日期與17:30–22:00日程安排，保留返程時間。天候、維護或同行者需求改變時，減少站點比趕路合適。",
+          "en": "If time allows, separately check Victory Star Village and transport. For 2026 Christmas lighting, plan around the announced event dates and 17:30–22:00 window, leaving return time. Reduce stops when weather, maintenance or your group’s needs change."
+        }
+      }
+    ],
+    "faqs": [
+      {
+        "q": {
+          "zh": "這是固定時刻表嗎？",
+          "en": "Is this a fixed timetable?"
+        },
+        "a": {
+          "zh": "不是，這是旅程順序建議。列出的活動亮燈時間另有官方來源，其他停留長度由旅客自行調整。",
+          "en": "No. It is a suggested sequence. Event-lighting times have a separate official source; the length of other stops is your choice."
+        }
+      },
+      {
+        "q": {
+          "zh": "下雨可以照原路走嗎？",
+          "en": "Should the same route be followed in rain?"
+        },
+        "a": {
+          "zh": "先看中央氣象署警特報與現場狀況，雨勢、雷聲或積水可能使原計畫不合適，不保證全天候可行。",
+          "en": "Check Central Weather Administration warnings and actual conditions. Rain, thunder or standing water may make the original plan unsuitable; it is not guaranteed in all weather."
+        }
+      }
+    ]
+  },
+  "faq": {
+    "title": {
+      "zh": "屏東公園常見問題｜開放、門票、無障礙與活動",
+      "en": "Pingtung Park FAQ | Hours, admission, access and events"
+    },
+    "description": {
+      "zh": "屏東公園開放時間、活動票價限制、Maps無障礙入口與官方設施欄差異，以及交通、評價日期快照問答。",
+      "en": "Answers on park-hour listings, unverified universal admission charges, accessibility-source differences, transport and dated Google Maps reviews."
+    },
+    "sections": [
+      {
+        "title": {
+          "zh": "行前先核對三件事",
+          "en": "Three checks before leaving"
+        },
+        "body": {
+          "zh": "先查當日活動或施工，再確認所需入口、廁所與設施，最後安排返程；以下答覆區分官方資料、第三方快照與本站規劃建議。",
+          "en": "Check events or works, confirm the entrance and facilities you need, and plan the return trip. The answers distinguish official publications, third-party snapshots and this guide’s planning suggestions."
+        }
+      }
+    ],
+    "faqs": [
+      {
+        "q": {
+          "zh": "屏東公園是24小時開放嗎？",
+          "en": "Is Pingtung Park open 24 hours?"
+        },
+        "a": {
+          "zh": "官方遊戲場介紹及2026-10-30Maps列24小時，但不涵蓋每座館舍、遊具維護、活動亮燈或臨時管制，也不是夜間安全保證。",
+          "en": "The official playground page and 2026-10-30 Maps snapshot list 24 hours. This does not cover every building, equipment maintenance, event lighting or temporary restrictions and is not a night-time safety guarantee."
+        }
+      },
+      {
+        "q": {
+          "zh": "入園和所有活動都免費嗎？",
+          "en": "Are entry and every activity free?"
+        },
+        "a": {
+          "zh": "本次未查得涵蓋全部活動的現行統一票價公告。不能由公共公園身分推論商品、餐飲、報名活動或其他服務皆免費，依入口及主辦說明確認。",
+          "en": "No current single tariff covering all activities was verified. Public-park status does not make merchandise, food, registered activities or other services free; check entrance and organiser notices."
+        }
+      },
+      {
+        "q": {
+          "zh": "有無障礙入口和廁所嗎？",
+          "en": "Are there accessible entrances and toilets?"
+        },
+        "a": {
+          "zh": "Maps當日標示無障礙入口；官方遊戲場介紹卻列無障礙設施「無」、公廁「有」。這些欄位不是完整路線或無障礙廁所調查，應按個人需求另行確認。",
+          "en": "Maps marked an accessible entrance, while the official playground page lists no accessibility facilities and does list toilets. These fields are not a complete route or accessible-toilet survey; confirm your specific requirements."
+        }
+      },
+      {
+        "q": {
+          "zh": "公車和停車查哪裡？",
+          "en": "Where should bus and parking details be checked?"
+        },
+        "a": {
+          "zh": "官方遊戲場頁列505、509、516公車的屏東公園站及仁愛停車場；即時班次、費率與空位須另查。",
+          "en": "The official playground page lists the Pingtung Park stop on buses 505, 509 and 516 and Renai parking. Live departures, tariffs and space availability need separate checks."
+        }
+      },
+      {
+        "q": {
+          "zh": "2026聖誕節幾點亮燈？",
+          "en": "When are the 2026 Christmas lights announced?"
+        },
+        "a": {
+          "zh": "主辦方10月30日所示公園日程為2026-11-06至2027-01-03、每日17:30–22:00；仍需重查異動，不套用到其他燈區。",
+          "en": "The organiser’s page checked on 30 October lists 6 November 2026–3 January 2027, 17:30–22:00 daily for the park. Recheck changes and do not apply it to other zones."
+        }
+      },
+      {
+        "q": {
+          "zh": "評價會自動同步嗎？",
+          "en": "Do the review figures update automatically?"
+        },
+        "a": {
+          "zh": "不會。4.4星、14,021則是2026-10-30取自Google地圖的手工日期快照，不是本站收集的評論。",
+          "en": "No. The 4.4 rating and 14,021 reviews are a manually checked Google Maps snapshot dated 2026-10-30, not reviews collected by this site."
+        }
+      },
+      {
+        "q": {
+          "zh": "可以帶寵物、野餐或烤肉嗎？",
+          "en": "Are pets, picnics or barbecues allowed?"
+        },
+        "a": {
+          "zh": "本次未核實一套適用全園和活動的現行規則；出發前查管理方與現場標示，勿自行點火，遵守寵物與清潔規範。",
+          "en": "Current rules applying to every park area and event were not verified. Check the authority and posted signs; do not light fires without permission and follow pet and cleanliness rules."
+        }
+      }
+    ]
+  }
+}

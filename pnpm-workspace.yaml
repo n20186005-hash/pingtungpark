@@ -1,6 +1,8 @@
 allowBuilds:
-  esbuild: true
-  workerd: true
+  esbuild@0.28.1: true
+  esbuild@0.28.2: true
+  workerd@1.20260916.1: true
+  workerd@1.20260917.1: true
 minimumReleaseAgeExclude:
   - miniflare@5.20260917.0-alpha
   - wrangler@4.134.0

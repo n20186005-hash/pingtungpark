@@ -1,0 +1,6 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+export const prerender=false;
+Astro.response.status=404;
+---
+<BaseLayout title="找不到頁面 / Page not found | Pingtung Park" description="找不到此頁，請回到屏東公園指南首頁。This page could not be found." canonicalPath="/404" noindex={true}><section class="container legal"><h1 class="serif">找不到頁面 / Page not found</h1><p>這個網址沒有對應頁面，請從導覽重新選擇。This address does not match a page.</p><div class="actions"><a class="button" href="/">繁體中文首頁</a><a class="button secondary" href="/en/">English home</a></div></section></BaseLayout>
