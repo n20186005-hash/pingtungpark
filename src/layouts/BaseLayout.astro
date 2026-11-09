@@ -1,8 +1,8 @@
 ---
 import '../styles/global.css';
 import guide from '../data/guide.json';
-interface Props {title:string;description:string;canonicalPath:string;locale?:'zh'|'en';noindex?:boolean;}
-const {title,description,canonicalPath,locale='zh',noindex=false}=Astro.props;
+interface Props {title:string;description:string;canonicalPath:string;locale?:'zh'|'en';noindex?:boolean;alternateMode?:'full'|'self';}
+const {title,description,canonicalPath,locale='zh',noindex=false,alternateMode='full'}=Astro.props;
 const en=locale==='en';const site=new URL('https://pingtungpark.com');const canonical=new URL(canonicalPath,site).href;
 const zhPath=canonicalPath.replace(/^\/en(?=\/|$)/,'')||'/';const enPath=zhPath==='/'?'/en/':'/en'+zhPath;
 const home=en?'/en/':'/';const prefix=en?'/en':'';
@@ -12,7 +12,7 @@ const image='https://pingtungpark.com/images/og-pingtung-park.jpg';
 ---
 <!doctype html><html lang={en?'en':'zh-Hant-TW'}><head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width"/><title>{title}</title><meta name="description" content={description}/><meta name="theme-color" content="#173226"/>
-<link rel="canonical" href={canonical}/>{noindex?<meta name="robots" content="noindex,follow"/>:<>{[['zh-Hant',zhPath],['en',enPath],['x-default',zhPath]].map(([lang,p])=><link rel="alternate" hreflang={lang} href={new URL(p,site).href}/>)}</>}
+<link rel="canonical" href={canonical}/>{noindex?<meta name="robots" content="noindex,follow"/>:<>{(alternateMode==='self'?[['zh-Hant',zhPath],['x-default',zhPath]]:[['zh-Hant',zhPath],['en',enPath],['x-default',zhPath]]).map(([lang,p])=><link rel="alternate" hreflang={lang} href={new URL(p,site).href}/>)}</>}
 <meta property="og:type" content="website"/><meta property="og:site_name" content={en?'Pingtung Park guide':'屏東公園參觀指南'}/><meta property="og:locale" content={en?'en_US':'zh_TW'}/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:url" content={canonical}/><meta property="og:image" content={image}/><meta property="og:image:alt" content={en?'Waterside pavilion photographed in January 2025; historical park image':'2025年1月拍攝的池畔涼亭，歷史照片'}/>
 <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content={title}/><meta name="twitter:description" content={description}/><meta name="twitter:image" content={image}/><meta name="twitter:image:alt" content={en?'Waterside pavilion, historical photograph from January 2025':'池畔涼亭，2025年1月歷史照片'}/>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml"/><link rel="apple-touch-icon" href="/icons/favicon-180.png"/><link rel="manifest" href="/manifest.webmanifest"/>
@@ -21,6 +21,6 @@ const image='https://pingtungpark.com/images/og-pingtung-park.jpg';
 </head><body class="noise"><a class="skip" href="#main">{en?'Skip to content':'跳到主要內容'}</a>
 <header class="site-header"><div class="header-row"><a href={home} class="brand" aria-label={en?'Pingtung Park guide home':'屏東公園指南首頁'}><img src="/logo.svg" width="165" height="48" alt={en?'Pingtung Park guide':'屏東公園參觀指南'}/></a><a class="language" href={en?zhPath:enPath} lang={en?'zh-Hant':'en'}>{en?'繁體中文':'English'}</a><details class="menu"><summary>{en?'Menu':'選單'} <span aria-hidden="true">☰</span></summary><nav aria-label={en?'Main navigation':'主要導覽'}>{Object.keys(guide).map(k=><a href={path(k)}>{navNames[k][en?1:0]}</a>)}</nav></details></div></header>
 <main id="main"><slot/></main>
-<footer><div class="container"><p>{en?'Independent, unofficial, nonprofit tourism and educational guide. We do not represent park management, the government or event organisers and do not sell tickets.':'獨立、非官方、非營利旅遊及科普資訊指南；不代表公園管理者、政府或活動主辦方，也不提供售票。'}</p><nav aria-label={en?'Footer':'頁尾'}>{Object.keys(guide).map(k=><a href={path(k)}>{navNames[k][en?1:0]}</a>)}<a href={prefix+'/privacy'}>{en?'Privacy & analytics':'隱私與分析說明'}</a></nav><p class="small">pingtungpark.com · {en?'Reviewed 2026-10-30. Follow current authority and on-site notices.':'2026-10-30查閱；出發前以主管機關與現場最新公告為準。'}</p></div></footer>
+<footer><div class="container"><p>{en?'Independent, unofficial, nonprofit tourism and educational guide. We do not represent park management, the government or event organisers and do not sell tickets.':'獨立、非官方、非營利旅遊及科普資訊指南；不代表公園管理者、政府或活動主辦方，也不提供售票。'}</p><nav aria-label={en?'Footer':'頁尾'}>{Object.keys(guide).map(k=><a href={path(k)}>{navNames[k][en?1:0]}</a>)}<a href={prefix+'/privacy'}>{en?'Privacy & analytics':'隱私與分析說明'}</a></nav><p class="small">pingtungpark.com · {en?'Reviewed 2026-11-09. Follow current authority and on-site notices.':'2026-11-09查閱；出發前以主管機關與現場最新公告為準。'}</p></div></footer>
 <script is:inline>if('serviceWorker'in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.getRegistrations().then(rs=>{for(const r of rs){if(r.active?.scriptURL===location.origin+'/sw.js')r.update();}}).catch(()=>{});});}</script>
 </body></html>

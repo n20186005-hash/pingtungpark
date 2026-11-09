@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_URL, MAPS_URL, GROUP_META, topicPath, getTopic } from '../data/topics';
+import type { Topic } from '../data/topics';
+
+interface Props { topic: Topic; }
+const { topic } = Astro.props;
+const canonicalPath = topicPath(topic.slug);
+const canonical = SITE_URL + canonicalPath;
+const groupMeta = GROUP_META[topic.group];
+const related: Topic[] = (topic.related || []).map(slug => getTopic(slug)).filter((t): t is Topic => Boolean(t));
+const breadcrumb = [
+  { name: '首頁', url: SITE_URL + '/' },
+  { name: groupMeta.label, url: SITE_URL + groupMeta.pillarPath },
+  { name: topic.h1, url: canonical }
+];
+const jsonLd: Record<string, unknown>[] = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': canonical + '#webpage',
+    url: canonical,
+    name: topic.h1,
+    description: topic.description,
+    inLanguage: 'zh-Hant-TW',
+    breadcrumb: {
+      '@type': 'BreadcrumbList',
+      itemListElement: breadcrumb.map((it, i) => ({ '@type': 'ListItem', position: i + 1, name: it.name, item: it.url }))
+    }
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumb.map((it, i) => ({ '@type': 'ListItem', position: i + 1, name: it.name, item: it.url }))
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: topic.faqs.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } }))
+  }
+];
+if (topic.event) {
+  jsonLd.push({
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: topic.event.name,
+    startDate: topic.event.startDate,
+    endDate: topic.event.endDate,
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    location: { '@type': 'Place', name: '屏東公園', address: { '@type': 'PostalAddress', streetAddress: '公園路', addressLocality: '屏東市', addressRegion: '屏東縣', postalCode: '900', addressCountry: 'TW' } },
+    organizer: { '@type': 'Organization', name: topic.event.organizer },
+    description: topic.event.description
+  });
+}
+---
+<BaseLayout title={topic.title} description={topic.description} canonicalPath={canonicalPath} locale="zh" alternateMode="self">
+<Fragment slot="head"><script type="application/ld+json" set:html={JSON.stringify(jsonLd)}/></Fragment>
+<article class="container guide topic-page">
+  <nav class="breadcrumb" aria-label="麵包屑"><a href={breadcrumb[0].url}>首頁</a> / <a href={breadcrumb[1].url}>{groupMeta.label}</a> / <span>{topic.h1}</span></nav>
+  <header class="topic-hero">
+    <p class="eyebrow" style={`color:${groupMeta.color}`}>{groupMeta.label}</p>
+    <h1 class="serif">{topic.h1}</h1>
+    <p class="intro">{topic.lead}</p>
+    <div class="actions">
+      <a class="button" href={MAPS_URL} target="_blank" rel="noopener noreferrer">在Google地圖確認地點 ↗</a>
+      <a class="button secondary" href={groupMeta.pillarPath}>返回{topic.group==='itinerary'?'行程':groupMeta.label}頁</a>
+    </div>
+    <p class="snapshot">本頁最後核對：2026-11-09；出發前以主管機關與現場公告為準。</p>
+  </header>
+
+  {topic.facts && topic.facts.length > 0 && (
+    <section class="topic-facts" aria-label="重點資訊">
+      <div class="facts-grid">{topic.facts.map(f => <div class="fact"><span class="fact-label">{f.label}</span><span class="fact-value">{f.value}</span></div>)}</div>
+    </section>
+  )}
+
+  <div class="container content-grid">
+    {topic.sections.map((s, i) => (
+      <section class="leaf-card text-card" id={'section-' + (i + 1)}>
+        <p class="eyebrow">0{i + 1}</p>
+        <h2 class="serif">{s.heading}</h2>
+        {s.paragraphs && s.paragraphs.map(p => <p>{p}</p>)}
+        {s.bullets && s.bullets.length > 0 && <ul>{s.bullets.map(b => <li>{b}</li>)}</ul>}
+        {s.note && <p class="note">{s.note}</p>}
+      </section>
+    ))}
+    {topic.steps && topic.steps.length > 0 && (
+      <section class="leaf-card text-card" id="route">
+        <p class="eyebrow">路線</p>
+        <h2 class="serif">建議步驟</h2>
+        <ol class="steps">{topic.steps.map(st => <li><strong>{st.title}</strong><span>{st.body}</span></li>)}</ol>
+      </section>
+    )}
+  </div>
+
+  {topic.faqs && topic.faqs.length > 0 && (
+    <section class="container faq" id="faq"><h2 class="serif">常見問題</h2>{topic.faqs.map(f => <details><summary>{f.q}</summary><p>{f.a}</p></details>)}</section>
+  )}
+
+  <section class="topic-sources" id="sources"><div class="container">
+    <h2 class="serif">資料來源</h2>
+    <p>本頁整理自下列官方或主辦單位頁面；各來源涵蓋不同主題，不把某項時段或設施資料套用到其他場地。2026-11-09查閱。</p>
+    <ul>{topic.sources.map(s => <li><a href={s.url} target="_blank" rel="noopener noreferrer">{s.label} ↗</a></li>)}</ul>
+    <nav class="related" aria-label="相關指南">{related.map(t => <a href={topicPath(t.slug)}>{t.title}</a>)}</nav>
+  </div></section>
+</article>
+</BaseLayout>
